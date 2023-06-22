@@ -1,7 +1,7 @@
 class MovableObject extends World {
 
 	constructor() {
-		
+		super();
 	}
 
 	moveRight() {

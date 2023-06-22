@@ -1,3 +1,0 @@
-class SeaUrchin extends MovableObject {
-	
-}
