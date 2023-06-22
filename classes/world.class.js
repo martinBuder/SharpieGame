@@ -1,6 +1,5 @@
 class World {
-	x; 
-	y; 
+
 	img;
 	ctx;
 
@@ -13,6 +12,7 @@ class World {
 
 	constructor(canvas) {
 		this.ctx = canvas.getContext('2d');
+		this.draw();
 	}
 
 	loadImg(path) {
@@ -20,5 +20,7 @@ class World {
 		this.img.src = path;
 	}
 
-	ctx = canvas.getContext('2d')
+	draw() {
+		this.ctx.drawImage(this.sharpie.img, this.sharpie.x, this.sharpie.y, this.sharpie.width, this.sharpie.height);
+	}
 } 

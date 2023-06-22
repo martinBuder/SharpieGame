@@ -1,5 +1,5 @@
-class FixedObject extends World {
+class FixedObject {
 	constructor() {
-		
+
 	}
 }

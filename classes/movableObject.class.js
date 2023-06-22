@@ -16,10 +16,6 @@ class MovableObject extends World {
 		
 	} 
 
-	moveRight() {
-		
-	}
-
 	moveDown() {
 		
 	} 
