@@ -1,0 +1,3 @@
+class Sharpie extends MovableObject {
+	
+}
