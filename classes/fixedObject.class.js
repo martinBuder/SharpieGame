@@ -1,4 +1,4 @@
-class FixedObject {
+class FixedObject extends World {
 	constructor() {
 
 	}

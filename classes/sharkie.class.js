@@ -1,4 +1,4 @@
-class Sharpie extends MovableObject {
+class Sharkie extends MovableObject {
 
 	x = 20;
 	y = 280;
@@ -8,5 +8,7 @@ class Sharpie extends MovableObject {
 	constructor() {
 		super().loadImg('../img/1.Sharkie/1.IDLE/1.png')
 	}
+
+	
 
 }

@@ -1,26 +1,21 @@
 class World {
-
+ // x;
+	// y;
+	// width;
+	// height;
 	img;
 	ctx;
 
-	sharpie = new Sharpie();
-	enemies = [
-		new PufferFish(),
-		new PufferFish(),
-		new PufferFish(),
-	];	
+	movableObjject = new MovableObject();
 
 	constructor(canvas) {
 		this.ctx = canvas.getContext('2d');
 		this.draw();
 	}
 
-	loadImg(path) {
-		this.img = new Image();
-		this.img.src = path;
-	}
+
 
 	draw() {
-		this.ctx.drawImage(this.sharpie.img, this.sharpie.x, this.sharpie.y, this.sharpie.width, this.sharpie.height);
+		this.ctx.drawImage(this.sharkie.img, this.sharkie.x, this.sharkie.y, this.sharkie.width, this.sharkie.height);
 	}
 } 
