@@ -51,7 +51,7 @@ class World {
 		this.addObjectsToMap(this.floors)
 
 		// Helligkeit für das Licht
-		this.ctx.globalAlpha = 0.1 + Math.random() * 0.085; // Erhöhe den globalen Transparenzwert, um das Lichtbild heller zu machen
+		this.ctx.globalAlpha = this.light.brightness; // Erhöhe den globalen Transparenzwert, um das Lichtbild heller zu machen
 		this.addToMap(this.light);
 		// Setze die globale Transparenz zurück
  	this.ctx.globalAlpha = 1; // Setze die Transparenz zurück auf 100%

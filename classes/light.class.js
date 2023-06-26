@@ -6,7 +6,13 @@ class Light extends MovableObject {
 		this.x = 0;
 		this.width = 2000;
 		this.height = 520;
-
-
+		this.brightness = 1;
+		this.changeBrightness();
 	}
-}
+
+	changeBrightness() {
+				setInterval(() => {
+					this.brightness = 0.9 + Math.random() * -0.2
+				}, 120); 
+			}
+		}

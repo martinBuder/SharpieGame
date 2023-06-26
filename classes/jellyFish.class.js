@@ -2,7 +2,10 @@ class JellyFish extends Enemies {
 
 	constructor() {
 		super().loadImg('../img/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png');
+		this.animateMove();
+	};
 
+	animateMove() {
 		setInterval(() => {
 			if (this.y < -100) {
 				this.x = 300 + Math.random() * 1600;
@@ -11,6 +14,9 @@ class JellyFish extends Enemies {
 			this.y = this.y -1
 		}, 10 + Math.random() * 2); 
 	}
-
 }
+
+
+		
+
 
