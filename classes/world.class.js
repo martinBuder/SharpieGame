@@ -31,6 +31,7 @@ class World {
 
 	canvas;
 	ctx;
+	transparent = 0.9;
 
 	constructor(canvas) {
 		this.ctx = canvas.getContext('2d');
@@ -53,7 +54,13 @@ class World {
 		this.floors.forEach(floor => {
 			this.ctx.drawImage(floor.img, floor.x, floor.y, floor.width, floor.height);	
 		});
-		this.ctx.drawImage(this.light.img, this.light.x, this.light.y,  this.light.width, this.light.height);
+		 // Helligkeit anpassen
+			this.ctx.globalAlpha = 0.5; // Erhöhe den globalen Transparenzwert, um das Lichtbild heller zu machen
+
+			this.ctx.drawImage(this.light.img, this.light.x, this.light.y, this.light.width, this.light.height);
+	
+		
+
 		let self = this;
 		requestAnimationFrame(() => {self.draw();});
 		
