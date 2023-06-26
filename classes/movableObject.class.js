@@ -1,10 +1,10 @@
 class MovableObject {
 	
-	x = 20;
-	y = 180;
+	x;
+	y;
 	img;
-	height = 200;
-	width = 260;
+	height;
+	width;
 
 	// constructor() {
 	// 	super()

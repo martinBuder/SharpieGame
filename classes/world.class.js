@@ -26,7 +26,6 @@ class World {
 	floors = [
 		new Floor(),
 		new Floor(),
-		new Floor(),
 	]
 
 	canvas;
@@ -54,12 +53,13 @@ class World {
 		this.floors.forEach(floor => {
 			this.ctx.drawImage(floor.img, floor.x, floor.y, floor.width, floor.height);	
 		});
-		 // Helligkeit anpassen
-			this.ctx.globalAlpha = 0.5; // Erhöhe den globalen Transparenzwert, um das Lichtbild heller zu machen
+		 // Helligkeit für das Licht
+			this.ctx.globalAlpha = 0.3 + Math.random() * 0.08; // Erhöhe den globalen Transparenzwert, um das Lichtbild heller zu machen
 
 			this.ctx.drawImage(this.light.img, this.light.x, this.light.y, this.light.width, this.light.height);
 	
-		
+			  // Setze die globale Transparenz zurück
+ 	 this.ctx.globalAlpha = 1; // Setze die Transparenz zurück auf 100%
 
 		let self = this;
 		requestAnimationFrame(() => {self.draw();});
