@@ -5,14 +5,19 @@ class MovableObject {
 	img;
 	height;
 	width;
-
-	// constructor() {
-	// 	super()
-	// }
+	imageCache = [];
 
 	loadImg(path) {
 		this.img = new Image();
 		this.img.src = path;
+	}
+ 
+	loadImages(imageArray) {
+		imageArray.forEach(path => {
+			let img = new Image();
+			img.src = path;
+			this.imageCache[path] = img;
+		});
 	}
 
 }

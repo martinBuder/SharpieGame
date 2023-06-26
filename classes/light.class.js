@@ -12,7 +12,7 @@ class Light extends MovableObject {
 
 	changeBrightness() {
 				setInterval(() => {
-					this.brightness = 0.9 + Math.random() * -0.2
-				}, 120); 
+					this.brightness = 0.5 + Math.random() * -0.2
+				}, 1000 / 8); 
 			}
 		}
