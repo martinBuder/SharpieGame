@@ -9,8 +9,8 @@ class PufferFish extends Enemies {
 	this.speed = 2 + Math.random() * 2;
 		setInterval(() => {
 			if (this.x < -100) {
-				this.x = 2000;
-				this.y = 50 + Math.random() * 300;
+				this.x = 11000;
+				this.y = 0 + Math.random() * 410;
 			}
 			this.x = this.x - this.speed 
 		}, 1000 / 60); 

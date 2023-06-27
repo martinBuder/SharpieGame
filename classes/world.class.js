@@ -1,7 +1,36 @@
 class World {
-	background = new BackgroundImg();
+	background = [
+		new BackgroundImg('../img/3. Background/Layers/5. Water/D.png', 0),
+		new BackgroundImg('../img/3. Background/Layers/5. Water/D.png', 2000),
+		new BackgroundImg('../img/3. Background/Layers/5. Water/D.png', 4000),
+		new BackgroundImg('../img/3. Background/Layers/5. Water/D.png', 6000),
+		new BackgroundImg('../img/3. Background/Layers/5. Water/D.png', 8000),
+
+		new BackgroundImg('../img/3. Background/Layers/4.Fondo 2/D.png', 0),
+		new BackgroundImg('../img/3. Background/Layers/4.Fondo 2/D.png', 2000),
+		new BackgroundImg('../img/3. Background/Layers/4.Fondo 2/D.png', 4000),
+		new BackgroundImg('../img/3. Background/Layers/4.Fondo 2/D.png', 6000),
+		new BackgroundImg('../img/3. Background/Layers/4.Fondo 2/D.png', 8000),
+
+		new BackgroundImg('../img/3. Background/Layers/3.Fondo 1/D.png', 0),
+		new BackgroundImg('../img/3. Background/Layers/3.Fondo 1/D.png', 2000),
+		new BackgroundImg('../img/3. Background/Layers/3.Fondo 1/D.png', 4000),
+		new BackgroundImg('../img/3. Background/Layers/3.Fondo 1/D.png', 6000),
+		new BackgroundImg('../img/3. Background/Layers/3.Fondo 1/D.png', 8000),
+
+		new BackgroundImg('../img/3. Background/Layers/2. Floor/D.png', 0),
+		new BackgroundImg('../img/3. Background/Layers/2. Floor/D.png', 2000),
+		new BackgroundImg('../img/3. Background/Layers/2. Floor/D.png', 4000),
+		new BackgroundImg('../img/3. Background/Layers/2. Floor/D.png', 6000),
+		new BackgroundImg('../img/3. Background/Layers/2. Floor/D.png', 8000),
+	]
 	sharkie = new Sharkie();
 	enemies = [
+		new RedPufferFish(),
+		new GreenPufferFish(),
+		new OrangePufferFish(),
+		new GreenPufferFish(),
+		new GreenJellyFish(),
 		new RedPufferFish(),
 		new GreenPufferFish(),
 		new OrangePufferFish(),
@@ -12,9 +41,46 @@ class World {
 		new YellowJellyFish(),
 		new OrangePufferFish(),
 		new PinkJellyFish(),
+		new RedPufferFish(),
+		new GreenPufferFish(),
+		new OrangePufferFish(),
+		new GreenPufferFish(),
+		new GreenJellyFish(),
+		new LilaJellyFish(),
+		new RedPufferFish(),
+		new YellowJellyFish(),
+		new OrangePufferFish(),
+		new PinkJellyFish(),
+		new LilaJellyFish(),
+		new RedPufferFish(),
+		new YellowJellyFish(),
+		new OrangePufferFish(),
+		new PinkJellyFish(),
 	]
 
 	coins = [
+		new Coins(),
+		new Coins(),
+		new Coins(),
+		new Coins(),
+		new Coins(),
+		new Coins(),
+		new Coins(),
+		new Coins(),
+		new Coins(),
+		new Coins(),
+		new Coins(),
+		new Coins(),
+		new Coins(),
+		new Coins(),
+		new Coins(),
+		new Coins(),
+		new Coins(),
+		new Coins(),
+		new Coins(),
+		new Coins(),
+		new Coins(),
+		new Coins(),
 		new Coins(),
 		new Coins(),
 		new Coins(),
@@ -37,6 +103,7 @@ class World {
 	keyboard;
 	canvas;
 	ctx;
+	camera_x = 0;
 
 	constructor(canvas, keyboard) {
 		this.ctx = canvas.getContext('2d');
@@ -53,7 +120,9 @@ class World {
 	draw() {
 		this.ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-		this.addToMap(this.background);
+		this.ctx.translate(this.camera_x, 0);
+
+		this.addObjectsToMap(this.background);
 		this.addObjectsToMap(this.coins);
 		this.addToMap(this.sharkie);
 		this.addObjectsToMap(this.enemies);
@@ -64,6 +133,8 @@ class World {
 		this.addToMap(this.light);
 		// Setze die globale Transparenz zurück
  	this.ctx.globalAlpha = 1; // Setze die Transparenz zurück auf 100%
+
+		this.ctx.translate(-this.camera_x, 0);
 
 		let self = this;
 		requestAnimationFrame(() => {
@@ -78,6 +149,17 @@ class World {
 	};
 
 	addToMap(objectImage) {
+		if(objectImage.otherDirection) {
+			this.ctx.save();
+			this.ctx.translate(objectImage.width, 0);
+			this.ctx.scale(-1, 1);
+			objectImage.x = objectImage.x * -1
+		}
 		this.ctx.drawImage(objectImage.img, objectImage.x, objectImage.y, objectImage.width, objectImage.height);
-	};
+		if(objectImage.otherDirection) {
+			objectImage.x = objectImage.x * -1;
+			this.ctx.restore();
+		}
+};
+
 }

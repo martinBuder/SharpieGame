@@ -1,9 +1,9 @@
 class BackgroundImg extends MovableObject {
 
-	constructor() {
-		super().loadImg('../img/3. Background/Dark/completo.png');
+	constructor(path, x) {
+		super().loadImg(path);
 		this.y = 0;
-		this.x = 0;
+		this.x = x
 		this.width = 2000;
 		this.height = 480;
 	}
