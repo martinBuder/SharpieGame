@@ -1,7 +1,7 @@
 class JellyFish extends Enemies {
 
 	constructor() {
-		super().loadImg('../img/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png');
+		super();
 		this.animateMove();
 	};
 
@@ -15,6 +15,18 @@ class JellyFish extends Enemies {
 			this.y = this.y -this.speed
 		}, 1000 / 60); 
 	}
+
+	loadImgPath() {
+		this.colorPath = `img/2.Enemy/2 Jelly fish/Regular/${this.color} 1.png`;
+		super.loadImg(this.colorPath);
+	}
+
+	fillENEMY_SWIM() {
+		for (let i = 1; i < 5; i++) {
+				this.ENEMY_SWIM.push(`img/2.Enemy/2 Jelly fish/Regular/${this.color} ${i}.png`);
+		}
+}
+
 }
 
 

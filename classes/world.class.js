@@ -3,15 +3,15 @@ class World {
 	sharkie = new Sharkie();
 	enemies = [
 		new RedPufferFish(),
+		new GreenPufferFish(),
+		new OrangePufferFish(),
+		new GreenPufferFish(),
+		new GreenJellyFish(),
+		new LilaJellyFish(),
 		new RedPufferFish(),
+		new YellowJellyFish(),
 		new OrangePufferFish(),
-		new OrangePufferFish(),
-		new GreenPufferFish(),
-		new GreenPufferFish(),
-		new JellyFish(),
-		new JellyFish(),
-		new JellyFish(),
-		new JellyFish(),
+		new PinkJellyFish(),
 	]
 
 	coins = [
