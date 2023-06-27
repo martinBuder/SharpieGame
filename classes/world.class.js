@@ -2,10 +2,12 @@ class World {
 	background = new BackgroundImg();
 	sharkie = new Sharkie();
 	enemies = [
-		new PufferFish(),
-		new PufferFish(),
-		new PufferFish(),
-		new PufferFish(),
+		new RedPufferFish(),
+		new RedPufferFish(),
+		new OrangePufferFish(),
+		new OrangePufferFish(),
+		new GreenPufferFish(),
+		new GreenPufferFish(),
 		new JellyFish(),
 		new JellyFish(),
 		new JellyFish(),
