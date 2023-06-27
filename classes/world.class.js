@@ -34,13 +34,20 @@ class World {
 		new Floor(),
 	]
 
+	keyboard;
 	canvas;
 	ctx;
 
-	constructor(canvas) {
+	constructor(canvas, keyboard) {
 		this.ctx = canvas.getContext('2d');
 		this.canvas = canvas;
+		this.keyboard = keyboard;
 		this.draw();
+		this.setWorld();
+	}
+
+	setWorld() {
+		this.sharkie.world = this
 	}
 
 	draw() {

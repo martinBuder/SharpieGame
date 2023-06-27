@@ -6,6 +6,7 @@ class Sharkie extends MovableObject {
 	width = 260;
 	SHARKIE_SWIM = [];
 	imgInSwim = 0;
+	world;
 
 	constructor() {
 		super().loadImg('../img/1.Sharkie/1.IDLE/1.png');
@@ -23,6 +24,9 @@ class Sharkie extends MovableObject {
 
 	animate() {
 		setInterval(() => {
+		if(this.world.keyboard.RIGHT) {
+			this.x += 20
+		}
 		let i = this.imgInSwim % this.SHARKIE_SWIM.length;
 		let path = this.SHARKIE_SWIM[i];
 		this.img = this.imageCache[path];
