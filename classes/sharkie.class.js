@@ -1,6 +1,6 @@
 class Sharkie extends MovableObject {	
 
-	x = 20;
+	x = 150;
 	y = 180;
 	height = 200;
 	width = 260;
@@ -34,14 +34,23 @@ class Sharkie extends MovableObject {
 	animate() {
 		setInterval(() => {
 		if(this.world.keyboard.RIGHT) {
+			if(this.x < 9760)
 			this.x += 5;
 			this.otherDirection = false;
 		}
 		if(this.world.keyboard.LEFT) {
+			if(this.x > 0)
 			this.x -= 5;
 			this.otherDirection = true;
 		}
-		this.world.camera_x = -this.x
+		if (this.x < 9340 && this.world.camera_x + this.x > 950) {
+			this.world.camera_x = -this.x + 950;
+		}
+		if (this.x > 350 && this.world.camera_x + this.x < 350) {
+			this.world.camera_x = -this.x + 350
+		}
+	
+
 		if(this.world.keyboard.UP) {
 			if(this.y > -90) {
 				this.y -= 10
