@@ -1,5 +1,7 @@
 class MovableObject {
 	
+	xPoint;
+	camera_x;
 	x;
 	y;
 	img;
@@ -7,6 +9,7 @@ class MovableObject {
 	width;
 	imageCache = [];
 	otherDirection = false;
+
 
 	loadImg(path) {
 		this.img = new Image();

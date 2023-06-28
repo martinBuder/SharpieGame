@@ -18,6 +18,12 @@ class Sharkie extends MovableObject {
 		this.loadImages(this.SHARKIE_STAND);
 		this.loadImages(this.SHARKIE_SWIM);
 		this.animate();
+		this.getPositionX();
+
+	}
+
+	getPositionX() {
+		return this.x;
 	}
 
 	fillSHARKIE_STAND() {
@@ -47,9 +53,18 @@ class Sharkie extends MovableObject {
 			}
 			this.otherDirection = true;
 		}
-		if (this.x < 9340 && this.world.camera_x + this.x > 950) {
-			this.world.camera_x = -this.x + 950;
-		}
+		
+			if (this.x < 8160 && this.world.camera_x + this.x > 950) {
+				this.world.camera_x = -this.x +950
+			}
+
+			if (this.x > 8160) {
+				// !danger music
+				if(this.world.camera_x > -8400) {
+						this.world.camera_x = -this.x;
+				}
+			}
+	
 		if (this.x > 350 && this.world.camera_x + this.x < 350) {
 			this.world.camera_x = -this.x + 350
 		}

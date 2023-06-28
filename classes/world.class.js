@@ -64,8 +64,6 @@ class World {
 		new PinkJellyFish(),
 	]
 
-
-
 	coins = [
 		new Coins(),
 		new Coins(),
@@ -115,7 +113,7 @@ class World {
 
 	]
 	
-	endboss = new EndBoss();
+	endboss = new EndBoss(this.sharkie);
 
 	constructor(canvas, keyboard) {
 		this.ctx = canvas.getContext('2d');
@@ -124,6 +122,14 @@ class World {
 		this.draw();
 		this.setWorld();
 		this.initAudio();
+
+    // Den Charakter überwachen und die Endboss-Aktivierung auslösen
+    setInterval(() => {
+					const characterPosition = this.sharkie.x;
+					if (characterPosition >= 8600) {
+							this.endboss.animateEndboss();
+					}
+			}, 100);
 	}
 
 	initAudio() {
@@ -145,7 +151,7 @@ class World {
 
 	setWorld() {
 		this.sharkie.world = this;
-		this.endboss.world = this;
+		this.endboss.world = this.sharkie.world;
 	}
 
 	draw() {
