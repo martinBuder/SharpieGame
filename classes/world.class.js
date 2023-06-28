@@ -104,6 +104,11 @@ class World {
 	canvas;
 	ctx;
 	camera_x = 0;
+	gameSound = [
+		new Audio('../audio/gameMusic.mp3'),
+		new Audio('../audio/underWater.mp3')
+
+	]
 
 	constructor(canvas, keyboard) {
 		this.ctx = canvas.getContext('2d');
@@ -111,6 +116,24 @@ class World {
 		this.keyboard = keyboard;
 		this.draw();
 		this.setWorld();
+		this.initAudio();
+	}
+
+	initAudio() {
+  document.addEventListener('click', () => {
+			this.gameSound[0].currentTime = 0;
+			this.gameSound[0].volume = 0.1;
+			this.gameSound[0].loop = true; 
+	  this.gameSound[0].play();
+  });
+
+		document.addEventListener('click', () => {
+			this.gameSound[1].currentTime = 0;
+			this.gameSound[1].volume = 0.2;
+			this.gameSound[1].loop = true; 
+			this.gameSound[1].play();
+	});
+
 	}
 
 	setWorld() {
