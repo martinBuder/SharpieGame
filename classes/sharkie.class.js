@@ -1,6 +1,6 @@
 class Sharkie extends MovableObject {	
 
-	x = 150;
+	x = 8000;
 	y = 180;
 	height = 200;
 	width = 260;
@@ -9,6 +9,8 @@ class Sharkie extends MovableObject {
 	imgInSwim = 0;
 	world;
 
+	swimmingSound = new Audio('../audio/swimming.mp3')
+
 	constructor() {
 		super().loadImg('../img/1.Sharkie/1.IDLE/1.png');
 		this.fillSHARKIE_STAND();
@@ -16,7 +18,6 @@ class Sharkie extends MovableObject {
 		this.loadImages(this.SHARKIE_STAND);
 		this.loadImages(this.SHARKIE_SWIM);
 		this.animate();
-	
 	}
 
 	fillSHARKIE_STAND() {
@@ -33,14 +34,17 @@ class Sharkie extends MovableObject {
 
 	animate() {
 		setInterval(() => {
+		this.swimmingSound.pause();
 		if(this.world.keyboard.RIGHT) {
-			if(this.x < 9760)
-			this.x += 5;
+			if(this.x < 9760) {
+				this.x += 5;
+			}
 			this.otherDirection = false;
 		}
 		if(this.world.keyboard.LEFT) {
-			if(this.x > 0)
-			this.x -= 5;
+			if(this.x > 0) {
+				this.x -= 5;
+			}
 			this.otherDirection = true;
 		}
 		if (this.x < 9340 && this.world.camera_x + this.x > 950) {
@@ -54,20 +58,40 @@ class Sharkie extends MovableObject {
 		if(this.world.keyboard.UP) {
 			if(this.y > -90) {
 				this.y -= 10
+				if(this.otherDirection == false) {
+					if(this.x < 9760) {
+						this.x += 2;
+					}
+				}else{
+					if(this.x > 0) {
+						this.x -= 2;
+					}
+				}
 			}
 		}
 		if(this.world.keyboard.DOWN) {
 			if(this.y < 315) {
 				this.y += 10
+				if(this.otherDirection == false) {
+					if(this.x < 9760) {
+						this.x += 2;
+					}
+				}else{
+					if(this.x > 0) {
+						this.x -= 2;
+					}
+				}
 			}
 		}}, 1000/60);
 
 		setInterval(() => {
-			if(this.world.keyboard.LEFT || this.world.keyboard.RIGHT) {
+			if(this.world.keyboard.LEFT || this.world.keyboard.RIGHT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
 				let i = this.imgInSwim % this.SHARKIE_SWIM.length;
 				let path = this.SHARKIE_SWIM[i];
 				this.img = this.imageCache[path];
 				this.imgInSwim++;
+				this.swimmingSound.play();
+				this.swimmingSound.volume = 0.2;
 			}
 		}, 1000/60)
 				

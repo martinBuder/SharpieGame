@@ -1,4 +1,10 @@
 class World {
+
+	keyboard;
+	canvas;
+	ctx;
+	camera_x = 0;
+
 	background = [
 		new BackgroundImg('../img/3. Background/Layers/5. Water/D.png', 0),
 		new BackgroundImg('../img/3. Background/Layers/5. Water/D.png', 2000),
@@ -58,6 +64,8 @@ class World {
 		new PinkJellyFish(),
 	]
 
+
+
 	coins = [
 		new Coins(),
 		new Coins(),
@@ -100,15 +108,14 @@ class World {
 		new Floor(),
 	]
 
-	keyboard;
-	canvas;
-	ctx;
-	camera_x = 0;
+	
 	gameSound = [
 		new Audio('../audio/gameMusic.mp3'),
 		new Audio('../audio/underWater.mp3')
 
 	]
+	
+	endboss = new EndBoss();
 
 	constructor(canvas, keyboard) {
 		this.ctx = canvas.getContext('2d');
@@ -137,7 +144,8 @@ class World {
 	}
 
 	setWorld() {
-		this.sharkie.world = this
+		this.sharkie.world = this;
+		this.endboss.world = this;
 	}
 
 	draw() {
@@ -148,6 +156,7 @@ class World {
 		this.addObjectsToMap(this.background);
 		this.addObjectsToMap(this.coins);
 		this.addToMap(this.sharkie);
+		this.addToMap(this.endboss);
 		this.addObjectsToMap(this.enemies);
 		this.addObjectsToMap(this.floors)
 
@@ -184,5 +193,6 @@ class World {
 			this.ctx.restore();
 		}
 };
+
 
 }

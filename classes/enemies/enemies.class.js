@@ -1,6 +1,4 @@
 class Enemies extends MovableObject {
-	
- imgAmount = 1
 
 	ENEMY_SWIM = [];
 	imgInSwim = 0;
