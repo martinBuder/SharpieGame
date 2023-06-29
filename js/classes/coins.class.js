@@ -1,4 +1,4 @@
-class Coins extends MovableObject {
+class Coins extends CollectItems {
 
 	COIN_MOVE = [];
 	imgInCoin = 0;

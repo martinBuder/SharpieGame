@@ -144,6 +144,7 @@ class Sharkie extends MovableObject {
 		}, 1000);
 	}
 
+	
 
 }
 
