@@ -9,6 +9,8 @@ class Sharkie extends MovableObject {
 	imgInSwim = 0;
 	world;
 
+	firstBack = false
+
 	swimmingSound = new Audio('../audio/swimming.mp3')
 
 	constructor() {
@@ -54,16 +56,33 @@ class Sharkie extends MovableObject {
 			this.otherDirection = true;
 		}
 		
-			if (this.x < 8160 && this.world.camera_x + this.x > 950) {
+			if (this.x <	this.endgegnerPoint && this.world.camera_x + this.x > 950) {
 				this.world.camera_x = -this.x +950
 			}
 
-			if (this.x > 8160) {
+
+
+			if (this.x > this.endgegnerPoint) {
 				// !danger music
+			
+			// 	if (!this.firstBack) {
+			// 		this.firstBack = true;
+			// 		let counter = 0;
+			// 		let stopCameraBack = setInterval(() => {
+			// 		this.world.camera_x = this.world.camera_x -50;
+			// 		counter = counter + 50;
+			// 		if(counter == 950) {
+			// 			clearInterval(stopCameraBack);
+			// 		}
+			// 	}, 1000);
+			// }
+
 				if(this.world.camera_x > -8400) {
+				
 						this.world.camera_x = -this.x;
-				}
+					}
 			}
+		
 	
 		if (this.x > 350 && this.world.camera_x + this.x < 350) {
 			this.world.camera_x = -this.x + 350

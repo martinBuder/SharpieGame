@@ -10,6 +10,8 @@ class MovableObject {
 	imageCache = [];
 	otherDirection = false;
 
+	endgegnerPoint = 8160;
+
 
 	loadImg(path) {
 		this.img = new Image();

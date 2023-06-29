@@ -104,6 +104,9 @@ class World {
 	floors = [
 		new Floor(),
 		new Floor(),
+		new Floor(),
+		new Floor(),
+		new Floor(),
 	]
 
 	
