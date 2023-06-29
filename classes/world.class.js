@@ -117,6 +117,7 @@ class World {
 	]
 	
 	endboss = new EndBoss(this.sharkie);
+	pufferfish = new PufferFish(this.sharkie);
 
 	constructor(canvas, keyboard) {
 		this.ctx = canvas.getContext('2d');
@@ -131,7 +132,13 @@ class World {
 					const characterPosition = this.sharkie.x;
 					if (characterPosition >= 8600) {
 							this.endboss.animateEndboss();
-					}
+							for (let i = 0; i < this.enemies.length; i++) {
+										const enemy = this.enemies[i];
+										if (enemy instanceof PufferFish) {
+												enemy.changeEndBossHere();
+										}
+								}
+						}
 			}, 100);
 	}
 
