@@ -11,7 +11,8 @@ class Sharkie extends MovableObject {
 
 	firstBack = false
 
-	swimmingSound = new Audio('../audio/swimming.mp3')
+	swimmingSound = new Audio('../audio/swimming.mp3');
+	endgegnerPointSound = new Audio('../audio/danger.mp3')
 
 	constructor() {
 		super().loadImg('../img/1.Sharkie/1.IDLE/1.png');
@@ -64,6 +65,10 @@ class Sharkie extends MovableObject {
 
 			if (this.x > this.endgegnerPoint) {
 				// !danger music
+			this.world.gameSound[0].pause();
+			this.endgegnerPointSound.volume = 0.6;
+			this.endgegnerPointSound.loop = true; 
+			this.endgegnerPointSound.play();
 			
 			// 	if (!this.firstBack) {
 			// 		this.firstBack = true;
@@ -77,7 +82,7 @@ class Sharkie extends MovableObject {
 			// 	}, 1000);
 			// }
 
-				if(this.world.camera_x > -8400) {
+				if(this.world.camera_x > -8350) {
 				
 						this.world.camera_x = -this.x;
 					}

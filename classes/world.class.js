@@ -132,6 +132,7 @@ class World {
 					const characterPosition = this.sharkie.x;
 					if (characterPosition >= 8600) {
 							this.endboss.animateEndboss();
+							// get the color pufferfishes in enemies to change the x point
 							for (let i = 0; i < this.enemies.length; i++) {
 										const enemy = this.enemies[i];
 										if (enemy instanceof PufferFish) {
