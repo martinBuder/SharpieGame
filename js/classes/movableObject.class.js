@@ -1,5 +1,12 @@
 class MovableObject {
 
+	ANIMATIONS = {};
+
+	constructor(){
+		this.fillANIMATIONS()
+		this.getLoadImages()
+	}
+
 	offsetY = 0;
 	gotIt = false;
 
@@ -56,14 +63,20 @@ class MovableObject {
 		getLoadImages() {
 			for (let key in this.ANIMATIONS) {
 											let animate = this.ANIMATIONS[key];
+											animate.splice(0, 2);
 											this.loadImages(animate);
 			}
 	}
 
-		fillANIMATION(animate, arrayLength, path) {
-			for (let i = 1; i < arrayLength; i++) {
-				animate.push(`../${path}${i}.png`);
-			}
+		fillANIMATIONS() {
+
+			for (let key in this.ANIMATIONS) {
+				let animate = this.ANIMATIONS[key];
+				for (let i = 1; i < animate[0]; i++) {
+					this.ANIMATIONS[key].push(`../${animate[1]}${i}.png`);
+				}
+			};
+		
 		}
 
 		getAnimationsToRun(imageArray){

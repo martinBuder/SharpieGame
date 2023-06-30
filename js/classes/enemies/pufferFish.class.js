@@ -38,10 +38,13 @@ getEndBossHere() {
 		super.loadImg(this.colorPath);
 	}
 
-	fillENEMY_SWIM() {
-		for (let i = 1; i < 6; i++) {
-				this.ENEMY_SWIM.push(`img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/${this.color}.swim${i}.png`);
-		}
+
+
+	getSwimAnimationPath(imgAmount, path) {
+		this.ANIMATIONS.ENEMY_SWIM.push([imgAmount, path]);
+		// debugger
+		this.fillANIMATIONS()
+	//	this.getLoadImages()
 	}
 }
 

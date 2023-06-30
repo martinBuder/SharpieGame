@@ -34,10 +34,6 @@ class World {
 		this.checkCollision(this.enemies);
 		this.checkCollision(this.coins);
 		this.checkCollision(this.poisons);
-
-		
-			
-
 	}
 
 	checkCollision(items) {

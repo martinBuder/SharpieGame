@@ -4,8 +4,11 @@ class PinkJellyFish extends JellyFish {
 		super();
 		this.color = 'Pink';
 		this.loadImgPath();
-		this.fillENEMY_SWIM();
-		this.loadImages(this.ENEMY_SWIM)
+		this.getSwimAnimationPath()
 		this.animateSwim()
+	}
+
+	getSwimAnimationPath() {
+		this.ANIMATIONS.ENEMY_SWIM.push(this.swimAnimationPath)
 	}
 }

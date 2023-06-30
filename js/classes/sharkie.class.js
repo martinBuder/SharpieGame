@@ -5,17 +5,12 @@ class Sharkie extends MovableObject {
 	height = 200;
 	width = 260;
 
-	// ANIMATION_STAND = []
-	// 	ANIMATION_SWIM = [];
-	// 	ANIMATION_NORMAL_DIE = [];
-	// 	ANIMATION_ELECTRIC_DIE = [];
-
 	// ! Animations
 	ANIMATIONS = {
-		ANIMATION_STAND: [],
-		ANIMATION_SWIM: [],
-		ANIMATION_NORMAL_DIE: [],
-		ANIMATION_ELECTRIC_DIE: [],
+		ANIMATION_STAND: [19, 'img/1.Sharkie/1.IDLE/'],
+		ANIMATION_SWIM: [7, 'img/1.Sharkie/3.Swim/'],
+		ANIMATION_NORMAL_DIE: [13, 'img/1.Sharkie/6.dead/1.Poisoned/'],
+		ANIMATION_ELECTRIC_DIE: [11, 'img/1.Sharkie/6.dead/2.Electro_shock/'],
 	}
 
 	world;
@@ -32,11 +27,7 @@ class Sharkie extends MovableObject {
 	constructor() {
 		super().loadImg('../img/1.Sharkie/1.IDLE/1.png');
 		// the number must be one bigger then picture are there
-		this.fillANIMATION(this.ANIMATIONS.ANIMATION_STAND, 19, 'img/1.Sharkie/1.IDLE/');
-		this.fillANIMATION(this.ANIMATIONS.ANIMATION_SWIM, 7, 'img/1.Sharkie/3.Swim/');
-		this.fillANIMATION(this.ANIMATIONS.ANIMATION_NORMAL_DIE, 13, 'img/1.Sharkie/6.dead/1.Poisoned/');
-		this.fillANIMATION(this.ANIMATIONS.ANIMATION_ELECTRIC_DIE, 11, 'img/1.Sharkie/6.dead/2.Electro_shock/');
-		this.getLoadImages()
+		
 		this.animate();
 		this.getPositionX();
 	}

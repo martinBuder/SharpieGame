@@ -1,5 +1,7 @@
 class JellyFish extends Enemies {
 
+
+
 	constructor() {
 		super();
 		this.animateMove();
@@ -21,13 +23,10 @@ class JellyFish extends Enemies {
 		super.loadImg(this.colorPath);
 	}
 
-	fillENEMY_SWIM() {
-		for (let i = 1; i < 5; i++) {
-				this.ENEMY_SWIM.push(`img/2.Enemy/2 Jelly fish/Regular/${this.color} ${i}.png`);
-		}
+	
 }
 
-}
+
 
 
 		

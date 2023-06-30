@@ -1,17 +1,16 @@
 class Coins extends CollectItems {
 
+	width = 50;
+	height = 50;
+
 	ANIMATIONS = {
-		COIN_MOVE: [],
+		COIN_MOVE: [4, 'img/4. Marcadores/1. Coins/'],
 	}
 
 	constructor() {
 		super().loadImg('../img/4. Marcadores/1. Coins/1.png');
 		this.y = 50 + Math.random() * 250;
 		this.x = 300 + Math.random() * this.endgegnerPoint;
-		this.width = 50;
-		this.height = 50;
-		this.fillANIMATION(this.ANIMATIONS.COIN_MOVE, 5, 'img/4. Marcadores/1. Coins/');
-		this.getLoadImages()
 		this.animate();
 	}
 

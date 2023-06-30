@@ -1,8 +1,9 @@
 class Enemies extends MovableObject {
-
-	ENEMY_SWIM = [];
-	imgInSwim = 0;
 	power = 2;
+
+	ANIMATIONS = {
+		ENEMY_SWIM: []
+	}
 
 	constructor() {
 		super();
@@ -11,13 +12,11 @@ class Enemies extends MovableObject {
 		this.width = 70;
 		this.height = 100;
 	}
-	
-		animateSwim() {
-			setInterval(() => {
-			let i = this.imgInSwim % this.ENEMY_SWIM.length;
-			let path = this.ENEMY_SWIM[i];
-			this.img = this.imageCache[path];
-			this.imgInSwim++;
-				}, 420);
-		}
+
+	animateSwim() {
+		setInterval(() => {
+			this.getAnimationsToRun(this.ANIMATIONS.ENEMY_SWIM)
+			}, 420);
+	}
+
 }
