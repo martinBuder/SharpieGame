@@ -31,27 +31,46 @@ class World {
 		this.setWorld();
 		this.initAudio();
 		this.whereIsSharkie();
-		this.checkCollision();
+		this.checkCollision(this.enemies);
+		this.checkCollision(this.coins);
+		this.checkCollision(this.poisons);
 
 		
 			
 
 	}
 
-	checkCollision() {
+	checkCollision(items) {
 		setInterval(() => {
-			this.enemies.forEach((enemy) => {
-				if(this.sharkie.isColliding(enemy)) {
-					this.sharkie.lifeAmount -= enemy.power
-					console.log(this.sharkie.lifeAmount, enemy.power);
-					if(this.sharkie.lifeAmount <= 0 && !this.sharkieDied) {
-						this.sharkie.sharkieDie();
-						this.sharkieDied = true
-					}
-				}
-			}
-			)
-		}, 1000);
+			items.forEach((item) => {
+				if(this.sharkie.isColliding(item)) {
+						if (!this.sharkieDied && !(item instanceof CollectItems)){
+							this.sharkie.lifeAmount -= item.power
+							// console.log(this.sharkie.lifeAmount, item.power)
+							if(this.sharkie.lifeAmount <= 0) {
+								// // this.sharkieDied = true
+								// this.sharkie.sharkieDie();
+							}
+						}	
+							if (!this.sharkieDied && item instanceof CollectItems && !item.gotIt){
+
+								if (item instanceof Coins){
+									// items.firstLetterUpercase()
+									this.sharkie.coinsAmount += item.power
+									console.log(this.sharkie.coinsAmount, item.power);
+									item.gotIt = true;
+								}
+								if (item instanceof Poison){
+									this.sharkie.poisonsAmount += item.power
+									console.log(this.sharkie.poisonsAmount, item.power);
+									item.gotIt = true;
+								}
+							}
+						
+				}	
+		});	
+					}, 1000);
+				
 	}
 
 	whereIsSharkie() {

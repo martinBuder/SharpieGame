@@ -1,14 +1,11 @@
 class MovableObject {
-	
-	xPoint;
-	camera_x;
-	x;
-	y;
+
 	offsetY = 0;
-	img;
-	height;
-	width;
+	gotIt = false;
+
 	imageCache = [];
+	imgInArray = 0;
+
 	otherDirection = false;
 
 	endgegnerPoint = 8160;
@@ -28,21 +25,23 @@ class MovableObject {
 	}
 
 	draw(ctx) {
+		if (!this.gotIt)
 		ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-
+		
 	}
 
 	drawFrame(ctx){
-		
-		if(this instanceof Sharkie ||
+			if(this instanceof Sharkie ||
 					this instanceof Enemies ||
 					this instanceof EndBoss ||
 					this instanceof CollectItems)
-		ctx.beginPath();
-		ctx.lineWidth = '5';
-		ctx.strokeStyle = 'white';
-		ctx.rect(this.x, this.y, this.width, this.height);
-		ctx.stroke();
+					if (!this.gotIt) {			
+						ctx.beginPath();
+						ctx.lineWidth = '5';
+						ctx.strokeStyle = 'white';
+						ctx.rect(this.x, this.y, this.width, this.height);
+						ctx.stroke();
+					}
 	}
 
 	// Bessere Formel zur Kollisionsberechnung (Genauer)
@@ -54,6 +53,24 @@ class MovableObject {
 		
 		}
 
+		getLoadImages() {
+			for (let key in this.ANIMATIONS) {
+											let animate = this.ANIMATIONS[key];
+											this.loadImages(animate);
+			}
+	}
 
+		fillANIMATION(animate, arrayLength, path) {
+			for (let i = 1; i < arrayLength; i++) {
+				animate.push(`../${path}${i}.png`);
+			}
+		}
+
+		getAnimationsToRun(imageArray){
+			let i = this.imgInArray % imageArray.length;
+			let path = imageArray[i];
+			this.img = this.imageCache[path];
+			this.imgInArray++;
+		}
 
 }

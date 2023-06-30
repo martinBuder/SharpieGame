@@ -4,12 +4,24 @@ class Sharkie extends MovableObject {
 	y = 180;
 	height = 200;
 	width = 260;
-	SHARKIE_STAND = [];
-	SHARKIE_SWIM = [];
-	SHARKIE_DIE = [];
-	imgInSwim = 0;
+
+	// ANIMATION_STAND = []
+	// 	ANIMATION_SWIM = [];
+	// 	ANIMATION_NORMAL_DIE = [];
+	// 	ANIMATION_ELECTRIC_DIE = [];
+
+	// ! Animations
+	ANIMATIONS = {
+		ANIMATION_STAND: [],
+		ANIMATION_SWIM: [],
+		ANIMATION_NORMAL_DIE: [],
+		ANIMATION_ELECTRIC_DIE: [],
+	}
+
 	world;
-	lifeAmount = 20;
+	lifeAmount = 10;
+	coinsAmount = 0;
+	poisonsAmount = 0;
 
 	firstBack = false
 	sharkieDied = false
@@ -19,37 +31,18 @@ class Sharkie extends MovableObject {
 
 	constructor() {
 		super().loadImg('../img/1.Sharkie/1.IDLE/1.png');
-		this.fillSHARKIE_STAND();
-		this.fillSHARKIE_SWIM();
-		this.fillSHARKIE_DIE();
-		this.loadImages(this.SHARKIE_STAND);
-		this.loadImages(this.SHARKIE_SWIM);
-		this.loadImages(this.SHARKIE_DIE);
+		// the number must be one bigger then picture are there
+		this.fillANIMATION(this.ANIMATIONS.ANIMATION_STAND, 19, 'img/1.Sharkie/1.IDLE/');
+		this.fillANIMATION(this.ANIMATIONS.ANIMATION_SWIM, 7, 'img/1.Sharkie/3.Swim/');
+		this.fillANIMATION(this.ANIMATIONS.ANIMATION_NORMAL_DIE, 13, 'img/1.Sharkie/6.dead/1.Poisoned/');
+		this.fillANIMATION(this.ANIMATIONS.ANIMATION_ELECTRIC_DIE, 11, 'img/1.Sharkie/6.dead/2.Electro_shock/');
+		this.getLoadImages()
 		this.animate();
 		this.getPositionX();
-
 	}
 
 	getPositionX() {
 		return this.x;
-	}
-
-	fillSHARKIE_DIE() {
-  for (let i = 1; i < 13; i++) {
-    this.SHARKIE_DIE.push(`../img/1.Sharkie/6.dead/1.Poisoned/${i}.png`);
-  }
-	}
-
-	fillSHARKIE_STAND() {
-  for (let i = 1; i < 19; i++) {
-    this.SHARKIE_STAND.push(`../img/1.Sharkie/1.IDLE/${i}.png`);
-  }
-	}
-
-	fillSHARKIE_SWIM() {
-  for (let i = 1; i < 7; i++) {
-    this.SHARKIE_SWIM.push(`../img/1.Sharkie/3.Swim/${i}.png`);
-  }
 	}
 
 	animate() {
@@ -68,7 +61,8 @@ class Sharkie extends MovableObject {
 			this.otherDirection = true;
 		}
 		
-			if (this.x <	this.endgegnerPoint && this.world.camera_x + this.x > 950) {
+			if (this.x <	this.endgegnerPoint &&
+						this.world.camera_x + this.x > 950) {
 				this.world.camera_x = -this.x +950
 			}
 
@@ -134,12 +128,10 @@ class Sharkie extends MovableObject {
 			}
 		}}, 1000/60);
 
+
 		setInterval(() => {
 			if(this.world.keyboard.LEFT || this.world.keyboard.RIGHT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
-				let i = this.imgInSwim % this.SHARKIE_SWIM.length;
-				let path = this.SHARKIE_SWIM[i];
-				this.img = this.imageCache[path];
-				this.imgInSwim++;
+				this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_SWIM)
 				this.swimmingSound.play();
 				this.swimmingSound.volume = 0.2;
 			}
@@ -147,10 +139,7 @@ class Sharkie extends MovableObject {
 				
 		let sharkieSwim = setInterval(() => {
 				if(this.world.keyboard.LEFT == false && this.world.keyboard.RIGHT == false) {
-				let i = this.imgInSwim % this.SHARKIE_STAND.length;
-				let path = this.SHARKIE_STAND[i];
-				this.img = this.imageCache[path];
-				this.imgInSwim++;
+				this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_STAND)
 			};
 			if(this.lifeAmount <= 0)
 				clearInterval(sharkieSwim)
@@ -158,31 +147,19 @@ class Sharkie extends MovableObject {
 	}
 
 	sharkieDie() {
-		let sharkieDieFunc =	setInterval(() => {
-				let i = this.imgInSwim % this.SHARKIE_DIE.length;
-				let path = this.SHARKIE_DIE[i];
-				this.img = this.imageCache[path];
-				this.imgInSwim++;
-				this.swimmingSound.play();
-				this.swimmingSound.volume = 0.2;
-				if(i = 11)
-				clearInterval(sharkieDieFunc)
-			}, 1000/60);
-
+		let i = 0;
 			setInterval(() => {
-
-				for (let i = 8; i < 12; i++) {
-					let path = this.SHARKIE_DIE[i];
-					this.img = this.imageCache[path];
-					this.imgInSwim++;
-					this.swimmingSound.play();
-					this.swimmingSound.volume = 0.2;
-			}}, 100/60);
-
-		
+				this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_NORMAL_DIE)
+				// this.swimmingSound.play();
+				// this.swimmingSound.volume = 0.2;
+				if(i >= 11) {
+				path = this.ANIMATIONS.ANIMATION_NORMAL_DIE[11];
+    this.img = this.imageCache[path];
+				}
+			}, 1000/20);
 	}
 
-	
+
 
 }
 
