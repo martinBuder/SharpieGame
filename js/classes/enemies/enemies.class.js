@@ -2,6 +2,7 @@ class Enemies extends MovableObject {
 
 	ENEMY_SWIM = [];
 	imgInSwim = 0;
+	power = 2;
 
 	constructor() {
 		super();

@@ -5,6 +5,8 @@ class World {
 	ctx;
 	camera_x = 0;
 
+
+
 	background = level1.backgrounds;
 	sharkie = new Sharkie();
 	enemies = level1.enemies;
@@ -38,10 +40,14 @@ class World {
 
 	checkCollision() {
 		setInterval(() => {
-			debugger
 			this.enemies.forEach((enemy) => {
 				if(this.sharkie.isColliding(enemy)) {
-					console.log('bumms');
+					this.sharkie.lifeAmount -= enemy.power
+					console.log(this.sharkie.lifeAmount, enemy.power);
+					if(this.sharkie.lifeAmount <= 0 && !this.sharkieDied) {
+						this.sharkie.sharkieDie();
+						this.sharkieDied = true
+					}
 				}
 			}
 			)

@@ -4,6 +4,7 @@ class MovableObject {
 	camera_x;
 	x;
 	y;
+	offsetY = 0;
 	img;
 	height;
 	width;
@@ -48,8 +49,8 @@ class MovableObject {
 		isColliding (obj) {
 			return  (this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) && 
 											(this.y + this.offsetY + this.height) >= obj.y &&
-											(this.y + this.offsetY) <= (obj.y + obj.height) && 
-											obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
+											(this.y + this.offsetY) <= (obj.y + obj.height) 
+										
 		
 		}
 

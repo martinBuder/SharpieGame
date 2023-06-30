@@ -6,10 +6,13 @@ class Sharkie extends MovableObject {
 	width = 260;
 	SHARKIE_STAND = [];
 	SHARKIE_SWIM = [];
+	SHARKIE_DIE = [];
 	imgInSwim = 0;
 	world;
+	lifeAmount = 20;
 
 	firstBack = false
+	sharkieDied = false
 
 	swimmingSound = new Audio('../audio/swimming.mp3');
 	endgegnerPointSound = new Audio('../audio/danger.mp3')
@@ -18,8 +21,10 @@ class Sharkie extends MovableObject {
 		super().loadImg('../img/1.Sharkie/1.IDLE/1.png');
 		this.fillSHARKIE_STAND();
 		this.fillSHARKIE_SWIM();
+		this.fillSHARKIE_DIE();
 		this.loadImages(this.SHARKIE_STAND);
 		this.loadImages(this.SHARKIE_SWIM);
+		this.loadImages(this.SHARKIE_DIE);
 		this.animate();
 		this.getPositionX();
 
@@ -27,6 +32,12 @@ class Sharkie extends MovableObject {
 
 	getPositionX() {
 		return this.x;
+	}
+
+	fillSHARKIE_DIE() {
+  for (let i = 1; i < 13; i++) {
+    this.SHARKIE_DIE.push(`../img/1.Sharkie/6.dead/1.Poisoned/${i}.png`);
+  }
 	}
 
 	fillSHARKIE_STAND() {
@@ -134,14 +145,41 @@ class Sharkie extends MovableObject {
 			}
 		}, 1000/60)
 				
-		setInterval(() => {
+		let sharkieSwim = setInterval(() => {
 				if(this.world.keyboard.LEFT == false && this.world.keyboard.RIGHT == false) {
 				let i = this.imgInSwim % this.SHARKIE_STAND.length;
 				let path = this.SHARKIE_STAND[i];
 				this.img = this.imageCache[path];
 				this.imgInSwim++;
-			}
+			};
+			if(this.lifeAmount <= 0)
+				clearInterval(sharkieSwim)
 		}, 1000);
+	}
+
+	sharkieDie() {
+		let sharkieDieFunc =	setInterval(() => {
+				let i = this.imgInSwim % this.SHARKIE_DIE.length;
+				let path = this.SHARKIE_DIE[i];
+				this.img = this.imageCache[path];
+				this.imgInSwim++;
+				this.swimmingSound.play();
+				this.swimmingSound.volume = 0.2;
+				if(i = 11)
+				clearInterval(sharkieDieFunc)
+			}, 1000/60);
+
+			setInterval(() => {
+
+				for (let i = 8; i < 12; i++) {
+					let path = this.SHARKIE_DIE[i];
+					this.img = this.imageCache[path];
+					this.imgInSwim++;
+					this.swimmingSound.play();
+					this.swimmingSound.volume = 0.2;
+			}}, 100/60);
+
+		
 	}
 
 	
