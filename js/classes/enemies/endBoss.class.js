@@ -9,6 +9,9 @@ class EndBoss extends MovableObject {
 	ANIMATIONS = {
 		ENDBOSS_COMES: [11, 'img/2.Enemy/3 Final Enemy/1.Introduce/'],
 		ENDBOSS_STAY: [13, 'img/2.Enemy/3 Final Enemy/2.floating/'],
+		ENDBOSS_ATTACK: [6, 'img/2.Enemy/3 Final Enemy/Attack/'],
+		ENDBOSS_HURT: [4, 'img/2.Enemy/3 Final Enemy/Hurt/'],
+		ENDBOSS_ATTACK: [9, 'img/2.Enemy/3 Final Enemy/Dead/'],
 	}
 	firstContact = false;
 
@@ -19,23 +22,21 @@ class EndBoss extends MovableObject {
 	constructor(sharkie) {
 		super().loadImg(`../img/2.Enemy/3 Final Enemy/1.Introduce/1.png`);
 		this.sharkie = sharkie;
+		this.fillANIMATIONS()
+		this.getLoadImages()
 	}
 
 	animateEndboss() {
 		if (!this.firstContact) {
-
 			let stopComeAnimation = setInterval(() => {
 				this.getAnimationsToRun(this.ANIMATIONS.ENDBOSS_COMES)
-			if(this.imgInSwim == 10) {
-				clearInterval(stopComeAnimation);
-			}
 		}, 1000/10);
-
-			setTimeout(() => {
+		setTimeout(() => clearInterval(stopComeAnimation), 1000);
+		setTimeout(() => {
 				setInterval(() => {
 					this.getAnimationsToRun(this.ANIMATIONS.ENDBOSS_STAY)
 					}, 420);
-				}, 4200);
+				}, 1000);
 				this.firstContact = true
 	
 }

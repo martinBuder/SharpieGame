@@ -11,6 +11,12 @@ class Sharkie extends MovableObject {
 		ANIMATION_SWIM: [7, 'img/1.Sharkie/3.Swim/'],
 		ANIMATION_NORMAL_DIE: [13, 'img/1.Sharkie/6.dead/1.Poisoned/'],
 		ANIMATION_ELECTRIC_DIE: [11, 'img/1.Sharkie/6.dead/2.Electro_shock/'],
+		ANIMATION_SLEEP: [14, 'img/1.Sharkie/2.Long_IDLE/I'],
+		ANIMATION_NORMAL_HURT: [4, 'img/1.Sharkie/5.Hurt/1.Poisoned/'],
+		ANIMATION_ELECTRIC_HURT: [3, 'img/1.Sharkie/5.Hurt/2.Electric shock/'],
+		ANIMATION_SLAP_ATTACK: [8, 'img/1.Sharkie/4.Attack/Fin slap/'],
+		ANIMATION_BUBBLE_ATTACK: [8, 'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/'],
+		ANIMATION_POISON_BUBBLE_ATTACK: [8, 'img/1.Sharkie/4.Attack/Bubble trap/For Whale/'],
 	}
 
 	world;
@@ -27,7 +33,8 @@ class Sharkie extends MovableObject {
 	constructor() {
 		super().loadImg('../img/1.Sharkie/1.IDLE/1.png');
 		// the number must be one bigger then picture are there
-		
+		this.fillANIMATIONS()
+		this.getLoadImages()
 		this.animate();
 		this.getPositionX();
 	}
@@ -131,10 +138,10 @@ class Sharkie extends MovableObject {
 		let sharkieSwim = setInterval(() => {
 				if(this.world.keyboard.LEFT == false && this.world.keyboard.RIGHT == false) {
 				this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_STAND)
-			};
-			if(this.lifeAmount <= 0)
-				clearInterval(sharkieSwim)
-		}, 1000);
+				};
+				if(this.lifeAmount <= 0)
+					clearInterval(sharkieSwim)
+		}, 1000/5);
 	}
 
 	sharkieDie() {

@@ -1,10 +1,6 @@
 class Enemies extends MovableObject {
 	power = 2;
 
-	ANIMATIONS = {
-		ENEMY_SWIM: []
-	}
-
 	constructor() {
 		super();
 		this.y = 50 + Math.random() * 300;

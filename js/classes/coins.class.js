@@ -11,11 +11,14 @@ class Coins extends CollectItems {
 		super().loadImg('../img/4. Marcadores/1. Coins/1.png');
 		this.y = 50 + Math.random() * 250;
 		this.x = 300 + Math.random() * this.endgegnerPoint;
+		this.fillANIMATIONS()
+		this.getLoadImages()
 		this.animate();
 	}
 
 	animate() {
 		setInterval(() => {
+
 			this.getAnimationsToRun(this.ANIMATIONS.COIN_MOVE)
 			}, 1000/5);
 	}

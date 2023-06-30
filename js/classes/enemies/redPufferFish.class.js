@@ -1,15 +1,20 @@
 class RedPufferFish extends PufferFish {
 
+	ANIMATIONS = {
+		ENEMY_SWIM: [5, 'img/2.Enemy/1.Puffer fish (3 color options)/2.transition/3.transition'],
+		ENEMY_DIE: [3, 'img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.Dead '],
+
+	}
+
 	constructor() {
 		super();
 		this.color = '3';
 		this.loadImgPath();
-		this.getSwimAnimationPath(5, `img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/${this.color}.swim`);
+		this.fillANIMATIONS()
+		this.getLoadImages()
 		this.animateSwim();
 	}
 
-	// getSwimAnimationPath(path) {
-	// 	this.ANIMATIONS.ENEMY_SWIM.push([6, path])
-	// }
+
 	
 }

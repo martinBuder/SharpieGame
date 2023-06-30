@@ -5,8 +5,6 @@ class World {
 	ctx;
 	camera_x = 0;
 
-
-
 	background = level1.backgrounds;
 	sharkie = new Sharkie();
 	enemies = level1.enemies;
@@ -41,7 +39,7 @@ class World {
 			items.forEach((item) => {
 				if(this.sharkie.isColliding(item)) {
 						if (!this.sharkieDied && !(item instanceof CollectItems)){
-							this.sharkie.lifeAmount -= item.power
+							// this.sharkie.lifeAmount -= item.power
 							// console.log(this.sharkie.lifeAmount, item.power)
 							if(this.sharkie.lifeAmount <= 0) {
 								// // this.sharkieDied = true

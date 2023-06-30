@@ -38,14 +38,6 @@ getEndBossHere() {
 		super.loadImg(this.colorPath);
 	}
 
-
-
-	getSwimAnimationPath(imgAmount, path) {
-		this.ANIMATIONS.ENEMY_SWIM.push([imgAmount, path]);
-		// debugger
-		this.fillANIMATIONS()
-	//	this.getLoadImages()
-	}
 }
 
 
