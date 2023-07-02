@@ -37,7 +37,8 @@ class MovableObject {
 			if(this instanceof Sharkie ||
 					this instanceof Enemies ||
 					this instanceof EndBoss ||
-					this instanceof CollectItems)
+					this instanceof CollectItems ||
+					this instanceof AllBubbles)
 					if (!this.gotIt) {			
 						ctx.beginPath();
 						ctx.lineWidth = '5';
@@ -46,6 +47,8 @@ class MovableObject {
 						ctx.stroke();
 					}
 	}
+
+	
 
 	// Bessere Formel zur Kollisionsberechnung (Genauer)
 		isColliding (obj) {

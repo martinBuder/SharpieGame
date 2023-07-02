@@ -20,6 +20,8 @@ class World {
 	
 	endboss = new EndBoss(this.sharkie);
 	pufferfish = new PufferFish(this.sharkie);
+	bubble = new Bubble(this.sharkie);
+	poisonBubble = new BubblePoison(this.sharkie);
 
 	constructor(canvas, keyboard) {
 		this.ctx = canvas.getContext('2d');
@@ -115,7 +117,10 @@ class World {
 		this.addToMap(this.sharkie);
 		this.addToMap(this.endboss);
 		this.addObjectsToMap(this.enemies);
+		this.addToMap(this.bubble);
+		this.addToMap(this.poisonBubble);
 		this.addObjectsToMap(this.floors);
+
 
 		// Helligkeit für das Licht
 		this.ctx.globalAlpha = this.light.brightness; // Erhöhe den globalen Transparenzwert, um das Lichtbild heller zu machen

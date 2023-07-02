@@ -1,3 +1,6 @@
-class AllBubbles extends Sharkie{ //extends noch nicht zu 100% sicher
+class AllBubbles extends MovableObject{ //extends noch nicht zu 100% sicher
+
+	// gotIt = true;
+
 
 }

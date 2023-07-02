@@ -3,7 +3,7 @@ class Keyboard {
 	RIGHT = false;
 	UP = false;
 	DOWN = false;
-	SPACE = false;
+	SLAP = false;
 	BUBBLE = false;
 	POISONBUBBLE = false;
 }

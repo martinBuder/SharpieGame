@@ -5,6 +5,8 @@ class Sharkie extends MovableObject {
 	height = 200;
 	width = 260;
 
+	bubble = false;
+
 	// ! Animations
 	ANIMATIONS = {
 		ANIMATION_STAND: [19, 'img/1.Sharkie/1.IDLE/'],
@@ -46,6 +48,13 @@ class Sharkie extends MovableObject {
 	animate() {
 		setInterval(() => {
 		this.swimmingSound.pause();
+
+		if(this.world.keyboard.BUBBLE) {
+			this.bubble = true;
+		}
+		if(!this.world.keyboard.BUBBLE) {
+			this.bubble = false;
+		}
 		if(this.world.keyboard.RIGHT) {
 			if(this.x < 9760) {
 				this.x += 5;
@@ -63,6 +72,8 @@ class Sharkie extends MovableObject {
 						this.world.camera_x + this.x > 950) {
 				this.world.camera_x = -this.x +950
 			}
+
+			
 
 
 
