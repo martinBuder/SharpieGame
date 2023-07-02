@@ -20,8 +20,39 @@ class World {
 	
 	endboss = new EndBoss(this.sharkie);
 	pufferfish = new PufferFish(this.sharkie);
-	bubble = new Bubble(this.sharkie);
-	poisonBubble = new BubblePoison(this.sharkie);
+	bubbles = [new Bubble(this.sharkie, 1), 
+											new Bubble(this.sharkie, 2),
+											new Bubble(this.sharkie, 3),
+											new Bubble(this.sharkie, 4),
+											new Bubble(this.sharkie, 5),
+											new Bubble(this.sharkie, 6),
+											new Bubble(this.sharkie, 7),
+											new Bubble(this.sharkie, 8),
+											new Bubble(this.sharkie, 9),
+											new Bubble(this.sharkie, 10),
+											new Bubble(this.sharkie, 11),
+											new Bubble(this.sharkie, 12),
+											new Bubble(this.sharkie, 13),
+											new Bubble(this.sharkie, 14),
+											new Bubble(this.sharkie, 15),
+	];
+
+	poisonBubbles = [new BubblePoison(this.sharkie, 1), 
+																		new BubblePoison(this.sharkie, 2),
+																		new BubblePoison(this.sharkie, 3),
+																		new BubblePoison(this.sharkie, 4),
+																		new BubblePoison(this.sharkie, 5),
+																		new BubblePoison(this.sharkie, 6),
+																		new BubblePoison(this.sharkie, 7),
+																		new BubblePoison(this.sharkie, 8),
+																		new BubblePoison(this.sharkie, 9),
+																		new BubblePoison(this.sharkie, 10),
+																		new BubblePoison(this.sharkie, 11),
+																		new BubblePoison(this.sharkie, 12),
+																		new BubblePoison(this.sharkie, 13),
+																		new BubblePoison(this.sharkie, 14),
+																		new BubblePoison(this.sharkie, 15),
+];
 
 	constructor(canvas, keyboard) {
 		this.ctx = canvas.getContext('2d');
@@ -117,8 +148,8 @@ class World {
 		this.addToMap(this.sharkie);
 		this.addToMap(this.endboss);
 		this.addObjectsToMap(this.enemies);
-		this.addToMap(this.bubble);
-		this.addToMap(this.poisonBubble);
+		this.addObjectsToMap(this.bubbles);
+		this.addObjectsToMap(this.poisonBubbles);
 		this.addObjectsToMap(this.floors);
 
 

@@ -1,33 +1,21 @@
 class Bubble extends AllBubbles{
 
-	width = 0;
-	height = 0;
-	bubbles = [];
-
-	// bubbles = [
-	// 	'../img/1.Sharkie/4.Attack/Bubble trap/Bubble.png'
-	// ]
-	
-
-	constructor(sharkie) {
+	constructor(sharkie, bubbleNr) {
 		super().loadImg('../img/1.Sharkie/4.Attack/Bubble trap/Bubble.png');
 		this.sharkie = sharkie;
-		this.animateBubble();
+		this.bubbleNr = bubbleNr
+		this.getBubble();
 	}
 
-	animateBubble() {
+	getBubble() {
 		setInterval(() => {
-		if(this.sharkie.bubble) {
+		if(this.sharkie.bubble && this.sharkie.bubbleNr == this.bubbleNr) {
 			this.x = this.sharkie.x
 			this.y = this.sharkie.y
-			setInterval(() => {
-			this.gotIt = false;
-			this.width = 50;
-			this.height = 50;
-			this.x += 20;
-		
-			}, 1000)
-}}), 1000/60
+			this.animateBubble();
+		}}), 1000/60
 	}
+
+
 
 }

@@ -1,6 +1,15 @@
-class AllBubbles extends MovableObject{ //extends noch nicht zu 100% sicher
+class AllBubbles extends MovableObject{ 
 
-	// gotIt = true;
+	width = 0;
+	height = 0;	
 
+	animateBubble() {
+		setInterval(() => {
+		this.gotIt = false;
+		this.width = 50;
+		this.height = 50;
+		this.x += 0.1;		
+		}, 1000/60)
+	}
 
 }

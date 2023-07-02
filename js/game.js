@@ -22,13 +22,13 @@ window.addEventListener('keydown', (e) => {
 	if(e.keyCode == 40) {
 		keyboard.DOWN = true;
 	}
-	if(e.keyCode == 49) {
+	if(e.keyCode == 32) {
 		keyboard.SLAP = true;
 	}
 	if(e.keyCode == 70) {
 		keyboard.BUBBLE = true;
 	}
-	if(e.keyCode == 69) {
+	if(e.keyCode == 68) {
 		keyboard.POISONBUBBLE = true;
 	}
 });
@@ -46,7 +46,7 @@ window.addEventListener('keyup', (e) => {
 	if(e.keyCode == 40) {
 		keyboard.DOWN = false;
 	}
-	if(e.keyCode == 49) {
+	if(e.keyCode == 32) {
 		keyboard.SLAP = false;
 	}
 	if(e.keyCode == 70) {

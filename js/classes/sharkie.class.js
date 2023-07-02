@@ -6,6 +6,9 @@ class Sharkie extends MovableObject {
 	width = 260;
 
 	bubble = false;
+	poisonBubble = false;
+	isBubbleGenerated = false;
+	isPoisonBubbleGenerated = false;
 
 	// ! Animations
 	ANIMATIONS = {
@@ -29,6 +32,9 @@ class Sharkie extends MovableObject {
 	firstBack = false
 	sharkieDied = false
 
+	bubbleNr = 0;
+	poisonBubbleNr = 0;
+
 	swimmingSound = new Audio('../audio/swimming.mp3');
 	endgegnerPointSound = new Audio('../audio/danger.mp3')
 
@@ -49,12 +55,41 @@ class Sharkie extends MovableObject {
 		setInterval(() => {
 		this.swimmingSound.pause();
 
-		if(this.world.keyboard.BUBBLE) {
+		if(this.world.keyboard.BUBBLE && !this.isBubbleGenerated) {
+			this.isBubbleGenerated = true;
 			this.bubble = true;
+			this.bubbleNr++; 
+			if(this.bubbleNr == 16) {
+				this.bubbleNr = 0;
+			}
 		}
+
+		if(this.world.keyboard.SLAP) {
+				this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_SLAP_ATTACK)
+		}
+
+			
+
 		if(!this.world.keyboard.BUBBLE) {
 			this.bubble = false;
+			this.isBubbleGenerated = false; 
 		}
+
+		if(this.world.keyboard.POISONBUBBLE && !this.isPoisonBubbleGenerated) {
+			this.isPoisonBubbleGenerated = true;
+			this.poisonBubble = true;
+			this.poisonBubbleNr++; 
+			if(this.poisonBubbleNr == 16) {
+				this.poisonBubbleNr = 0;
+			}
+
+		}
+
+		if(!this.world.keyboard.POISONBUBBLE) {
+			this.poisonBubble = false;
+			this.isPoisonBubbleGenerated = false; 
+		}
+
 		if(this.world.keyboard.RIGHT) {
 			if(this.x < 9760) {
 				this.x += 5;
