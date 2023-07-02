@@ -22,6 +22,15 @@ window.addEventListener('keydown', (e) => {
 	if(e.keyCode == 40) {
 		keyboard.DOWN = true;
 	}
+	if(e.keyCode == 49) {
+		keyboard.SPACE = true;
+	}
+	if(e.keyCode == 70) {
+		keyboard.BUBBLE = true;
+	}
+	if(e.keyCode == 69) {
+		keyboard.POISONBUBBLE = true;
+	}
 });
 
 window.addEventListener('keyup', (e) => {
@@ -36,5 +45,14 @@ window.addEventListener('keyup', (e) => {
 	}
 	if(e.keyCode == 40) {
 		keyboard.DOWN = false;
+	}
+	if(e.keyCode == 49) {
+		keyboard.SPACE = false;
+	}
+	if(e.keyCode == 70) {
+		keyboard.BUBBLE = false;
+	}
+	if(e.keyCode == 68) {
+		keyboard.POISONBUBBLE = false;
 	}
 });
