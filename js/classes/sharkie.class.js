@@ -55,9 +55,10 @@ class Sharkie extends MovableObject {
 		setInterval(() => {
 		this.swimmingSound.pause();
 
-		if(this.world.keyboard.BUBBLE && !this.isBubbleGenerated) {
+		if(this.world.keyboard.BUBBLE && !this.isBubbleGenerated) {	
 			this.isBubbleGenerated = true;
 			this.bubble = true;
+			this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_BUBBLE_ATTACK); 	
 			this.bubbleNr++; 
 			if(this.bubbleNr == 16) {
 				this.bubbleNr = 0;
@@ -65,19 +66,20 @@ class Sharkie extends MovableObject {
 		}
 
 		if(this.world.keyboard.SLAP) {
-				this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_SLAP_ATTACK)
+				this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_SLAP_ATTACK); 
 		}
 
 			
 
 		if(!this.world.keyboard.BUBBLE) {
 			this.bubble = false;
-			this.isBubbleGenerated = false; 
+			this.isPoisonBubbleGenerated = false; 
 		}
 
 		if(this.world.keyboard.POISONBUBBLE && !this.isPoisonBubbleGenerated) {
 			this.isPoisonBubbleGenerated = true;
 			this.poisonBubble = true;
+			this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_POISON_BUBBLE_ATTACK); 
 			this.poisonBubbleNr++; 
 			if(this.poisonBubbleNr == 16) {
 				this.poisonBubbleNr = 0;
