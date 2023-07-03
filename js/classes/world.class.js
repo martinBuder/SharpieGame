@@ -72,15 +72,31 @@ class World {
 			items.forEach((item) => {
 				if(this.sharkie.isColliding(item)) {
 						if (!this.sharkieDied && !(item instanceof CollectItems)){
+							if(item instanceof GreenJellyFish || item instanceof PinkJellyFish) {
+								let stop = setInterval(() => {
+									this.sharkie.getAnimationsToRun(this.sharkie.ANIMATIONS.ANIMATION_ELECTRIC_HURT)
+								}, 1000/60);
+								setTimeout(() => {
+									clearInterval(stop)
+								}, 300);
+							}else{
+								let stop = setInterval(() => {
+									this.sharkie.getAnimationsToRun(this.sharkie.ANIMATIONS.ANIMATION_NORMAL_HURT)
+								}, 1000/60);
+								setTimeout(() => {
+									clearInterval(stop)
+								}, 300);
+							}
+							
 							// this.sharkie.lifeAmount -= item.power
 							// console.log(this.sharkie.lifeAmount, item.power)
 							if(this.sharkie.lifeAmount <= 0) {
-								// // this.sharkieDied = true
+								
+								// this.sharkieDied = true
 								// this.sharkie.sharkieDie();
 							}
 						}	
-							if (!this.sharkieDied && item instanceof CollectItems && !item.gotIt){
-
+						if (!this.sharkieDied && item instanceof CollectItems && !item.gotIt){
 								if (item instanceof Coins){
 									// items.firstLetterUpercase()
 									this.sharkie.coinsAmount += item.power
@@ -94,7 +110,7 @@ class World {
 									item.gotIt = true;
 									this.sharkie.poisonsAmount++
 								}
-							}
+						}
 						
 				}	
 		});	
