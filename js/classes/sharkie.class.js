@@ -1,16 +1,23 @@
 class Sharkie extends MovableObject {	
 
-	x = 50;
+	x = 4500;
 	y = 180;
 	height = 150;
 	width = 220;
+
+
+	offsetY = 70;
+	offsetX = 40;
+	offsetHeight = 100;
+
+
 
 	bubble = false;
 	poisonBubble = false;
 	isBubbleGenerated = false;
 	isPoisonBubbleGenerated = false
 
-	worldEnd = 9150
+	worldEnd = 5750
 
 	// ! Animations
 	ANIMATIONS = {
@@ -105,7 +112,7 @@ class Sharkie extends MovableObject {
 		}
 
 		if(this.world.keyboard.RIGHT) {
-			if(this.x < 9760) {
+			if(this.x < 5800) {
 				this.x += 5;
 			}
 			this.otherDirection = false;
@@ -119,7 +126,7 @@ class Sharkie extends MovableObject {
 		
 		// camera goes
 			if (this.x <	this.endgegnerPoint &&
-						this.world.camera_x + this.x > 400) {
+						this.world.camera_x + this.x > 400 && this.x + 480 < 6000) {
 				this.world.camera_x = -this.x + 400
 			}
 
@@ -146,7 +153,7 @@ class Sharkie extends MovableObject {
 			// 	}, 1000);
 			// }
 
-				if(this.world.camera_x > -	this.worldEnd) {
+				if(this.world.camera_x -480 > -	this.worldEnd) {
 				
 						this.world.camera_x = -this.x;
 					}
@@ -160,7 +167,7 @@ class Sharkie extends MovableObject {
 
 		if(this.world.keyboard.UP) {
 			if(this.y > -90) {
-				this.y -= 10
+				this.y -= 4
 				if(this.otherDirection == false) {
 					if(this.x < this.worldEnd) { //! das stimmt noch nicht 
 						this.x += 2;
@@ -174,7 +181,7 @@ class Sharkie extends MovableObject {
 		}
 		if(this.world.keyboard.DOWN) {
 			if(this.y < 315) {
-				this.y += 10
+				this.y += 4
 				if(this.otherDirection == false) {
 					if(this.x < 9760) {
 						this.x += 2;

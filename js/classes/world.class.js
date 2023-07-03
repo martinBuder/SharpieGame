@@ -9,7 +9,7 @@ class World {
 	sharkie = new Sharkie();
 	enemies = level1.enemies;
 	coins = level1.coins;
-	floors = level1.enemies;
+	floors = level1.floors;
 	poisons = level1.poisons;
 	light = new Light();
 
@@ -148,7 +148,7 @@ status = [
 		   // Den Charakter überwachen und die Endboss-Aktivierung auslösen
 					setInterval(() => {
 						const characterPosition = this.sharkie.x;
-						if (characterPosition >= 9000) {
+						if (characterPosition >= 4950) {
 								this.endboss.animateEndboss();
 								// get the color pufferfishes in enemies to change the x point
 								for (let i = 0; i < this.enemies.length; i++) {
