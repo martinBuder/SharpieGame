@@ -20,6 +20,8 @@ class World {
 	
 	endboss = new EndBoss(this.sharkie);
 	pufferfish = new PufferFish(this.sharkie);
+ allBubbles = new AllBubbles;
+
 	bubbles = [new Bubble(this.sharkie, 1), 
 											new Bubble(this.sharkie, 2),
 											new Bubble(this.sharkie, 3),
@@ -73,6 +75,7 @@ status = [
 		this.checkCollision(this.poisons);
 	}
 
+
 	checkCollision(items) {
 		setInterval(() => {
 			items.forEach((item) => {
@@ -107,7 +110,6 @@ status = [
 						}	
 						if (!this.sharkieDied && item instanceof CollectItems && !item.gotIt){
 								if (item instanceof Coins){
-									this.sharkie.coinsAmount += item.power
 									item.gotIt = true;
 									this.sharkie.coinsAmount++
 								}
@@ -120,6 +122,23 @@ status = [
 						}
 						
 				}	
+				this.bubbles.forEach((bubble) => {
+					if (bubble.isColliding(item)) {
+						console.log('trewfferf');
+						item.gotIt = true;
+						
+						// ...
+						// Behandlung der Kollision zwischen Bubble und dem Item
+					}
+				});
+	
+				// Überprüfe Kollision mit PoisonBubbles
+				this.poisonBubbles.forEach((poisonBubble) => {
+					if (poisonBubble.isColliding(item)) {
+						// ...
+						// Behandlung der Kollision zwischen PoisonBubble und dem Item
+					}
+				});
 		});	
 					}, 1000);
 				

@@ -2,7 +2,7 @@ class MovableObject {
 
 	ANIMATIONS = {};
 
-	offsetY = 0;
+	offsetY = 0
 	gotIt = false;
 
 	imageCache = [];
