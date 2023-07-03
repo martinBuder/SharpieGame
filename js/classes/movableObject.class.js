@@ -2,7 +2,6 @@ class MovableObject {
 
 	ANIMATIONS = {};
 
-
 	offsetY = 0;
 	gotIt = false;
 
@@ -54,9 +53,7 @@ class MovableObject {
 		isColliding (obj) {
 			return  (this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) && 
 											(this.y + this.offsetY + this.height) >= obj.y &&
-											(this.y + this.offsetY) <= (obj.y + obj.height) 
-										
-		
+											(this.y + this.offsetY) <= (obj.y + obj.height) 		
 		}
 
 		getLoadImages() {

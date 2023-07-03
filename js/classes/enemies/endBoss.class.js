@@ -1,10 +1,10 @@
 
 class EndBoss extends MovableObject {
 
-	x = 9400;
-	y = 0;
-	height = 350;
-	width = 500;
+	x = 9500;
+	y = 100;
+	height = 250;
+	width = 380;
 
 	ANIMATIONS = {
 		ENDBOSS_COMES: [11, 'img/2.Enemy/3 Final Enemy/1.Introduce/'],

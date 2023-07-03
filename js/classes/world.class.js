@@ -86,11 +86,13 @@ class World {
 									this.sharkie.coinsAmount += item.power
 									console.log(this.sharkie.coinsAmount, item.power);
 									item.gotIt = true;
+									this.sharkie.coinsAmount++
 								}
 								if (item instanceof Poison){
 									this.sharkie.poisonsAmount += item.power
 									console.log(this.sharkie.poisonsAmount, item.power);
 									item.gotIt = true;
+									this.sharkie.poisonsAmount++
 								}
 							}
 						
@@ -104,7 +106,7 @@ class World {
 		   // Den Charakter überwachen und die Endboss-Aktivierung auslösen
 					setInterval(() => {
 						const characterPosition = this.sharkie.x;
-						if (characterPosition >= 8600) {
+						if (characterPosition >= 9000) {
 								this.endboss.animateEndboss();
 								// get the color pufferfishes in enemies to change the x point
 								for (let i = 0; i < this.enemies.length; i++) {

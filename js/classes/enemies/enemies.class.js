@@ -1,12 +1,13 @@
 class Enemies extends MovableObject {
 	power = 2;
+	width = 60;
+	height = 60;
 
 	constructor() {
 		super();
 		this.y = 50 + Math.random() * 300;
 		this.x = 300 + Math.random() * 11000;
-		this.width = 70;
-		this.height = 100;
+
 	}
 
 	animateSwim() {

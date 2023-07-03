@@ -1,7 +1,7 @@
 class Coins extends CollectItems {
 
-	width = 50;
-	height = 50;
+	width = 40;
+	height = 40;
 
 	ANIMATIONS = {
 		COIN_MOVE: [4, 'img/4. Marcadores/1. Coins/'],

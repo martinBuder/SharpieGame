@@ -1,7 +1,7 @@
 class Poison extends CollectItems {
 
-	width = 100;
-	height = 100;
+	width = 70;
+	height = 70;
 
 	ANIMATIONS = {
 		POISONS_MOVE: [8, 'img/4. Marcadores/Posión/Animada/'],
