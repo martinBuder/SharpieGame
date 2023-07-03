@@ -4,14 +4,16 @@ class AllBubbles extends MovableObject{
 	height = 0;	
 
 	animateBubble() {
-		setTimeout(() => {
-			setInterval(() => {
+		setInterval(() => {	
 				this.gotIt = false;
-				this.width = 50;
-				this.height = 50;
-				this.x += 0.1;		
-				}, 1000/60)
-			}, 1000);
+				this.width += 0.1;
+				this.height += 0.1;
+				if(this.width > 50) {
+					this.width = 50;
+					this.height = 50;
+				}
+				this.x += 1;		
+				}, 1000/30)
 	}
 
 }
