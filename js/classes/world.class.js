@@ -17,6 +17,8 @@ class World {
 		new Audio('../audio/gameMusic.mp3'),
 		new Audio('../audio/underWater.mp3')
 	]
+
+	
 	
 	endboss = new EndBoss(this.sharkie);
 	pufferfish = new PufferFish(this.sharkie);
@@ -74,7 +76,6 @@ status = [
 		this.checkCollision(this.coins);
 		this.checkCollision(this.poisons);
 	}
-
 
 	checkCollision(items) {
 		setInterval(() => {
@@ -175,6 +176,11 @@ status = [
 			this.gameSound[1].loop = true; 
 			this.gameSound[1].play();
 		});
+	}
+
+	muteSound(){
+		this.gameSound[0].muted = !this.gameSound[0].muted;
+		this.gameSound[1].muted = !this.gameSound[1].muted;
 	}
 
 	setWorld() {

@@ -24,3 +24,50 @@ canvas {
 	background-color: #000;
 	border-radius: 10px;
 }
+
+img{
+	width: 100%;
+	height: auto;
+}
+
+button {
+	background: none;
+	cursor: pointer;
+	border: none;
+}
+
+.soundBtn {
+	position: absolute;
+	top: 50px;
+	right: 50px;
+	width: 50px;
+}
+
+.instructionWrapper {
+	display: flex;
+	justify-content: center;
+	color: #fff;
+	width: 100%;
+	text-align: center;
+	gap: 50px;
+	font-size: 32px;
+	margin-top: 50px;
+}
+
+.leftSite .imgWrapper {
+	width: 160px;
+}
+
+.rightSite .container {
+	display: flex;
+	gap: 50px; 
+	align-items: center;
+}
+
+.rightSite .imgWrapper {
+	width: 50px
+}
+
+.rightSite .container:last-child .imgWrapper {
+	width: 200px;
+}

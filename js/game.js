@@ -1,12 +1,24 @@
 let canvas;
 let world;
 let keyboard = new Keyboard;
+let sharkie;
+
 
 
 function init() {
 	canvas = document.getElementById('canvas');
 	world = new World(canvas, keyboard);
+	sharkie = world.sharkie;
 }
+
+function muteBrowser() {
+	let muteButton = document.getElementById('mute');
+	muteButton.src = (muteButton.src.endsWith('001-mute.png')) ? 'img/6.Botones/png/002-volume-level.png' : 'img/6.Botones/png/001-mute.png';
+
+ world.muteSound()
+}
+
+
 
 window.addEventListener('keydown', (e) => {
 	console.log(e);

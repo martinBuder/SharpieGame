@@ -10,8 +10,8 @@ class BubblePoison extends AllBubbles{
 
 	getBubble() {
 		setInterval(() => {
-		if(this.sharkie.bubble && this.sharkie.bubbleNr == this.bubbleNr) {
-				this.sharkie.isBubbleGenerated = false;
+		if(this.sharkie.poisonBubble && this.sharkie.bubbleNr == this.bubbleNr) {
+				this.sharkie.isPoisonBubbleGenerated = false;
 
 				this.x = this.sharkie.x + 200
 				this.y = this.sharkie.y + 80
@@ -19,4 +19,4 @@ class BubblePoison extends AllBubbles{
 		}}), 1000/60
 	}
 
-}fffff
+}
