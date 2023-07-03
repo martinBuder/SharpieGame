@@ -15,17 +15,17 @@ class EndBoss extends MovableObject {
 	}
 	firstContact = false;
 
-
-
-	// sharkieX = super().sharkie.x
-
+/**
+	* 
+	* @param {class} sharkie 
+	*/
 	constructor(sharkie) {
 		super().loadImg(`../img/2.Enemy/3 Final Enemy/1.Introduce/1.png`);
 		this.sharkie = sharkie;
 		this.fillANIMATIONS()
 		this.getLoadImages()
 	}
-
+	
 	animateEndboss() {
 		if (!this.firstContact) {
 			let stopComeAnimation = setInterval(() => {

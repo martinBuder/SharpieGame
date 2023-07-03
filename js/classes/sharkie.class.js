@@ -27,12 +27,13 @@ class Sharkie extends MovableObject {
 	}
 
 	world;
-	lifeAmount = 10;
+	lifeAmount = 5;
 	coinsAmount = 0;
 	poisonsAmount = 0;
 
 	firstBack = false
 	sharkieDied = false
+	slap = false
 
 	bubbleNr = 0;
 	poisonBubbleNr = 0;
@@ -69,14 +70,18 @@ class Sharkie extends MovableObject {
 
 		if(this.world.keyboard.SLAP) {
 			let stopPoint = setInterval(() => {
-				this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_SLAP_ATTACK); 
+				this.slap = true;      
+				this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_SLAP_ATTACK);
 			}, 1000/2 ); 
 			setTimeout(() => {
 				clearInterval(stopPoint)
 			}, 800 );
-		}
+			this.slap = false
+		}			
 
-			
+		if(!this.world.keyboard.SLAP) {
+			this.slap = false;
+		}
 
 		if(!this.world.keyboard.BUBBLE) {
 			this.bubble = false;
@@ -112,7 +117,7 @@ class Sharkie extends MovableObject {
 			this.otherDirection = true;
 		}
 		
-		// camera goes right
+		// camera goes
 			if (this.x <	this.endgegnerPoint &&
 						this.world.camera_x + this.x > 400) {
 				this.world.camera_x = -this.x + 400
@@ -147,7 +152,7 @@ class Sharkie extends MovableObject {
 					}
 			}
 		
-	//camwera goes left
+	//camera goes left
 		if (this.x > 20 && this.world.camera_x + this.x < 20) {
 			this.world.camera_x = -this.x + 20
 		}

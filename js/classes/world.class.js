@@ -54,6 +54,12 @@ class World {
 																		new BubblePoison(this.sharkie, 15),
 ];
 
+status = [
+	new LifeStatus(this.sharkie),
+	new CoinsStatus(this.sharkie),
+	new PoisonStatus(this.sharkie),
+]
+
 	constructor(canvas, keyboard) {
 		this.ctx = canvas.getContext('2d');
 		this.canvas = canvas;
@@ -72,23 +78,26 @@ class World {
 			items.forEach((item) => {
 				if(this.sharkie.isColliding(item)) {
 						if (!this.sharkieDied && !(item instanceof CollectItems)){
-							if(item instanceof GreenJellyFish || item instanceof PinkJellyFish) {
-								let stop = setInterval(() => {
-									this.sharkie.getAnimationsToRun(this.sharkie.ANIMATIONS.ANIMATION_ELECTRIC_HURT)
-								}, 1000/60);
-								setTimeout(() => {
-									clearInterval(stop)
-								}, 300);
-							}else{
-								let stop = setInterval(() => {
-									this.sharkie.getAnimationsToRun(this.sharkie.ANIMATIONS.ANIMATION_NORMAL_HURT)
-								}, 1000/60);
-								setTimeout(() => {
-									clearInterval(stop)
-								}, 300);
-							}
+								if(item instanceof GreenJellyFish || item instanceof PinkJellyFish) {
+									let stop = setInterval(() => {
+										this.sharkie.getAnimationsToRun(this.sharkie.ANIMATIONS.ANIMATION_ELECTRIC_HURT)
+									}, 1000/60);
+									setTimeout(() => {
+										clearInterval(stop)
+									}, 300);
+								}else{
+									if(!this.sharkie.slap && item instanceof PufferFish) {
+									let stop = setInterval(() => {
+										this.sharkie.getAnimationsToRun(this.sharkie.ANIMATIONS.ANIMATION_NORMAL_HURT)
+									}, 1000/60);
+									setTimeout(() => {
+										clearInterval(stop)
+									}, 300);
+									item.gotIt = true;
+								}
+							}	
 							
-							// this.sharkie.lifeAmount -= item.power
+							this.sharkie.lifeAmount -= item.power
 							// console.log(this.sharkie.lifeAmount, item.power)
 							if(this.sharkie.lifeAmount <= 0) {
 								
@@ -98,17 +107,15 @@ class World {
 						}	
 						if (!this.sharkieDied && item instanceof CollectItems && !item.gotIt){
 								if (item instanceof Coins){
-									// items.firstLetterUpercase()
 									this.sharkie.coinsAmount += item.power
-									console.log(this.sharkie.coinsAmount, item.power);
 									item.gotIt = true;
 									this.sharkie.coinsAmount++
 								}
 								if (item instanceof Poison){
-									this.sharkie.poisonsAmount += item.power
-									console.log(this.sharkie.poisonsAmount, item.power);
-									item.gotIt = true;
-									this.sharkie.poisonsAmount++
+									if(this.sharkie.poisonsAmount < 5) {
+										item.gotIt = true;
+										this.sharkie.poisonsAmount++
+									}
 								}
 						}
 						
@@ -176,6 +183,8 @@ class World {
 		this.addToMap(this.light);
 		// Setze die globale Transparenz zurück
  	this.ctx.globalAlpha = 1; // Setze die Transparenz zurück auf 100%
+
+		this.addObjectsToMap(this.status);
 
 		this.ctx.translate(-this.camera_x, 0);
 

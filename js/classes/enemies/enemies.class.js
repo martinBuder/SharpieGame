@@ -1,5 +1,5 @@
 class Enemies extends MovableObject {
-	power = 2;
+	power = 1;
 	width = 60;
 	height = 60;
 
