@@ -60,20 +60,18 @@ class Sharkie extends MovableObject {
 	}
 
 	startSleepTimer() {
-		let sleepTimerCounter =	setInterval(() => {
-			if (this.sleepTimer == 5) {
-				setInterval(() => {
-					this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_SLEEP)
-				}, 1000/5);
-			}
-			if(this.sleepTimer < 5){	
-				this.sleepTimer++;
-			}
-			if(this.sleepTimer > 5){
-				clearInterval(sleepTimerCounter)
-			}
-		}, 1000);
-	};
+  let sleepTimerCounter = setInterval(() => {
+    if (this.sleepTimer >= 5) {
+      clearInterval(sleepTimerCounter);
+      setInterval(() => {
+        this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_SLEEP);
+      }, 1000/5);
+    } else {
+      this.sleepTimer++;
+    }
+  }, 1000);
+}
+
 
 
 
@@ -231,7 +229,7 @@ class Sharkie extends MovableObject {
 				if(this.world.keyboard.LEFT == false && this.world.keyboard.RIGHT == false) {
 				this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_STAND)
 				};
-				if(this.lifeAmount <= 0 || this.sleepTimer > 5)
+				if(this.lifeAmount <= 0 || this.sleepTimer > 4)
 					clearInterval(sharkieStand)
 		}, 1000/5);
 	}
