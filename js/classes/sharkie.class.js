@@ -1,6 +1,6 @@
 class Sharkie extends MovableObject {	
 
-	x = 4500;
+	x = 50;
 	y = 180;
 	height = 150;
 	width = 220;
@@ -44,11 +44,10 @@ class Sharkie extends MovableObject {
 
 	bubbleNr = 0;
 	poisonBubbleNr = 0;
+	sleepTimer = 0;
 
 	swimmingSound = new Audio('../audio/swimming.mp3');
 	endgegnerPointSound = new Audio('../audio/danger.mp3')
-
-
 
 	constructor() {
 		super().loadImg('../img/1.Sharkie/1.IDLE/1.png');
@@ -57,7 +56,24 @@ class Sharkie extends MovableObject {
 		this.getLoadImages()
 		this.animate();
 		this.getPositionX();
+		this.startSleepTimer();
 	}
+
+	startSleepTimer() {
+		let sleepTimerCounter =	setInterval(() => {
+			if (this.sleepTimer == 5) {
+				setInterval(() => {
+					this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_SLEEP)
+				}, 1000/5);
+			}
+			if(this.sleepTimer < 5){	
+				this.sleepTimer++;
+			}
+			if(this.sleepTimer > 5){
+				clearInterval(sleepTimerCounter)
+			}
+		}, 1000);
+	};
 
 
 
@@ -65,11 +81,17 @@ class Sharkie extends MovableObject {
 		return this.x;
 	}
 
+	resetSleepTimer(){
+		this.sleepTimer = 0;
+	}
+
 	animate() {
 		setInterval(() => {
 		this.swimmingSound.pause();
 
-		if(this.world.keyboard.BUBBLE && !this.isBubbleGenerated) {	
+
+		if(this.world.keyboard.BUBBLE && !this.isBubbleGenerated) {
+			this.resetSleepTimer()	
 			this.isBubbleGenerated = true;
 			this.bubble = true;
 			this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_BUBBLE_ATTACK); 	
@@ -80,6 +102,7 @@ class Sharkie extends MovableObject {
 		}
 
 		if(this.world.keyboard.SLAP) {
+			this.resetSleepTimer()	
 			let stopPoint = setInterval(() => {
 				this.slap = true;      
 				this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_SLAP_ATTACK);
@@ -100,6 +123,7 @@ class Sharkie extends MovableObject {
 		}
 
 		if(this.world.keyboard.POISONBUBBLE && !this.isPoisonBubbleGenerated) {
+			this.resetSleepTimer()	
 			this.isPoisonBubbleGenerated = true;
 			this.poisonBubble = true;
 			this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_POISON_BUBBLE_ATTACK); 
@@ -116,12 +140,16 @@ class Sharkie extends MovableObject {
 		}
 
 		if(this.world.keyboard.RIGHT) {
+			this.resetSleepTimer()	
+
 			if(this.x < 5800) {
 				this.x += 5;
 			}
 			this.otherDirection = false;
 		}
 		if(this.world.keyboard.LEFT) {
+			this.resetSleepTimer()	
+
 			if(this.x > 0) {
 				this.x -= 5;
 			}
@@ -144,19 +172,7 @@ class Sharkie extends MovableObject {
 			this.endgegnerPointSound.volume = 0.6;
 			this.endgegnerPointSound.loop = true; 
 			this.endgegnerPointSound.play();
-			
-			// 	if (!this.firstBack) {
-			// 		this.firstBack = true;
-			// 		let counter = 0;
-			// 		let stopCameraBack = setInterval(() => {
-			// 		this.world.camera_x = this.world.camera_x -50;
-			// 		counter = counter + 50;
-			// 		if(counter == 950) {
-			// 			clearInterval(stopCameraBack);
-			// 		}
-			// 	}, 1000);
-			// }
-
+		
 				if(this.world.camera_x -480 > -	this.worldEnd) {
 				
 						this.world.camera_x = -this.x;
@@ -170,6 +186,8 @@ class Sharkie extends MovableObject {
 	
 
 		if(this.world.keyboard.UP) {
+			this.resetSleepTimer()	
+
 			if(this.y > -90) {
 				this.y -= 4
 				if(this.otherDirection == false) {
@@ -184,6 +202,8 @@ class Sharkie extends MovableObject {
 			}
 		}
 		if(this.world.keyboard.DOWN) {
+			this.resetSleepTimer()	
+
 			if(this.y < 315) {
 				this.y += 4
 				if(this.otherDirection == false) {
@@ -207,12 +227,12 @@ class Sharkie extends MovableObject {
 			}
 		}, 1000/60)
 				
-		let sharkieSwim = setInterval(() => {
+		let sharkieStand = setInterval(() => {
 				if(this.world.keyboard.LEFT == false && this.world.keyboard.RIGHT == false) {
 				this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_STAND)
 				};
-				if(this.lifeAmount <= 0)
-					clearInterval(sharkieSwim)
+				if(this.lifeAmount <= 0 || this.sleepTimer > 5)
+					clearInterval(sharkieStand)
 		}, 1000/5);
 	}
 
@@ -226,6 +246,8 @@ class Sharkie extends MovableObject {
 				path = this.ANIMATIONS.ANIMATION_NORMAL_DIE[11];
     this.img = this.imageCache[path];
 				}
+				this.resetSleepTimer()	
+
 			}, 1000/20);
 	}
 
