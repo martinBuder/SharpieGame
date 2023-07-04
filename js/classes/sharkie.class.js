@@ -48,6 +48,8 @@ class Sharkie extends MovableObject {
 	swimmingSound = new Audio('../audio/swimming.mp3');
 	endgegnerPointSound = new Audio('../audio/danger.mp3')
 
+
+
 	constructor() {
 		super().loadImg('../img/1.Sharkie/1.IDLE/1.png');
 		// the number must be one bigger then picture are there
@@ -56,6 +58,8 @@ class Sharkie extends MovableObject {
 		this.animate();
 		this.getPositionX();
 	}
+
+
 
 	getPositionX() {
 		return this.x;
