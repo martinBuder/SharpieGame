@@ -6,7 +6,7 @@ class Enemies extends MovableObject {
 	constructor() {
 		super();
 		this.y = 50 + Math.random() * 300;
-		this.x = 300 + Math.random() * 11000;
+		this.x = 1000 + Math.random() * 11000;
 
 	}
 
@@ -14,7 +14,6 @@ class Enemies extends MovableObject {
 		setInterval(() => {
 			this.getAnimationsToRun(this.ANIMATIONS.ENEMY_SWIM)
 			}, 420);
-		
 }
 
 }

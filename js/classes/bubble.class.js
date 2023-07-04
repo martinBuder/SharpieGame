@@ -1,5 +1,7 @@
 class Bubble extends AllBubbles{
 
+	damagePower = 1;
+
 	constructor(sharkie, bubbleNr) {
 		super().loadImg('../img/1.Sharkie/4.Attack/Bubble trap/Bubble.png');
 		this.sharkie = sharkie;

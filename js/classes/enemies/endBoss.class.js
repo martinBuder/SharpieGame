@@ -6,6 +6,9 @@ class EndBoss extends MovableObject {
 	height = 250;
 	width = 380;
 
+	lifePower = 12;
+
+
 	ANIMATIONS = {
 		ENDBOSS_COMES: [11, 'img/2.Enemy/3 Final Enemy/1.Introduce/'],
 		ENDBOSS_STAY: [13, 'img/2.Enemy/3 Final Enemy/2.floating/'],

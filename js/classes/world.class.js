@@ -3,6 +3,7 @@ class World {
 	canvas;
 	ctx;
 	camera_x = 0;
+	// endbossLifePower = 12;
 
 	background = level1.backgrounds;
 	sharkie = new Sharkie();
@@ -12,7 +13,9 @@ class World {
 	poisons = level1.poisons;
 	light = new Light();
 
-	endboss = new EndBoss(this.sharkie);
+	endboss = [
+		new EndBoss(this.sharkie)
+	]
 	pufferfish = new PufferFish(this.sharkie);
 	allBubbles = new AllBubbles;
 
@@ -75,6 +78,7 @@ class World {
 		this.checkCollision(this.enemies);
 		this.checkCollision(this.coins);
 		this.checkCollision(this.poisons);
+		this.checkCollision(this.endboss);
 	}
 
 	checkCollision(items) {
@@ -100,8 +104,10 @@ class World {
 								item.gotIt = true;
 							}
 						}
-
-						this.sharkie.lifeAmount -= item.power;
+						if(item.hit == false) {
+							this.sharkie.lifeAmount -= item.power;
+							item.hit = true;
+						}
 						this.hurtSound.play();
 						this.hurtSound.volume = 0.3;
 						// console.log(this.sharkie.lifeAmount, item.power)
@@ -136,9 +142,16 @@ class World {
 
 				// Überprüfe Kollision mit PoisonBubbles
 				this.poisonBubbles.forEach((poisonBubble) => {
-					if (poisonBubble.isColliding(item)) {
-						if (item instanceof Enemies)
+				
+					if(poisonBubble.isColliding(item)) {
+						if(item instanceof Enemies)
 							item.gotIt = true;
+						if(item instanceof EndBoss) {
+							if(item.hit == false){
+								item.lifePower -= poisonBubble.damagePower;
+								item.hit = true;
+							}
+						}
 					}
 				});
 			});
@@ -153,7 +166,7 @@ class World {
 		setInterval(() => {
 			const characterPosition = this.sharkie.x;
 			if (characterPosition >= 4950) {
-				this.endboss.animateEndboss();
+				this.endboss[0].animateEndboss();
 				// get the color pufferfishes in enemies to change the x point
 				for (let i = 0; i < this.enemies.length; i++) {
 					const enemy = this.enemies[i];
@@ -205,7 +218,7 @@ class World {
 		this.addObjectsToMap(this.coins);
 		this.addObjectsToMap(this.poisons);
 		this.addToMap(this.sharkie);
-		this.addToMap(this.endboss);
+		this.addObjectsToMap(this.endboss);
 		this.addObjectsToMap(this.enemies);
 		this.addObjectsToMap(this.bubbles);
 		this.addObjectsToMap(this.poisonBubbles);

@@ -5,7 +5,7 @@ class Level {
 	floors;
 	poisons; 
 
-	constructor(backgrounds, enemies, floors, coins, poisons){
+	constructor(backgrounds, enemies, floors, coins, poisons) {
 		this.enemies = enemies;
 		this.floors = floors;
 		this.backgrounds = backgrounds;

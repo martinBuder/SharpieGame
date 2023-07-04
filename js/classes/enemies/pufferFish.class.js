@@ -16,6 +16,7 @@ class PufferFish extends Enemies {
 				if (this.x < -100) {
 					this.x = 10000;
 					this.y = 0 + Math.random() * 410;
+					this.hit = false;
 				}
 			}
 				this.x = this.x - this.speed 

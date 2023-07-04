@@ -9,6 +9,7 @@ class MovableObject {
 	imgInArray = 0;
 
 	otherDirection = false;
+	hit = false
 
 	endgegnerPoint = 4500;
 
@@ -37,21 +38,21 @@ class MovableObject {
 			if(this instanceof Enemies ||
 					this instanceof EndBoss ||
 					this instanceof CollectItems ||
-					this instanceof AllBubbles)
+					this instanceof AllBubbles) {
 					if (!this.gotIt) {			
 						ctx.beginPath();
 						ctx.lineWidth = '5';
 						ctx.strokeStyle = 'white';
-						ctx.rect(this.x, this.y, this.width, this.height);
+						if(this instanceof EndBoss) {
+							ctx.rect(this.x +20 , this.y +90, this.width -40, this.height -130);
+						}else{
+						ctx.rect(this.x , this.y, this.width, this.height);
+						}
 						ctx.stroke();
 					}
-					if(this instanceof Sharkie) {
-						ctx.beginPath();
-						ctx.lineWidth = '5';
-						ctx.strokeStyle = 'white';
-						ctx.rect(this.x +40, this.y +70, this.width -80, this.height - 100);
-						ctx.stroke();
-					}
+				}
+			
+				
 					if(this instanceof Sharkie) {
 						ctx.beginPath();
 						ctx.lineWidth = '5';
@@ -65,11 +66,18 @@ class MovableObject {
 
 	// Bessere Formel zur Kollisionsberechnung (Genauer)
 		isColliding (obj) {
+			if(obj instanceof EndBoss) {
+				return (this.x + this.offsetX + this.width - this.offsetX * 2) >= (obj.x + 20) &&
+				(this.x + this.offsetX) <= (obj.x + obj.width - 40) &&
+				(this.y + this.offsetY + this.height - this.offsetHeight) >= (obj.y + 90) &&
+				(this.y + this.offsetY) <= (obj.y + obj.height - 130);
+			}
+			 else {
 			return (this.x + this.offsetX + this.width - this.offsetX * 2) >= obj.x &&
 			(this.x + this.offsetX) <= (obj.x + obj.width) &&
 			(this.y + this.offsetY + this.height - this.offsetHeight) >= obj.y &&
 			(this.y + this.offsetY) <= (obj.y + obj.height);
-
+			}
 		}
 
 		getLoadImages() {

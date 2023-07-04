@@ -12,8 +12,9 @@ class JellyFish extends Enemies {
 		setInterval(() => {
 			if(!this.gotIt) {
 			if (this.y < -100) {
-				this.x = 300 + Math.random() * this.endgegnerPoint;
+				this.x = 600 + Math.random() * this.endgegnerPoint;
 				this.y = 480;
+				this.hit = false;
 			}
 			this.y = this.y -this.speed
 		} else {

@@ -1,6 +1,6 @@
 class Sharkie extends MovableObject {	
 
-	x = 50;
+	x = 5050;
 	y = 180;
 	height = 150;
 	width = 220;
@@ -15,7 +15,7 @@ class Sharkie extends MovableObject {
 	isBubbleGenerated = false;
 	isPoisonBubbleGenerated = false
 
-	worldEnd = 5750
+	worldEnd = 5750  
 
 	// ! Animations
 	ANIMATIONS = {
@@ -90,44 +90,48 @@ getPositionX() {
 		this.sleepTimer = 0;
 	}
 
+
+
 	animate() {
 		setInterval(() => {
 		this.swimmingSound.pause();
-
-		if(this.world.keyboard.BUBBLE && !this.isBubbleGenerated) {
-			this.resetSleepTimer()	
+		
+		if (this.world.keyboard.BUBBLE && !this.isBubbleGenerated) {
+			this.resetSleepTimer();
 			this.isBubbleGenerated = true;
 			this.bubble = true;
-			this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_BUBBLE_ATTACK); 	
-			this.bubbleNr++; 
-			if(this.bubbleNr == 16) {
-				this.bubbleNr = 0;
+			this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_BUBBLE_ATTACK);
+			this.bubbleNr++;
+			if (this.bubbleNr == 16) {
+							this.bubbleNr = 0;
 			}
-		} 
-		
-		if(!this.world.keyboard.BUBBLE) {
+}
+
+if (this.world.keyboard.POISONBUBBLE && !this.isPoisonBubbleGenerated) {
+			this.resetSleepTimer();
+			if (this.poisonsAmount > 0) {
+							this.isPoisonBubbleGenerated = true;
+							this.poisonBubble = true;
+							this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_POISON_BUBBLE_ATTACK);
+							this.poisonBubbleNr++;
+							if (this.poisonBubbleNr == 16) {
+											this.poisonBubbleNr = 0;
+							}
+							this.poisonsAmount--;
+			}
+}
+
+if (!this.world.keyboard.BUBBLE) {
 			this.bubble = false;
-			this.isBubbleGenerated = false; 
-		}
+			this.isBubbleGenerated = false;
+}
 
-		if(this.world.keyboard.POISONBUBBLE && !this.isPoisonBubbleGenerated) {
-			this.resetSleepTimer()	
-			if(this.poisonsAmount > 0) {
-				this.isPoisonBubbleGenerated = true;
-				this.poisonBubble = true;
-				this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_POISON_BUBBLE_ATTACK); 
-				this.poisonBubbleNr++; 
-				if(this.poisonBubbleNr == 16) {
-					this.poisonBubbleNr = 0;
-				}
-				this.poisonsAmount--;
-			}
-		}
-
-		if(!this.world.keyboard.POISONBUBBLE) {
+if (!this.world.keyboard.POISONBUBBLE) {
 			this.poisonBubble = false;
-			this.isPoisonBubbleGenerated = false; 
-		}
+			this.isPoisonBubbleGenerated = false;
+}
+
+
 
 		if(this.world.keyboard.SLAP) {
 			this.resetSleepTimer()	
