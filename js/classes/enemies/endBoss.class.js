@@ -28,6 +28,15 @@ class EndBoss extends MovableObject {
 		this.fillANIMATIONS()
 		this.getLoadImages()
 	}
+
+	animateHurt() {
+		let stop = setInterval(() => {
+			this.getAnimationsToRun(this.ANIMATIONS.ENDBOSS_HURT)
+		}, 1000/60);
+		setTimeout(() => {
+			clearInterval(stop)
+		}, 400);
+	}
 	
 	animateEndboss() {
 		if (!this.firstContact) {

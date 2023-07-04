@@ -51,8 +51,7 @@ class MovableObject {
 						ctx.stroke();
 					}
 				}
-			
-				
+					
 					if(this instanceof Sharkie) {
 						ctx.beginPath();
 						ctx.lineWidth = '5';
