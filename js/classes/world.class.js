@@ -17,53 +17,53 @@ class World {
 		new Audio('../audio/underWater.mp3')
 	]
 
-	hurtSound = new Audio('../audio/damage.mp3'); 
+	hurtSound = new Audio('../audio/damage.mp3');
 
-	
-	
+
+
 	endboss = new EndBoss(this.sharkie);
 	pufferfish = new PufferFish(this.sharkie);
- allBubbles = new AllBubbles;
+	allBubbles = new AllBubbles;
 
-	bubbles = [new Bubble(this.sharkie, 1), 
-											new Bubble(this.sharkie, 2),
-											new Bubble(this.sharkie, 3),
-											new Bubble(this.sharkie, 4),
-											new Bubble(this.sharkie, 5),
-											new Bubble(this.sharkie, 6),
-											new Bubble(this.sharkie, 7),
-											new Bubble(this.sharkie, 8),
-											new Bubble(this.sharkie, 9),
-											new Bubble(this.sharkie, 10),
-											new Bubble(this.sharkie, 11),
-											new Bubble(this.sharkie, 12),
-											new Bubble(this.sharkie, 13),
-											new Bubble(this.sharkie, 14),
-											new Bubble(this.sharkie, 15),
+	bubbles = [new Bubble(this.sharkie, 1),
+	new Bubble(this.sharkie, 2),
+	new Bubble(this.sharkie, 3),
+	new Bubble(this.sharkie, 4),
+	new Bubble(this.sharkie, 5),
+	new Bubble(this.sharkie, 6),
+	new Bubble(this.sharkie, 7),
+	new Bubble(this.sharkie, 8),
+	new Bubble(this.sharkie, 9),
+	new Bubble(this.sharkie, 10),
+	new Bubble(this.sharkie, 11),
+	new Bubble(this.sharkie, 12),
+	new Bubble(this.sharkie, 13),
+	new Bubble(this.sharkie, 14),
+	new Bubble(this.sharkie, 15),
 	];
 
-	poisonBubbles = [new BubblePoison(this.sharkie, 1), 
-																		new BubblePoison(this.sharkie, 2),
-																		new BubblePoison(this.sharkie, 3),
-																		new BubblePoison(this.sharkie, 4),
-																		new BubblePoison(this.sharkie, 5),
-																		new BubblePoison(this.sharkie, 6),
-																		new BubblePoison(this.sharkie, 7),
-																		new BubblePoison(this.sharkie, 8),
-																		new BubblePoison(this.sharkie, 9),
-																		new BubblePoison(this.sharkie, 10),
-																		new BubblePoison(this.sharkie, 11),
-																		new BubblePoison(this.sharkie, 12),
-																		new BubblePoison(this.sharkie, 13),
-																		new BubblePoison(this.sharkie, 14),
-																		new BubblePoison(this.sharkie, 15),
-];
+	poisonBubbles = [new BubblePoison(this.sharkie, 1),
+	new BubblePoison(this.sharkie, 2),
+	new BubblePoison(this.sharkie, 3),
+	new BubblePoison(this.sharkie, 4),
+	new BubblePoison(this.sharkie, 5),
+	new BubblePoison(this.sharkie, 6),
+	new BubblePoison(this.sharkie, 7),
+	new BubblePoison(this.sharkie, 8),
+	new BubblePoison(this.sharkie, 9),
+	new BubblePoison(this.sharkie, 10),
+	new BubblePoison(this.sharkie, 11),
+	new BubblePoison(this.sharkie, 12),
+	new BubblePoison(this.sharkie, 13),
+	new BubblePoison(this.sharkie, 14),
+	new BubblePoison(this.sharkie, 15),
+	];
 
-status = [
-	new LifeStatus(this.sharkie),
-	new CoinsStatus(this.sharkie),
-	new PoisonStatus(this.sharkie),
-]
+	status = [
+		new LifeStatus(this.sharkie),
+		new CoinsStatus(this.sharkie),
+		new PoisonStatus(this.sharkie),
+	]
 
 	constructor(canvas, keyboard) {
 		this.ctx = canvas.getContext('2d');
@@ -81,124 +81,127 @@ status = [
 	checkCollision(items) {
 		setInterval(() => {
 			items.forEach((item) => {
-				if(this.sharkie.isColliding(item)) {
-						if (!this.sharkieDied && !(item instanceof CollectItems)){
-								if(item instanceof GreenJellyFish || item instanceof PinkJellyFish) {
-									let stop = setInterval(() => {
-										this.sharkie.getAnimationsToRun(this.sharkie.ANIMATIONS.ANIMATION_ELECTRIC_HURT)
-									}, 1000/60);
-									setTimeout(() => {
-										clearInterval(stop)
-									}, 300);
-								}else{
-									if(!this.sharkie.slap && item instanceof PufferFish) {
-									let stop = setInterval(() => {
-										this.sharkie.getAnimationsToRun(this.sharkie.ANIMATIONS.ANIMATION_NORMAL_HURT)
-									}, 1000/60);
-									setTimeout(() => {
-										clearInterval(stop)
-									}, 300);
-									item.gotIt = true;
-								}
-							}	
-							
-							this.sharkie.lifeAmount -= item.power;
-							this.hurtSound.play();
-							this.hurtSound.volume = 0.3;
-							// console.log(this.sharkie.lifeAmount, item.power)
-							if(this.sharkie.lifeAmount <= 0) {
-								this.sharkie.dieingSound.play();
-								this.sharkie.dieingSound.volume = 0.3
-
-								// this.sharkieDied = true
-								// this.sharkie.sharkieDie();
+				if (this.sharkie.isColliding(item)) {
+					if (!this.sharkieDied && !(item instanceof CollectItems)) {
+						if (item instanceof GreenJellyFish || item instanceof PinkJellyFish) {
+							let stop = setInterval(() => {
+								this.sharkie.getAnimationsToRun(this.sharkie.ANIMATIONS.ANIMATION_ELECTRIC_HURT)
+							}, 1000 / 60);
+							setTimeout(() => {
+								clearInterval(stop)
+							}, 300);
+						} else {
+							if (!this.sharkie.slap && item instanceof PufferFish) {
+								let stop = setInterval(() => {
+									this.sharkie.getAnimationsToRun(this.sharkie.ANIMATIONS.ANIMATION_NORMAL_HURT)
+								}, 1000 / 60);
+								setTimeout(() => {
+									clearInterval(stop)
+								}, 300);
+								item.gotIt = true;
 							}
-						}	
-						if (!this.sharkieDied && item instanceof CollectItems && !item.gotIt){
-								if (item instanceof Coins){
-									item.gotIt = true;
-									this.sharkie.coinsAmount++
-								}
-								if (item instanceof Poison){
-									if(this.sharkie.poisonsAmount < 5) {
-										item.gotIt = true;
-										this.sharkie.poisonsAmount++
-									}
-								}
 						}
-						
-				}	
+
+						this.sharkie.lifeAmount -= item.power;
+						this.hurtSound.play();
+						this.hurtSound.volume = 0.3;
+						// console.log(this.sharkie.lifeAmount, item.power)
+						if (this.sharkie.lifeAmount <= 0) {
+							this.sharkie.dieingSound.play();
+							this.sharkie.dieingSound.volume = 0.3
+
+							// this.sharkieDied = true
+							// this.sharkie.sharkieDie();
+						}
+					}
+					if (!this.sharkieDied && item instanceof CollectItems && !item.gotIt) {
+						if (item instanceof Coins) {
+							item.gotIt = true;
+							this.sharkie.coinsAmount++
+						}
+						if (item instanceof Poison) {
+							if (this.sharkie.poisonsAmount < 5) {
+								item.gotIt = true;
+								this.sharkie.poisonsAmount++
+							}
+						}
+					}
+
+				}
 				this.bubbles.forEach((bubble) => {
 					if (bubble.isColliding(item)) {
-						console.log('trewfferf');
-						item.gotIt = true;
-						item.x = bubble.x
-						
-						// ...
-						// Behandlung der Kollision zwischen Bubble und dem Item
+						if (item instanceof Enemies)
+							item.gotIt = true;
 					}
 				});
-	
+
 				// Überprüfe Kollision mit PoisonBubbles
 				this.poisonBubbles.forEach((poisonBubble) => {
 					if (poisonBubble.isColliding(item)) {
-						// ...
-						// Behandlung der Kollision zwischen PoisonBubble und dem Item
+						if (item instanceof Enemies)
+							item.gotIt = true;
 					}
 				});
-		});	
-					}, 1000);
-				
+			});
+		}, 50);
+
 	}
 
+	/**
+		* looks where is sharkie to start the endboos animation
+		*/
 	whereIsSharkie() {
-		   // Den Charakter überwachen und die Endboss-Aktivierung auslösen
-					setInterval(() => {
-						const characterPosition = this.sharkie.x;
-						if (characterPosition >= 4950) {
-								this.endboss.animateEndboss();
-								// get the color pufferfishes in enemies to change the x point
-								for (let i = 0; i < this.enemies.length; i++) {
-											const enemy = this.enemies[i];
-											if (enemy instanceof PufferFish) {
-													enemy.changeEndBossHere();
-											}
-									}
-							}
-				}, 100);
+		setInterval(() => {
+			const characterPosition = this.sharkie.x;
+			if (characterPosition >= 4950) {
+				this.endboss.animateEndboss();
+				// get the color pufferfishes in enemies to change the x point
+				for (let i = 0; i < this.enemies.length; i++) {
+					const enemy = this.enemies[i];
+					if (enemy instanceof PufferFish) {
+						enemy.changeEndBossHere();
+					}
+				}
+			}
+		}, 100);
 	}
 
+	/**
+		* start the game Audio
+		*/
 	initAudio() {
-  document.addEventListener('click', () => {
-			this.gameSound[0].currentTime = 0;
-			this.gameSound[0].volume = 0.1;
-			this.gameSound[0].loop = true; 
-	  this.gameSound[0].play();
-  });
-
-		document.addEventListener('click', () => {
-			this.gameSound[1].currentTime = 0;
-			this.gameSound[1].volume = 0.2;
-			this.gameSound[1].loop = true; 
-			this.gameSound[1].play();
-		});
+		this.gameSound[0].currentTime = 0;
+		this.gameSound[0].volume = 0.1;
+		this.gameSound[0].loop = true;
+		this.gameSound[0].play();
+		this.gameSound[1].currentTime = 0;
+		this.gameSound[1].volume = 0.2;
+		this.gameSound[1].loop = true;
+		this.gameSound[1].play();
 	}
 
-	muteSound(){
+	/**
+		* mute or unmute the sounds
+		*/
+	muteSound() {
 		this.gameSound[0].muted = !this.gameSound[0].muted;
 		this.gameSound[1].muted = !this.gameSound[1].muted;
 		this.hurtSound.muted = !this.hurtSound.muted;
 	}
 
+	/**
+		* definated sharkies world 
+		*/
 	setWorld() {
 		this.sharkie.world = this;
 	}
 
+	/**
+		* draw on canvas
+		*/
 	draw() {
 		this.ctx.clearRect(0, 0, canvas.width, canvas.height);
-
 		this.ctx.translate(this.camera_x, 0);
-
 		this.addObjectsToMap(this.background);
 		this.addObjectsToMap(this.coins);
 		this.addObjectsToMap(this.poisons);
@@ -208,39 +211,50 @@ status = [
 		this.addObjectsToMap(this.bubbles);
 		this.addObjectsToMap(this.poisonBubbles);
 		this.addObjectsToMap(this.floors);
-
-
-		// Helligkeit für das Licht
-		this.ctx.globalAlpha = this.light.brightness; // Erhöhe den globalen Transparenzwert, um das Lichtbild heller zu machen
+		// get the world brightness and change it for the light
+		this.ctx.globalAlpha = this.light.brightness;
 		this.addToMap(this.light);
-		// Setze die globale Transparenz zurück
- 	this.ctx.globalAlpha = 1; // Setze die Transparenz zurück auf 100%
-
+		// change the world brightness back 
+		this.ctx.globalAlpha = 1;
 		this.addObjectsToMap(this.status);
-
 		this.ctx.translate(-this.camera_x, 0);
-
+		// reset draw so this is just one img of each item on canvas
 		let self = this;
 		requestAnimationFrame(() => {
 			self.draw();
 		});
 	};
 
+	/**
+		* get the array and get each child of this to addToMap()
+		*
+		* @param {Array} objectsArray 
+		*/
 	addObjectsToMap(objectsArray) {
 		objectsArray.forEach(object => {
 			this.addToMap(object)
 		})
 	};
 
+	/**
+		* draw picture on canvas
+		* 
+		* @param {ClassDecorator} objectImage 
+		*/
 	addToMap(objectImage) {
-		if(objectImage.otherDirection) 
+		if (objectImage.otherDirection)
 			this.flipImage(objectImage);
 		objectImage.draw(this.ctx);
 		objectImage.drawFrame(this.ctx);
-		if(objectImage.otherDirection) 
+		if (objectImage.otherDirection)
 			this.flipImageBack(objectImage)
 	}
 
+	/**
+		* change the direction of the class
+		* 
+		* @param {ClassDecorator} objectImage 
+		*/
 	flipImage(objectImage) {
 		this.ctx.save();
 		this.ctx.translate(objectImage.width, 0);
@@ -248,9 +262,13 @@ status = [
 		objectImage.x = objectImage.x * -1
 	}
 
+	/**
+		* change direction back
+		* 
+		* @param {ClassDecorator} objectImage 
+		*/
 	flipImageBack(objectImage) {
 		objectImage.x = objectImage.x * -1;
-			this.ctx.restore();
+		this.ctx.restore();
 	}
-
 }

@@ -168,8 +168,8 @@ getPositionX() {
 		
 		// camera goes right
 			if (this.x <	this.endgegnerPoint &&
-						this.world.camera_x + this.x > 400 && this.x + 480 < 6000) {
-				this.world.camera_x = -this.x + 400
+						this.world.camera_x + this.x > 200 && this.x + 480 < 6000) {
+				this.world.camera_x = -this.x + 200
 			}
 
 			

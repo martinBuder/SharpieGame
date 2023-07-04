@@ -14,6 +14,7 @@ class Enemies extends MovableObject {
 		setInterval(() => {
 			this.getAnimationsToRun(this.ANIMATIONS.ENEMY_SWIM)
 			}, 420);
-	}
+		
+}
 
 }

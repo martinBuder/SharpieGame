@@ -9,16 +9,20 @@ class PufferFish extends Enemies {
 	};
 
 	animateMove() {
-	this.speed = 2 + Math.random() * 2;
-		setInterval(() => {
-			if(!this.endBossHere) {
-			if (this.x < -100) {
-				this.x = 10000;
-				this.y = 0 + Math.random() * 410;
+	this.speed = 2 + Math.random() * 1.3;
+	setInterval(() => {
+			if(!this.gotIt) {
+				if(!this.endBossHere) {
+				if (this.x < -100) {
+					this.x = 10000;
+					this.y = 0 + Math.random() * 410;
+				}
 			}
-		}
-			this.x = this.x - this.speed 
-		}, 1000 / 60); 
+				this.x = this.x - this.speed 
+		} else {
+				this.x = -50;
+	}
+}, 1000 / 60); 
 	}
 
 	setEndBossHere(value) {
