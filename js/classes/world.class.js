@@ -12,51 +12,44 @@ class World {
 	poisons = level1.poisons;
 	light = new Light();
 
-	gameSound = [
-		new Audio('../audio/gameMusic.mp3'),
-		new Audio('../audio/underWater.mp3')
-	]
-
-	hurtSound = new Audio('../audio/damage.mp3');
-
-
-
 	endboss = new EndBoss(this.sharkie);
 	pufferfish = new PufferFish(this.sharkie);
 	allBubbles = new AllBubbles;
 
-	bubbles = [new Bubble(this.sharkie, 1),
-	new Bubble(this.sharkie, 2),
-	new Bubble(this.sharkie, 3),
-	new Bubble(this.sharkie, 4),
-	new Bubble(this.sharkie, 5),
-	new Bubble(this.sharkie, 6),
-	new Bubble(this.sharkie, 7),
-	new Bubble(this.sharkie, 8),
-	new Bubble(this.sharkie, 9),
-	new Bubble(this.sharkie, 10),
-	new Bubble(this.sharkie, 11),
-	new Bubble(this.sharkie, 12),
-	new Bubble(this.sharkie, 13),
-	new Bubble(this.sharkie, 14),
-	new Bubble(this.sharkie, 15),
+	bubbles = [
+		new Bubble(this.sharkie, 1),
+		new Bubble(this.sharkie, 2),
+		new Bubble(this.sharkie, 3),
+		new Bubble(this.sharkie, 4),
+		new Bubble(this.sharkie, 5),
+		new Bubble(this.sharkie, 6),
+		new Bubble(this.sharkie, 7),
+		new Bubble(this.sharkie, 8),
+		new Bubble(this.sharkie, 9),
+		new Bubble(this.sharkie, 10),
+		new Bubble(this.sharkie, 11),
+		new Bubble(this.sharkie, 12),
+		new Bubble(this.sharkie, 13),
+		new Bubble(this.sharkie, 14),
+		new Bubble(this.sharkie, 15),
 	];
 
-	poisonBubbles = [new BubblePoison(this.sharkie, 1),
-	new BubblePoison(this.sharkie, 2),
-	new BubblePoison(this.sharkie, 3),
-	new BubblePoison(this.sharkie, 4),
-	new BubblePoison(this.sharkie, 5),
-	new BubblePoison(this.sharkie, 6),
-	new BubblePoison(this.sharkie, 7),
-	new BubblePoison(this.sharkie, 8),
-	new BubblePoison(this.sharkie, 9),
-	new BubblePoison(this.sharkie, 10),
-	new BubblePoison(this.sharkie, 11),
-	new BubblePoison(this.sharkie, 12),
-	new BubblePoison(this.sharkie, 13),
-	new BubblePoison(this.sharkie, 14),
-	new BubblePoison(this.sharkie, 15),
+	poisonBubbles = [
+		new BubblePoison(this.sharkie, 1),
+		new BubblePoison(this.sharkie, 2),
+		new BubblePoison(this.sharkie, 3),
+		new BubblePoison(this.sharkie, 4),
+		new BubblePoison(this.sharkie, 5),
+		new BubblePoison(this.sharkie, 6),
+		new BubblePoison(this.sharkie, 7),
+		new BubblePoison(this.sharkie, 8),
+		new BubblePoison(this.sharkie, 9),
+		new BubblePoison(this.sharkie, 10),
+		new BubblePoison(this.sharkie, 11),
+		new BubblePoison(this.sharkie, 12),
+		new BubblePoison(this.sharkie, 13),
+		new BubblePoison(this.sharkie, 14),
+		new BubblePoison(this.sharkie, 15),
 	];
 
 	status = [
@@ -64,6 +57,12 @@ class World {
 		new CoinsStatus(this.sharkie),
 		new PoisonStatus(this.sharkie),
 	]
+
+	gameSound = [
+		new Audio('../audio/gameMusic.mp3'),
+		new Audio('../audio/underWater.mp3')
+	]
+	hurtSound = new Audio('../audio/damage.mp3');
 
 	constructor(canvas, keyboard) {
 		this.ctx = canvas.getContext('2d');

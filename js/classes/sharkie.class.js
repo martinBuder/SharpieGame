@@ -112,23 +112,22 @@ getPositionX() {
 
 		if(this.world.keyboard.POISONBUBBLE && !this.isPoisonBubbleGenerated) {
 			this.resetSleepTimer()	
-			this.isPoisonBubbleGenerated = true;
-			this.poisonBubble = true;
-			this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_POISON_BUBBLE_ATTACK); 
-			this.poisonBubbleNr++; 
-			if(this.poisonBubbleNr == 16) {
-				this.poisonBubbleNr = 0;
+			if(this.poisonsAmount > 0) {
+				this.isPoisonBubbleGenerated = true;
+				this.poisonBubble = true;
+				this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_POISON_BUBBLE_ATTACK); 
+				this.poisonBubbleNr++; 
+				if(this.poisonBubbleNr == 16) {
+					this.poisonBubbleNr = 0;
+				}
+				this.poisonsAmount--;
 			}
-
-		}
+		}dd
 
 		if(!this.world.keyboard.POISONBUBBLE) {
 			this.poisonBubble = false;
 			this.isPoisonBubbleGenerated = false; 
 		}
-
-
-
 
 		if(this.world.keyboard.SLAP) {
 			this.resetSleepTimer()	
@@ -146,9 +145,6 @@ getPositionX() {
 			this.slap = false;
 		}
 
-
-
-	
 		if(this.world.keyboard.RIGHT) {
 			this.resetSleepTimer()	
 
@@ -157,9 +153,9 @@ getPositionX() {
 			}
 			this.otherDirection = false;
 		}
+
 		if(this.world.keyboard.LEFT) {
 			this.resetSleepTimer()	
-
 			if(this.x > 0) {
 				this.x -= 5;
 			}
