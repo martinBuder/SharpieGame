@@ -144,15 +144,15 @@ class World {
 				this.poisonBubbles.forEach((poisonBubble) => {
 
 					if(poisonBubble.isColliding(item)) {
-						debugger
+
 						if(item instanceof Enemies)
 							item.gotIt = true;
 						if(item instanceof EndBoss) {
 							console.log('bin da');
-							if(item.hit == false){
+							if(poisonBubble.hit == false){
 								item.lifePower -= poisonBubble.damagePower;
-								item.hit = true;
-								// item.animateHurt();
+								poisonBubble.hit = true;
+								item.animateHurt();
 								if(item.lifePower <= 0) {
 
 								}
