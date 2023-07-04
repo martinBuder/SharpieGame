@@ -1,5 +1,4 @@
 class World {
-	// level = level1
 	keyboard;
 	canvas;
 	ctx;
@@ -17,6 +16,8 @@ class World {
 		new Audio('../audio/gameMusic.mp3'),
 		new Audio('../audio/underWater.mp3')
 	]
+
+	hurtSound = new Audio('../audio/damage.mp3'); 
 
 	
 	
@@ -101,10 +102,14 @@ status = [
 								}
 							}	
 							
-							this.sharkie.lifeAmount -= item.power
+							this.sharkie.lifeAmount -= item.power;
+							this.hurtSound.play();
+							this.hurtSound.volume = 0.3;
 							// console.log(this.sharkie.lifeAmount, item.power)
 							if(this.sharkie.lifeAmount <= 0) {
-								
+								this.sharkie.dieingSound.play();
+								this.sharkie.dieingSound.volume = 0.3
+
 								// this.sharkieDied = true
 								// this.sharkie.sharkieDie();
 							}
@@ -181,6 +186,7 @@ status = [
 	muteSound(){
 		this.gameSound[0].muted = !this.gameSound[0].muted;
 		this.gameSound[1].muted = !this.gameSound[1].muted;
+		this.hurtSound.muted = !this.hurtSound.muted;
 	}
 
 	setWorld() {

@@ -3,6 +3,10 @@ class AllBubbles extends MovableObject{
 	width = 0;
 	height = 0;	
 
+	offsetY = 0;
+	offsetX = 0;
+	offsetHeight = 0;
+
 	animateBubble() {
 		setInterval(() => {	
 				this.gotIt = false;

@@ -7,6 +7,12 @@ let sharkie;
 
 function init() {
 	canvas = document.getElementById('canvas');
+
+}
+
+function setLevel() {
+	let startWindow = document.getElementById('startBtn');
+	startWindow.classList.add('displayNone');
 	world = new World(canvas, keyboard);
 	sharkie = world.sharkie;
 }
@@ -15,7 +21,8 @@ function muteBrowser() {
 	let muteButton = document.getElementById('mute');
 	muteButton.src = (muteButton.src.endsWith('001-mute.png')) ? 'img/6.Botones/png/002-volume-level.png' : 'img/6.Botones/png/001-mute.png';
 
- world.muteSound()
+ world.muteSound();
+	world.sharkie.muteSound();
 }
 
 

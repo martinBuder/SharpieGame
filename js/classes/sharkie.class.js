@@ -47,7 +47,15 @@ class Sharkie extends MovableObject {
 	sleepTimer = 0;
 
 	swimmingSound = new Audio('../audio/swimming.mp3');
-	endgegnerPointSound = new Audio('../audio/danger.mp3')
+	endgegnerPointSound = new Audio('../audio/danger.mp3');
+	dieingSound = new Audio('../audio/loseGame.mp3');
+	
+
+	muteSound(){
+		this.swimmingSound.muted = !this.swimmingSound.muted
+		this.endgegnerPointSound.muted = !this.endgegnerPointSound.muted;
+		this.dieingSound.muted = !this.dieingSound.muted
+	}
 
 	constructor() {
 		super().loadImg('../img/1.Sharkie/1.IDLE/1.png');

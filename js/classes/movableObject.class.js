@@ -10,7 +10,8 @@ class MovableObject {
 
 	otherDirection = false;
 
-	endgegnerPoint = 4500 
+	endgegnerPoint = 4500;
+
 
 
 	loadImg(path) {
