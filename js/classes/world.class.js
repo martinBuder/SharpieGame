@@ -132,6 +132,7 @@ status = [
 					if (bubble.isColliding(item)) {
 						console.log('trewfferf');
 						item.gotIt = true;
+						item.x = bubble.x
 						
 						// ...
 						// Behandlung der Kollision zwischen Bubble und dem Item

@@ -7,16 +7,22 @@ class AllBubbles extends MovableObject{
 	offsetX = 0;
 	offsetHeight = 0;
 
-	animateBubble() {
+	animateBubble(otherWay) {
 		setInterval(() => {	
 				this.gotIt = false;
-				this.width += 0.1;
-				this.height += 0.1;
+				this.width += 1;
+				this.height += 1;
 				if(this.width > 50) {
 					this.width = 50;
 					this.height = 50;
 				}
-				this.x += 1;		
+				
+				if(otherWay == 1) {
+					this.x -= 1;		
+				}else {
+					this.x += 1;		
+				}
+			
 				}, 1000/30)
 	}
 

@@ -9,14 +9,17 @@ class Bubble extends AllBubbles{
 
 	getBubble() {
 		setInterval(() => {
+
 		if(this.sharkie.bubble && this.sharkie.bubbleNr == this.bubbleNr) {
-				 this.sharkie.isBubbleGenerated = false;
+				this.y = this.sharkie.y + 75
+			let otherWay = 0
+				if(this.sharkie.otherDirection == true) {
+					this.x = this.sharkie.x + 20
+					otherWay = 1
+				}else {
 					this.x = this.sharkie.x + 200
-					this.y = this.sharkie.y + 80
-					this.animateBubble();
+				}
+					this.animateBubble(otherWay);
 		}}), 1000/60
 	}
-
-
-
 }

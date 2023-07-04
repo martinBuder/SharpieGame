@@ -65,7 +65,6 @@ class MovableObject {
 
 	// Bessere Formel zur Kollisionsberechnung (Genauer)
 		isColliding (obj) {
-			// debugger
 			return (this.x + this.offsetX + this.width - this.offsetX * 2) >= obj.x &&
 			(this.x + this.offsetX) <= (obj.x + obj.width) &&
 			(this.y + this.offsetY + this.height - this.offsetHeight) >= obj.y &&

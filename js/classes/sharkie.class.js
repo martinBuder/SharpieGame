@@ -10,8 +10,6 @@ class Sharkie extends MovableObject {
 	offsetX = 40;
 	offsetHeight = 100;
 
-
-
 	bubble = false;
 	poisonBubble = false;
 	isBubbleGenerated = false;
@@ -45,6 +43,7 @@ class Sharkie extends MovableObject {
 	bubbleNr = 0;
 	poisonBubbleNr = 0;
 	sleepTimer = 0;
+	sleepTime = 5;
 
 	swimmingSound = new Audio('../audio/swimming.mp3');
 	endgegnerPointSound = new Audio('../audio/danger.mp3');
@@ -68,33 +67,32 @@ class Sharkie extends MovableObject {
 	}
 
 	startSleepTimer() {
-  let sleepTimerCounter = setInterval(() => {
-    if (this.sleepTimer >= 5) {
-      clearInterval(sleepTimerCounter);
-      setInterval(() => {
+  let sleepInterval = setInterval(() => {
+    if (this.sleepTimer >= this.sleepTime) {
+      clearInterval(sleepInterval); // Vorheriges Intervall stoppen
+      let animationInterval = setInterval(() => {
         this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_SLEEP);
-      }, 1000/5);
+        if (this.sleepTimer < this.sleepTime) {
+          clearInterval(animationInterval);
+        }
+      }, 1000 / 5);
     } else {
       this.sleepTimer++;
     }
   }, 1000);
 }
 
-
-
-
-	getPositionX() {
+getPositionX() {
 		return this.x;
 	}
 
-	resetSleepTimer(){
+	resetSleepTimer() {
 		this.sleepTimer = 0;
 	}
 
 	animate() {
 		setInterval(() => {
 		this.swimmingSound.pause();
-
 
 		if(this.world.keyboard.BUBBLE && !this.isBubbleGenerated) {
 			this.resetSleepTimer()	
@@ -105,27 +103,11 @@ class Sharkie extends MovableObject {
 			if(this.bubbleNr == 16) {
 				this.bubbleNr = 0;
 			}
-		}
-
-		if(this.world.keyboard.SLAP) {
-			this.resetSleepTimer()	
-			let stopPoint = setInterval(() => {
-				this.slap = true;      
-				this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_SLAP_ATTACK);
-			}, 1000/2 ); 
-			setTimeout(() => {
-				clearInterval(stopPoint)
-			}, 800 );
-			this.slap = false
-		}			
-
-		if(!this.world.keyboard.SLAP) {
-			this.slap = false;
-		}
-
+		} 
+		
 		if(!this.world.keyboard.BUBBLE) {
 			this.bubble = false;
-			this.isPoisonBubbleGenerated = false; 
+			this.isBubbleGenerated = false; 
 		}
 
 		if(this.world.keyboard.POISONBUBBLE && !this.isPoisonBubbleGenerated) {
@@ -145,6 +127,28 @@ class Sharkie extends MovableObject {
 			this.isPoisonBubbleGenerated = false; 
 		}
 
+
+
+
+		if(this.world.keyboard.SLAP) {
+			this.resetSleepTimer()	
+			let stopPoint = setInterval(() => {
+				this.slap = true;      
+				this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_SLAP_ATTACK);
+			}, 1000/2 ); 
+			setTimeout(() => {
+				clearInterval(stopPoint)
+			}, 800 );
+			this.slap = false
+		}			
+
+		if(!this.world.keyboard.SLAP) {
+			this.slap = false;
+		}
+
+
+
+	
 		if(this.world.keyboard.RIGHT) {
 			this.resetSleepTimer()	
 
@@ -162,7 +166,7 @@ class Sharkie extends MovableObject {
 			this.otherDirection = true;
 		}
 		
-		// camera goes
+		// camera goes right
 			if (this.x <	this.endgegnerPoint &&
 						this.world.camera_x + this.x > 400 && this.x + 480 < 6000) {
 				this.world.camera_x = -this.x + 400
@@ -232,15 +236,16 @@ class Sharkie extends MovableObject {
 				this.swimmingSound.volume = 0.2;
 			}
 		}, 1000/60)
-				
+
 		let sharkieStand = setInterval(() => {
 				if(this.world.keyboard.LEFT == false && this.world.keyboard.RIGHT == false) {
 				this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_STAND)
 				};
-				if(this.lifeAmount <= 0 || this.sleepTimer > 4)
+				if(this.lifeAmount <= 0 || this.sleepTimer > this.sleepTime)
 					clearInterval(sharkieStand)
 		}, 1000/5);
 	}
+	
 
 	sharkieDie() {
 		let i = 0;
