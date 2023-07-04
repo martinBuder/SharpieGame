@@ -145,8 +145,8 @@ class World {
 
 					if(poisonBubble.isColliding(item)) {
 
-						if(item instanceof Enemies)
-							item.gotIt = true;
+						if(item instanceof Enemies) {
+							item.gotIt = true; } else 
 						if(item instanceof EndBoss) {
 							console.log('bin da');
 							if(poisonBubble.hit == false){

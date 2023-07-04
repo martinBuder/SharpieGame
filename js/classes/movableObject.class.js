@@ -65,18 +65,18 @@ class MovableObject {
 
 	// Bessere Formel zur Kollisionsberechnung (Genauer)
 		isColliding (obj) {
-			// if(obj instanceof EndBoss) {
-			// 	return (this.x + this.offsetX + this.width - this.offsetX * 2) >= (obj.x + 20) &&
-			// 	(this.x + this.offsetX) <= (obj.x + obj.width - 40) &&
-			// 	(this.y + this.offsetY + this.height - this.offsetHeight) >= (obj.y + 90) &&
-			// 	(this.y + this.offsetY) <= (obj.y + obj.height - 130);
-			// }
-			//  else {
+			if(obj instanceof EndBoss) {
+				return (this.x + this.offsetX + this.width - this.offsetX * 2) >= (obj.x + 20) &&
+				(this.x + this.offsetX) <= (obj.x + obj.width - 40) &&
+				(this.y + this.offsetY + this.height - this.offsetHeight) >= (obj.y + 90) &&
+				(this.y + this.offsetY) <= (obj.y + obj.height);
+			}
+			 else {
 			return (this.x + this.offsetX + this.width - this.offsetX * 2) >= obj.x &&
 			(this.x + this.offsetX) <= (obj.x + obj.width) &&
 			(this.y + this.offsetY + this.height - this.offsetHeight) >= obj.y &&
 			(this.y + this.offsetY) <= (obj.y + obj.height);
-			// }
+			}
 		}
 
 		getLoadImages() {
