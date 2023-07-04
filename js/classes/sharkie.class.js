@@ -122,7 +122,7 @@ getPositionX() {
 				}
 				this.poisonsAmount--;
 			}
-		}dd
+		}
 
 		if(!this.world.keyboard.POISONBUBBLE) {
 			this.poisonBubble = false;
