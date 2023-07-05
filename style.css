@@ -1,3 +1,8 @@
+@font-face {
+	font-family: "Luckiest Guy";
+	src: url("img/5.Font/Luckiest_Guy/LuckiestGuy-Regular.ttf");
+}
+
 * {
 	margin: 0;
 	box-sizing: border-box;
@@ -12,6 +17,7 @@ body {
 	width: 100%;
 	background: url('img/3. Background/Dark/1.png');
 	backdrop-filter: blur(4px);
+	font-family: "Luckiest Guy", Arial, Helvetica, sans-serif;
 }
 
 h1 {
@@ -20,6 +26,7 @@ h1 {
 	font-size: 56px;
 	margin-bottom: 40px;
 	text-transform: uppercase;
+	letter-spacing: 5px;
 }
 
 canvas {
@@ -50,6 +57,7 @@ img{
 	text-transform: uppercase;
 	background: url('img/3. Background/Dark/1.png');
 	z-index: 100;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 h2 {
@@ -77,8 +85,8 @@ button {
 	border: 8px solid #ecf0f4;
 	border-radius: 10px;
 	font-size: 40px;
-	font-weight: 900;
-	padding: 10px 20px;
+	padding: 10px 40px;
+	
 }
 
 #startBtn.displayNone {
@@ -119,16 +127,7 @@ button {
 }
 
 .handyBtnArea {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100svh;
-	height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: flex-end;
-	gap: 10px;
+	display: none;
 }
 
 .handyBtnArea div{
@@ -143,8 +142,7 @@ button {
 	justify-content: center;
 	align-items: center;
 	background: rgba(255, 255, 255, 0.6);
-	font-size: 4vh;
-	font-weight: 900;
+	font-size: 6vh;
 }
 
 .go, .bubble {
@@ -216,6 +214,19 @@ div.go {
 		right: 5px;
 	}
 
+	.handyBtnArea {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100svh;
+		height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
+		gap: 10px;
+	}
+
 }
 @media only screen and (max-height: 480px) {
 	canvas {
@@ -224,6 +235,19 @@ div.go {
 
 	.instructionWrapper, h2, h1.notMobil {
 		display: none;
+	}
+
+	.handyBtnArea {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100svh;
+		height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
+		gap: 10px;
 	}
 }
 

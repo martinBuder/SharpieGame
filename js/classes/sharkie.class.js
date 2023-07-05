@@ -1,4 +1,4 @@
-class Sharkie extends MovableObject {	
+class Sharkie extends MovableObject {
 
 	x = 4050;
 	y = 180;
@@ -11,7 +11,7 @@ class Sharkie extends MovableObject {
 	poisonBubble = false;
 	isBubbleGenerated = false;
 	isPoisonBubbleGenerated = false
-	worldEnd = 5750  
+	worldEnd = 5750
 	world;
 	lifeAmount = 5;
 	coinsAmount = 0;
@@ -40,8 +40,8 @@ class Sharkie extends MovableObject {
 
 	swimmingSound = new Audio('../audio/swimming.mp3');
 	endgegnerPointSound = new Audio('../audio/danger.mp3');
-	dieingSound = new Audio('../audio/loseGame.mp3');
-	
+	loseSound = new Audio('../audio/loseGame.mp3');
+
 	constructor() {
 		super().loadImg('../img/1.Sharkie/1.IDLE/1.png');
 		// the number must be one bigger then picture are there
@@ -51,44 +51,44 @@ class Sharkie extends MovableObject {
 		this.startSleepTimer();
 	}
 
-		/**
-		* mute and unmute sounds
+	/**
+	* mute and unmute sounds
+	*/
+	muteSound() {
+		this.swimmingSound.muted = !this.swimmingSound.muted
+		this.endgegnerPointSound.muted = !this.endgegnerPointSound.muted;
+		this.loseSound.muted = !this.loseSound.muted
+	}
+
+	/**
+		* control sleepTimer
 		*/
-		muteSound(){
-			this.swimmingSound.muted = !this.swimmingSound.muted
-			this.endgegnerPointSound.muted = !this.endgegnerPointSound.muted;
-			this.dieingSound.muted = !this.dieingSound.muted
-		}
-
-		/**
-			* control sleepTimer
-			*/
 	startSleepTimer() {
-  let sleepInterval = setInterval(() => {
-    if (this.sleepTimer >= this.sleepTime) {
-     clearInterval(sleepInterval); 
-     this.sleepAnimationStart()
-    } else {
-      this.sleepTimer++;
-    }
-  }, 1000);
-}
+		let sleepInterval = setInterval(() => {
+			if (this.sleepTimer >= this.sleepTime) {
+				clearInterval(sleepInterval);
+				this.sleepAnimationStart()
+			} else {
+				this.sleepTimer++;
+			}
+		}, 1000);
+	}
 
-/**
-	* start sleep Animation
-	*/
-sleepAnimationStart(){
-	let animationInterval = setInterval(() => {
-		this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_SLEEP);
-		if (this.sleepTimer < this.sleepTime) {
-			clearInterval(animationInterval);
-		}
-	}, 1000 / 5);
-}
+	/**
+		* start sleep Animation
+		*/
+	sleepAnimationStart() {
+		let animationInterval = setInterval(() => {
+			this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_SLEEP);
+			if (this.sleepTimer < this.sleepTime) {
+				clearInterval(animationInterval);
+			}
+		}, 1000 / 5);
+	}
 
-/**
-	* reset sleeptimer
-	*/
+	/**
+		* reset sleeptimer
+		*/
 	resetSleepTimer() {
 		this.sleepTimer = 0;
 	}
@@ -98,20 +98,20 @@ sleepAnimationStart(){
 		*/
 	animate() {
 		setInterval(() => {
-		this.swimmingSound.pause();
-		this.bubbleAttack();
-		this.poisonBubbleAttack();
-		this.slapAttack();
-		this.goRight();
-		this.goLeft();
-		this.cameraGoesRight();
-		this.checkEndgegnerPoint();
-		this.cameraGoesLeft();			
-		this.goUp();
-		this.goDown();	
-		}, 1000/60);
+			this.swimmingSound.pause();
+			this.bubbleAttack();
+			this.poisonBubbleAttack();
+			this.slapAttack();
+			this.goRight();
+			this.goLeft();
+			this.cameraGoesRight();
+			this.checkEndgegnerPoint();
+			this.cameraGoesLeft();
+			this.goUp();
+			this.goDown();
+		}, 1000 / 60);
 		this.startSwim();
-		this.startStand()	;
+		this.startStand();
 	}
 
 	/**
@@ -125,79 +125,79 @@ sleepAnimationStart(){
 			this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_BUBBLE_ATTACK);
 			this.bubbleNr++;
 			if (this.bubbleNr == 16) {
-							this.bubbleNr = 0;
+				this.bubbleNr = 0;
 			}
 		}
 		if (!this.world.keyboard.BUBBLE) {
 			this.bubble = false;
 			this.isBubbleGenerated = false;
-}
+		}
 	}
 
-		/**
-		* manage poison bubble attack
-		*/
+	/**
+	* manage poison bubble attack
+	*/
 	poisonBubbleAttack() {
 		if (this.world.keyboard.POISONBUBBLE && !this.isPoisonBubbleGenerated) {
 			this.resetSleepTimer();
 			if (this.poisonsAmount > 0) {
-							this.isPoisonBubbleGenerated = true;
-							this.poisonBubble = true;
-							this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_POISON_BUBBLE_ATTACK);
-							this.poisonBubbleNr++;
-							if (this.poisonBubbleNr == 16) {
-											this.poisonBubbleNr = 0;
-							}
-							this.poisonsAmount--;
+				this.isPoisonBubbleGenerated = true;
+				this.poisonBubble = true;
+				this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_POISON_BUBBLE_ATTACK);
+				this.poisonBubbleNr++;
+				if (this.poisonBubbleNr == 16) {
+					this.poisonBubbleNr = 0;
+				}
+				this.poisonsAmount--;
 			}
-}
-if (!this.world.keyboard.POISONBUBBLE) {
+		}
+		if (!this.world.keyboard.POISONBUBBLE) {
 			this.poisonBubble = false;
 			this.isPoisonBubbleGenerated = false;
-}
+		}
 	}
 
-		/**
-		* manage slap attack
-		*/
+	/**
+	* manage slap attack
+	*/
 	slapAttack() {
-		if(this.world.keyboard.SLAP) {
-			this.resetSleepTimer()	
+		if (this.world.keyboard.SLAP) {
+			this.resetSleepTimer()
 			let stopPoint = setInterval(() => {
-				this.slap = true;      
+				this.slap = true;
 				this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_SLAP_ATTACK);
-			}, 1000/2 ); 
+			}, 1000 / 2);
 			setTimeout(() => {
 				clearInterval(stopPoint)
-			}, 800 );
+			}, 800);
 			this.slap = false
-		}			
+		}
 
-		if(!this.world.keyboard.SLAP) {
+		if (!this.world.keyboard.SLAP) {
 			this.slap = false;
 		}
 	}
 
-		/**
-		* manage go right
-		*/
+	/**
+	* manage go right
+	*/
 	goRight() {
-		if(this.world.keyboard.RIGHT) {
-			this.resetSleepTimer()	
-			if(this.x < 5800) {
+		if (this.world.keyboard.RIGHT) {
+			this.resetSleepTimer()
+			if (this.x < 5800) {
 				this.x += 5;
 			}
 			this.otherDirection = false;
 		}
 	}
 
-		/**
-		* manage go left
-		*/
-	goLeft(){
-		if(this.world.keyboard.LEFT) {
-			this.resetSleepTimer()	
-			if(this.x > 0) {
+	/**
+	* manage go left
+	*/
+	goLeft() {
+		if (this.world.keyboard.LEFT) {
+			this.resetSleepTimer()
+			if (this.x > 0) {
 				this.x -= 5;
 			}
 			this.otherDirection = true;
@@ -208,7 +208,7 @@ if (!this.world.keyboard.POISONBUBBLE) {
 		* manage camera goes right
 		*/
 	cameraGoesRight() {
-		if (this.x <	this.endgegnerPoint &&
+		if (this.x < this.endgegnerPoint &&
 			this.world.camera_x + this.x > 200 && this.x + 480 < 6000) {
 			this.world.camera_x = -this.x + 200
 		}
@@ -220,7 +220,7 @@ if (!this.world.keyboard.POISONBUBBLE) {
 	checkEndgegnerPoint() {
 		if (this.x > this.endgegnerPoint) {
 			this.playDangerMusic();
-			if(this.world.camera_x -480 > -	this.worldEnd) {
+			if (this.world.camera_x - 480 > -	this.worldEnd) {
 				this.world.camera_x = -this.x;
 			}
 		}
@@ -239,14 +239,14 @@ if (!this.world.keyboard.POISONBUBBLE) {
 		* manage go up
 		*/
 	goUp() {
-		if(this.world.keyboard.UP) {
-			this.resetSleepTimer()	
-			if(this.y > -90) {
+		if (this.world.keyboard.UP) {
+			this.resetSleepTimer()
+			if (this.y > -90) {
 				this.y -= 4
-				if(this.otherDirection == false) 
+				if (this.otherDirection == false)
 					this.yRightDirection();
 				else
-				this.yLeftDirection();
+					this.yLeftDirection();
 			}
 		}
 	}
@@ -255,11 +255,11 @@ if (!this.world.keyboard.POISONBUBBLE) {
 		* manage go up
 		*/
 	goDown() {
-		if(this.world.keyboard.DOWN) {
-			this.resetSleepTimer()	
-			if(this.y < 315) {
+		if (this.world.keyboard.DOWN) {
+			this.resetSleepTimer()
+			if (this.y < 315) {
 				this.y += 4
-				if(this.otherDirection == false) 
+				if (this.otherDirection == false)
 					this.yRightDirection();
 				else
 					this.yLeftDirection();
@@ -267,19 +267,19 @@ if (!this.world.keyboard.POISONBUBBLE) {
 		}
 	}
 
-		/**
-		* go right while going up or down
-		*/
-		yRightDirection() {
-			if(this.x < this.worldEnd)
-				this.x += 2;
-		}
+	/**
+	* go right while going up or down
+	*/
+	yRightDirection() {
+		if (this.x < this.worldEnd)
+			this.x += 2;
+	}
 
 	/**
 		* go left while going up or down
 		*/
-		yLeftDirection() {
-		if(this.x > 0)
+	yLeftDirection() {
+		if (this.x > 0)
 			this.x -= 2;
 	}
 
@@ -289,7 +289,7 @@ if (!this.world.keyboard.POISONBUBBLE) {
 	playDangerMusic() {
 		this.world.gameSound[0].pause();
 		this.endgegnerPointSound.volume = 0.6;
-		this.endgegnerPointSound.loop = true; 
+		this.endgegnerPointSound.loop = true;
 		this.endgegnerPointSound.play();
 	}
 
@@ -298,12 +298,12 @@ if (!this.world.keyboard.POISONBUBBLE) {
 		*/
 	startSwim() {
 		setInterval(() => {
-			if(this.world.keyboard.LEFT || this.world.keyboard.RIGHT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
+			if (this.world.keyboard.LEFT || this.world.keyboard.RIGHT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
 				this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_SWIM)
 				this.swimmingSound.play();
 				this.swimmingSound.volume = 0.2;
 			}
-		}, 1000/60)
+		}, 1000 / 60)
 	}
 
 	/**
@@ -311,27 +311,37 @@ if (!this.world.keyboard.POISONBUBBLE) {
 		*/
 	startStand() {
 		let sharkieStand = setInterval(() => {
-			if(this.world.keyboard.LEFT == false && this.world.keyboard.RIGHT == false) {
-			this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_STAND)
+			if (this.world.keyboard.LEFT == false && this.world.keyboard.RIGHT == false) {
+				this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_STAND)
 			};
-			if(this.lifeAmount <= 0 || this.sleepTimer > this.sleepTime)
+			if (this.lifeAmount <= 0 || this.sleepTimer > this.sleepTime)
 				clearInterval(sharkieStand)
-	}, 1000/5);
+		}, 1000 / 5);
 	}
 
 	/**
 		* sharkie died 
 		*/
 	sharkieDie() {
-		let i = 0;
-			setInterval(() => {
-				this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_NORMAL_DIE)
-				if(i >= 11) {
-				path = this.ANIMATIONS.ANIMATION_NORMAL_DIE[11];
-    this.img = this.imageCache[path];
-				}
-				this.resetSleepTimer()	
-			}, 1000/20);
+		let stop = setInterval(() => {
+			this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_NORMAL_DIE)
+			setTimeout(() => {
+				clearInterval(stop)
+			}, 1300);
+		}, 1000 / 10);
+		let stopY = setInterval(() => {
+			this.resetSleepTimer()
+			this.y -= 1
+			if(this.y < -20) {
+				clearInterval(stopY);
+				
+			}
+
+		}, 1000/60);
+		setTimeout(() => {
+			this.world.gameEnd = true
+		}, 3000);
+
 	}
 }
 

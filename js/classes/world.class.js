@@ -12,6 +12,8 @@ class World {
 	poisons = level1.poisons;
 	light = new Light();
 
+	gameEnd = false;
+
 	endboss = [
 		new EndBoss(this.sharkie)
 	]
@@ -65,6 +67,11 @@ class World {
 		new Audio('../audio/underWater.mp3')
 	]
 	hurtSound = new Audio('../audio/damage.mp3');
+
+gameFinish = [
+	new EndBackground,
+	new Lose,
+]
 
 	constructor(canvas, keyboard) {
 		this.ctx = canvas.getContext('2d');
@@ -304,6 +311,7 @@ class World {
 		this.gameSound[0].muted = !this.gameSound[0].muted;
 		this.gameSound[1].muted = !this.gameSound[1].muted;
 		this.hurtSound.muted = !this.hurtSound.muted;
+
 	}
 
 	/**
@@ -319,27 +327,33 @@ class World {
 	draw() {
 		this.ctx.clearRect(0, 0, canvas.width, canvas.height);
 		this.ctx.translate(this.camera_x, 0);
-		this.addObjectsToMap(this.background);
-		this.addObjectsToMap(this.coins);
-		this.addObjectsToMap(this.poisons);
-		this.addToMap(this.sharkie);
-		this.addObjectsToMap(this.endboss);
-		this.addObjectsToMap(this.enemies);
-		this.addObjectsToMap(this.bubbles);
-		this.addObjectsToMap(this.poisonBubbles);
-		this.addObjectsToMap(this.floors);
-		// get the world brightness and change it for the light
-		this.ctx.globalAlpha = this.light.brightness;
-		this.addToMap(this.light);
-		// change the world brightness back 
-		this.ctx.globalAlpha = 1;
-		this.addObjectsToMap(this.status);
-		this.ctx.translate(-this.camera_x, 0);
-		// reset draw so this is just one img of each item on canvas
-		let self = this;
-		requestAnimationFrame(() => {
-			self.draw();
-		});
+		if(!this.gameEnd) {
+			this.addObjectsToMap(this.background);
+			this.addObjectsToMap(this.coins);
+			this.addObjectsToMap(this.poisons);
+			this.addToMap(this.sharkie);
+			this.addObjectsToMap(this.endboss);
+			this.addObjectsToMap(this.enemies);
+			this.addObjectsToMap(this.bubbles);
+			this.addObjectsToMap(this.poisonBubbles);
+			this.addObjectsToMap(this.floors);
+			// get the world brightness and change it for the light
+			this.ctx.globalAlpha = this.light.brightness;
+			this.addToMap(this.light);
+			// change the world brightness back 
+			this.ctx.globalAlpha = 1;
+			this.addObjectsToMap(this.status);
+			this.ctx.translate(-this.camera_x, 0);
+		} else {
+			// debugger
+			this.addObjectsToMap(this.gameFinish);
+		}
+			// reset draw so this is just one img of each item on canvas
+			let self = this;
+			requestAnimationFrame(() => {
+				self.draw();
+			});
+	
 	};
 
 	/**

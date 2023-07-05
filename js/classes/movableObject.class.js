@@ -105,7 +105,7 @@ class MovableObject {
 			return (this.x + this.offsetX + this.width - this.offsetX * 2) >= (obj.x + 20) &&
 				(this.x + this.offsetX) <= (obj.x + obj.width - 40) &&
 				(this.y + this.offsetY + this.height - this.offsetHeight) >= (obj.y + 90) &&
-				(this.y + this.offsetY) <= (obj.y + obj.height);
+				(this.y + this.offsetY) <= (obj.y + obj.height -50);
 		} else {
 			return (this.x + this.offsetX + this.width - this.offsetX * 2) >= obj.x &&
 				(this.x + this.offsetX) <= (obj.x + obj.width) &&
