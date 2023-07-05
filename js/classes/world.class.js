@@ -103,10 +103,7 @@ class World {
 		*/
 	checkBubbleCollisionWith(item) {
 		this.bubbles.forEach((bubble) => {
-			if (bubble.isColliding(item)) {
-				if (item instanceof Enemies)
-					item.gotIt = true;
-			}
+			this.eachBubbleCheck(item, bubble)
 		});
 	}
 
@@ -116,26 +113,33 @@ class World {
 * @param {class} item 
 */
 	checkPoisonBubbleCollisionWith(item) {
-		this.poisonBubbles.forEach((poisonBubble) => {
+		this.poisonBubbles.forEach((bubble) => {
+			this.eachBubbleCheck(item, bubble)
+		});
+	}
 
-			if (poisonBubble.isColliding(item)) {
+	/**
+		* check each bubble for collision
+		* 
+		* @param {class} item 
+		* @param {object} bubble 
+		*/
+	eachBubbleCheck(item, bubble) {
+		if (bubble.isColliding(item)) {
+			if (item instanceof Enemies) {
+				item.gotIt = true;
+			} else
+				if (item instanceof EndBoss) {
+					if (bubble.hit == false) {
+						item.lifePower -= bubble.damagePower;
+						bubble.hit = true;
+						item.animateHurt();
+						if (item.lifePower <= 0) {
 
-				if (item instanceof Enemies) {
-					item.gotIt = true;
-				} else
-					if (item instanceof EndBoss) {
-						console.log('bin da');
-						if (poisonBubble.hit == false) {
-							item.lifePower -= poisonBubble.damagePower;
-							poisonBubble.hit = true;
-							item.animateHurt();
-							if (item.lifePower <= 0) {
-
-							}
 						}
 					}
-			}
-		});
+				}
+		}
 	}
 
 	/**
