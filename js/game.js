@@ -33,7 +33,7 @@ function muteBrowser() {
 }
 
 /**
-	* definated keydowns
+	* definated keydowns 
  */
 window.addEventListener('keydown', (e) => {
 	console.log(e);
@@ -59,6 +59,7 @@ window.addEventListener('keydown', (e) => {
 		keyboard.POISONBUBBLE = true;
 	}
 });
+
 
 /**
 	* definated key up
@@ -86,3 +87,7 @@ window.addEventListener('keyup', (e) => {
 		keyboard.POISONBUBBLE = false;
 	}
 });
+
+
+	
+
