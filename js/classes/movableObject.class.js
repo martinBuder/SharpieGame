@@ -69,16 +69,12 @@ class MovableObject {
 		*/
 	drawItemsBorder(ctx){
 		ctx.beginPath();
-				ctx.lineWidth = '5';
-				ctx.strokeStyle = 'white';
 				if (this instanceof EndBoss) {
 					ctx.rect(this.x + 20, this.y + 90, this.width - 40, this.height - 130);
 				} else {
 					ctx.rect(this.x, this.y, this.width, this.height);
 				}
-				ctx.stroke();
 	}
-
 	
 	/**
 		* draw the border of sharkie
@@ -87,11 +83,7 @@ class MovableObject {
 		*/
 	drawSharkieBorder(ctx){
 		ctx.beginPath();
-		ctx.beginPath();
-		ctx.lineWidth = '5';
-		ctx.strokeStyle = 'yellow';
 		ctx.rect(this.x + this.offsetX, this.y + this.offsetY, this.width - this.offsetX * 2, this.height - this.offsetHeight);
-		ctx.stroke();
 	}
 
 	/**

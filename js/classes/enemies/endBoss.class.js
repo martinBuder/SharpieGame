@@ -7,6 +7,7 @@ class EndBoss extends MovableObject {
 	width = 380;
 
 	lifePower = 12;
+	power = 2;
 
 
 	ANIMATIONS = {
@@ -28,7 +29,6 @@ class EndBoss extends MovableObject {
 		this.fillANIMATIONS();
 		this.getLoadImages();
 		this.attackEndboos();
-		this.endboosDie();
 	}
 
 	/**
@@ -37,7 +37,7 @@ class EndBoss extends MovableObject {
 	animateHurt() {
 		let stop = setInterval(() => {
 			this.getAnimationsToRun(this.ANIMATIONS.ENDBOSS_HURT)
-		}, 1000/60);
+		}, 1000 / 60);
 		setTimeout(() => {
 			clearInterval(stop)
 		}, 400);
@@ -46,65 +46,70 @@ class EndBoss extends MovableObject {
 	/**
 		* animated endboss coming when sharkie is the first time there
 		*/
-		animateEndboss() {
-			if (!this.firstContact) {
-					let stopComeAnimation = setInterval(() => {
-							this.getAnimationsToRun(this.ANIMATIONS.ENDBOSS_COMES);
-					}, 1000/10);
-					setTimeout(() => {
-							clearInterval(stopComeAnimation);
-								setInterval(() => {
-									this.getAnimationsToRun(this.ANIMATIONS.ENDBOSS_STAY);
-							}, 420);
-					}, 1000);
-					this.firstContact = true;
-			}
+	animateEndboss() {
+		if (!this.firstContact && this.lifePower > 0) {
+			let stopComeAnimation = setInterval(() => {
+				this.getAnimationsToRun(this.ANIMATIONS.ENDBOSS_COMES);
+			}, 1000 / 10);
+			setTimeout(() => {
+				clearInterval(stopComeAnimation);
+				setInterval(() => {
+					if(this.lifePower > 0)
+					this.getAnimationsToRun(this.ANIMATIONS.ENDBOSS_STAY);
+				}, 420);
+			}, 1000);
+			this.firstContact = true;
+		}
 	}
-	
+
 	/**
 		* endboss get to attack
 		*/
-	attackEndboos(){
-		setInterval(() => {
-			if(this.firstContact && this.lifePower > 0) {
-				setTimeout(() => {
-					let whaleAttack = setInterval(() => {
-						this.getAnimationsToRun(this.ANIMATIONS.ENDBOSS_ATTACK);
-						this.x -= 60
-						setTimeout(() => {
-							clearInterval(whaleAttack);
-							this.x += 60
-						}, 1000);
-					}, 420);
-				}, 3000 + Math.random() * 2000);
-			}
-		}, 5000);
+	attackEndboos() {
+		// if (this.firstContact && this.lifePower > 0) {
+			setInterval(() => {
+				if (this.firstContact && this.lifePower > 0) {
+					setTimeout(() => {
+						let whaleAttack = setInterval(() => {
+							this.getAnimationsToRun(this.ANIMATIONS.ENDBOSS_ATTACK);
+							this.x -= 60
+							setTimeout(() => {
+								clearInterval(whaleAttack);
+								this.x += 60
+							}, 1000);
+						}, 420);
+					}, 2000 + Math.random() * 2000);
+				}
+			}, 5000);
+		// }
 	}
 
 	/**
 		* endbossDie
 		*/
-	endboosDie(){
-		setInterval(() => {
-			if(this.lifePower <= 0) {
-					let whaleDead = setInterval(() => {
-						this.getAnimationsToRun(this.ANIMATIONS.ENDBOSS_DEAD);
-						this.x -= 60
-						setTimeout(() => {
-							clearInterval(whaleDead);
-							this.loadImg(`../img/2.Enemy/3 Final Enemy/Dead/9.png`)
-							this.y -= 0.1
-						}, 1000);
-					}, 420);
-			}
-		}, 1000/60);
+	endboosDie() {
+		let whaleDead = setInterval(() => {
+			this.getAnimationsToRun(this.ANIMATIONS.ENDBOSS_DEAD);
+			setTimeout(() => {
+				clearInterval(whaleDead);
+				this.loadImg(`../img/2.Enemy/3 Final Enemy/Dead/9.png`)
+				let finish = setInterval(() => {
+					this.y -= 0.3
+					if(this.y < -50)
+						clearInterval(finish)
+				}, 1000/60);
+			}, 1000);
+		}, 420);
+		setTimeout(() => {
+			let winning = document.getElementById('winning');
+				winning.classList.add('show')
+			setTimeout(() => {
+				winning.classList.remove('show');
+				this.sharkie.world.gameEnd = true;
+			}, 3000);
+		}, 1000);
 	}
-	
-	
+}
 
-	}
 
-	/**
-		* animated endboss coming when sharkie is the first time there
-		*/
-		
+

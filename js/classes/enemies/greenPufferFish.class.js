@@ -13,4 +13,6 @@ class GreenPufferFish extends PufferFish {
 		this.getLoadImages()
 		this.animateSwim()
 	}
+
+	
 }

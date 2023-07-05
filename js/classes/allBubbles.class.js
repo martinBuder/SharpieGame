@@ -10,15 +10,16 @@ class AllBubbles extends MovableObject {
 		* play the bubble go forward animation
 		* 
 		* @param {number} otherWay 0 or 1
+		* @param {number} xStart 
 		*/
-	animateBubble(otherWay) {
+	animateBubble(otherWay, xStart) {
 		setInterval(() => {
 			this.gotIt = false;
 			this.bubbleBigger()
 			if (this.width > 50) {
 				this.fixedSize()
 			}
-			this.goCorrectWay(otherWay)
+			this.goCorrectWay(otherWay, xStart)
 		}, 1000 / 30)
 	}
 
@@ -42,12 +43,21 @@ class AllBubbles extends MovableObject {
 		* det the direction of sharkie so bubble goes the same way
 		* 
 		* @param {number} otherWay 0 or 1
+		* @param {number} xStart 
 		*/
-	goCorrectWay(otherWay) {
+	goCorrectWay(otherWay, xStart) {
 		if (otherWay == 1) {
 			this.x -= 1;
+			if(this.x < xStart - 500) {
+				this.x = 0;		
+				this.y = -50;	
+			}	
 		} else {
 			this.x += 1;
+			if(this.x > xStart + 500) {
+				this.x = 0			
+				this.y = -50;	
+			}
 		}
 	}
 

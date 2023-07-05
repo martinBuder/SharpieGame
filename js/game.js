@@ -18,9 +18,27 @@ function init() {
 	*/
 function setLevel() {
 	let startWindow = document.getElementById('startBtn');
+	let gameOver = document.getElementById('gameOver')
 	startWindow.classList.add('displayNone');
+	gameOver.classList.remove('show');
 	world = new World(canvas, keyboard);
 	sharkie = world.sharkie;
+	isGameFinish(world);
+}
+
+/**
+	* control game finish
+	* 
+	* @param {ClassDecorator} world 
+	*/
+function isGameFinish(world) {
+	let gameStatus = setInterval(() => {
+		if(world.gameEnd) {
+			clearInterval(gameStatus);
+			let endImg = document.getElementById('gameOver');
+			endImg.classList.add('show');
+		}
+	}, 200);
 }
 
 /**
@@ -32,15 +50,6 @@ function muteBrowser() {
 
  world.muteSound();
 	world.sharkie.muteSound();
-}
-
-/**
-	* sound.btn for touch too
-	*/
-function addedSoundTouch() {
-	let muteButton = document.getElementById('mute');
-	muteButton.addEventListener('click', muteBrowser);
-	muteButton.addEventListener('touchstart', muteBrowser);
 }
 
 function definatedTouchBtns() {

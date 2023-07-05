@@ -1,6 +1,6 @@
 class Sharkie extends MovableObject {
 
-	x = 4050;
+	x = 50;
 	y = 180;
 	height = 150;
 	width = 220;
@@ -160,21 +160,17 @@ class Sharkie extends MovableObject {
 	/**
 	* manage slap attack
 	*/
-	slapAttack() {
+	slapAttack() {    
 		if (this.world.keyboard.SLAP) {
+			this.slap = true;
 			this.resetSleepTimer()
 			let stopPoint = setInterval(() => {
-				this.slap = true;
 				this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_SLAP_ATTACK);
-			}, 1000 / 2);
+			}, 500 / 1);
 			setTimeout(() => {
-				clearInterval(stopPoint)
-			}, 800);
-			this.slap = false
-		}
-
-		if (!this.world.keyboard.SLAP) {
-			this.slap = false;
+				clearInterval(stopPoint);
+				this.slap = false;
+			}, 500);
 		}
 	}
 
@@ -334,9 +330,7 @@ class Sharkie extends MovableObject {
 			this.y -= 1
 			if(this.y < -20) {
 				clearInterval(stopY);
-				
 			}
-
 		}, 1000/60);
 		setTimeout(() => {
 			this.world.gameEnd = true

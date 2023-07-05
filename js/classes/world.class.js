@@ -69,8 +69,7 @@ class World {
 	hurtSound = new Audio('../audio/damage.mp3');
 
 gameFinish = [
-	new EndBackground,
-	new Lose,
+	new EndBackground(this.sharkie),
 ]
 
 	constructor(canvas, keyboard) {
@@ -142,7 +141,7 @@ gameFinish = [
 						bubble.hit = true;
 						item.animateHurt();
 						if (item.lifePower <= 0) {
-
+							item.endboosDie()
 						}
 					}
 				}
@@ -156,7 +155,21 @@ gameFinish = [
 		*/
 	checkSharkieCollisionWith(item) {
 		if (this.sharkie.isColliding(item)) {
-			if (!this.sharkieDied && !(item instanceof CollectItems))
+			if(this.sharkie.slap && item instanceof PufferFish) {
+				item.hit = true
+						setInterval(() => {
+					item.getAnimationsToRun(item.ANIMATIONS.ENEMY_DIE)
+					item.y -= 0.3;
+				  if(!this.sharkie.otherDirection)
+							item.x += 1.1
+						else
+							item.x -= 0.1
+				}, 1000/60);
+				setTimeout(() => {
+					item.gotIt = true
+				}, 2000);
+			}
+			if (!this.sharkieDied && !(item instanceof CollectItems) && !item.hit)
 				this.collisionWithEnemy(item)
 			if (!this.sharkieDied && item instanceof CollectItems && !item.gotIt)
 				this.collisionWithCollectItem(item)
@@ -207,16 +220,26 @@ gameFinish = [
 		* @param {class} item 
 		*/
 	collisionWithNoneElectricfish(item) {
-		if (!this.sharkie.slap) {
+		// if(this.sharkie.slap && item instanceof PufferFish) {
+		// 	item.hit = true
+		// 			setInterval(() => {
+		// 		item.getAnimationsToRun(item.ANIMATIONS.ENEMY_DIE)
+		// 		item.y -= 0.3;
+		// 		// if(this.sharkie)
+		// 	}, 1000/60);
+		// 	setTimeout(() => {
+		// 		item.hit = true
+		// 	}, 2000);
+			
+		// } else {
 			let stop = setInterval(() => {
 				this.sharkie.getAnimationsToRun(this.sharkie.ANIMATIONS.ANIMATION_NORMAL_HURT)
 			}, 1000 / 60);
 			setTimeout(() => {
 				clearInterval(stop)
 			}, 300);
-			item.gotIt = true;
 		}
-	}
+	
 
 	/**
 		* handle collision with enemy
@@ -228,9 +251,10 @@ gameFinish = [
 			this.collisionWithElectricfish();
 		else
 			this.collisionWithNoneElectricfish(item);
-		if (item.hit == false)
-			this.hitSharkie(item)
-		this.hurtAudio();
+		if (item.hit == false) {
+				this.hitSharkie(item)
+				this.hurtAudio();
+			}
 		if (this.sharkie.lifeAmount <= 0) {
 			this.loseGame()
 		}
@@ -269,6 +293,11 @@ gameFinish = [
 	hitSharkie(item) {
 		this.sharkie.lifeAmount -= item.power;
 		item.hit = true;
+		if(item instanceof EndBoss) {
+			setTimeout(() => {
+				item.hit = false;
+			}, 1000);
+		}
 	}
 
 	/**
@@ -276,8 +305,7 @@ gameFinish = [
 		*/
 	whereIsSharkie() {
 		setInterval(() => {
-			const characterPosition = this.sharkie.x;
-			if (characterPosition >= 4950) {
+			if (this.sharkie.x >= 4950) {
 				this.endboss[0].animateEndboss();
 				// get the color pufferfishes in enemies to change the x point
 				for (let i = 0; i < this.enemies.length; i++) {
@@ -311,7 +339,6 @@ gameFinish = [
 		this.gameSound[0].muted = !this.gameSound[0].muted;
 		this.gameSound[1].muted = !this.gameSound[1].muted;
 		this.hurtSound.muted = !this.hurtSound.muted;
-
 	}
 
 	/**
@@ -343,11 +370,10 @@ gameFinish = [
 			// change the world brightness back 
 			this.ctx.globalAlpha = 1;
 			this.addObjectsToMap(this.status);
-			this.ctx.translate(-this.camera_x, 0);
 		} else {
-			// debugger
 			this.addObjectsToMap(this.gameFinish);
 		}
+			this.ctx.translate(-this.camera_x, 0);
 			// reset draw so this is just one img of each item on canvas
 			let self = this;
 			requestAnimationFrame(() => {

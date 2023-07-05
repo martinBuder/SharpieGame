@@ -76,7 +76,7 @@ button {
 	top: 50px;
 	right: 50px;
 	width: 50px;
-	z-index: 20;
+	z-index: 400;
 }
 
 .startBtn {
@@ -197,6 +197,39 @@ div.go {
 	display: none;
 }
 
+#gameOver {
+	display: none;
+}
+
+#gameOver img:first-child {
+	margin-bottom: 50px;
+}
+
+#gameOver img:last-child {
+	cursor: pointer;
+}
+
+#gameOver img:last-child:hover {
+	filter: brightness(0.7);
+}
+
+#winning {
+	display: none;
+}
+
+#gameOver.show, #winning.show {
+	display: block;
+	position: absolute;
+	top: 10vh;
+	left: 5%; 
+	z-index: 300;
+	width: 90%;
+	aspect-ratio: 10/1;
+}
+
+body #winning.show {
+	top: 35vh;
+}
 
 /* Smartphone */
 
@@ -267,5 +300,9 @@ div.go {
 		font-size: 54px;
 		text-align: center;
 		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+	}
+
+	#gameOver.show, #winning.show {
+		display: none;
 	}
 }
