@@ -7,4 +7,5 @@ class BackgroundImg extends MovableObject {
 		this.width = 2000;
 		this.height = 480;
 	}
+	
 }

@@ -4,12 +4,16 @@ let keyboard = new Keyboard;
 let sharkie;
 
 
-
+/**
+	* definated canvas
+	*/
 function init() {
 	canvas = document.getElementById('canvas');
-
 }
 
+/**
+	* start game and set world
+	*/
 function setLevel() {
 	let startWindow = document.getElementById('startBtn');
 	startWindow.classList.add('displayNone');
@@ -17,6 +21,9 @@ function setLevel() {
 	sharkie = world.sharkie;
 }
 
+/**
+	* change the mute Btn from old to new to old and with sound play is the same
+	*/
 function muteBrowser() {
 	let muteButton = document.getElementById('mute');
 	muteButton.src = (muteButton.src.endsWith('001-mute.png')) ? 'img/6.Botones/png/002-volume-level.png' : 'img/6.Botones/png/001-mute.png';
@@ -25,8 +32,9 @@ function muteBrowser() {
 	world.sharkie.muteSound();
 }
 
-
-
+/**
+	* definated keydowns
+ */
 window.addEventListener('keydown', (e) => {
 	console.log(e);
 	if(e.keyCode == 39) {
@@ -52,6 +60,9 @@ window.addEventListener('keydown', (e) => {
 	}
 });
 
+/**
+	* definated key up
+ */
 window.addEventListener('keyup', (e) => {
 	if(e.keyCode == 39) {
 		keyboard.RIGHT = false;

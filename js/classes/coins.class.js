@@ -16,9 +16,11 @@ class Coins extends CollectItems {
 		this.animate();
 	}
 
+	/**
+		* play coins Animation
+		*/
 	animate() {
 		setInterval(() => {
-
 			this.getAnimationsToRun(this.ANIMATIONS.COIN_MOVE)
 			}, 1000/5);
 	}

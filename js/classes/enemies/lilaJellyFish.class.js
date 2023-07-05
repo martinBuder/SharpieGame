@@ -13,6 +13,4 @@ class LilaJellyFish extends JellyFish {
 		this.getLoadImages()
 		this.animateSwim();
 	}
-
-
 }

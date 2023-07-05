@@ -3,7 +3,6 @@ class World {
 	canvas;
 	ctx;
 	camera_x = 0;
-	// endbossLifePower = 12;
 
 	background = level1.backgrounds;
 	sharkie = new Sharkie();
@@ -81,88 +80,184 @@ class World {
 		this.checkCollision(this.endboss);
 	}
 
+	/**
+		* check collisions
+		* 
+		* @param {Array} items 
+		*/
 	checkCollision(items) {
 		setInterval(() => {
 			items.forEach((item) => {
-				if (this.sharkie.isColliding(item)) {
-					if (!this.sharkieDied && !(item instanceof CollectItems)) {
-						if (item instanceof GreenJellyFish || item instanceof PinkJellyFish) {
-							let stop = setInterval(() => {
-								this.sharkie.getAnimationsToRun(this.sharkie.ANIMATIONS.ANIMATION_ELECTRIC_HURT)
-							}, 1000 / 60);
-							setTimeout(() => {
-								clearInterval(stop)
-							}, 300);
-						} else {
-							if (!this.sharkie.slap && item instanceof PufferFish) {
-								let stop = setInterval(() => {
-									this.sharkie.getAnimationsToRun(this.sharkie.ANIMATIONS.ANIMATION_NORMAL_HURT)
-								}, 1000 / 60);
-								setTimeout(() => {
-									clearInterval(stop)
-								}, 300);
-								item.gotIt = true;
-							}
-						}
-						if(item.hit == false) {
-							this.sharkie.lifeAmount -= item.power;
-							item.hit = true;
-						}
-						this.hurtSound.play();
-						this.hurtSound.volume = 0.3;
-						// console.log(this.sharkie.lifeAmount, item.power)
-						if (this.sharkie.lifeAmount <= 0) {
-							this.sharkie.dieingSound.play();
-							this.sharkie.dieingSound.volume = 0.3
-
-							// this.sharkieDied = true
-							// this.sharkie.sharkieDie();
-						}
-					}
-					if (!this.sharkieDied && item instanceof CollectItems && !item.gotIt) {
-						if (item instanceof Coins) {
-							item.gotIt = true;
-							this.sharkie.coinsAmount++
-						}
-						if (item instanceof Poison) {
-							if (this.sharkie.poisonsAmount < 5) {
-								item.gotIt = true;
-								this.sharkie.poisonsAmount++
-							}
-						}
-					}
-
-				}
-				this.bubbles.forEach((bubble) => {
-					if (bubble.isColliding(item)) {
-						if (item instanceof Enemies)
-							item.gotIt = true;
-					}
-				});
-
-				// Überprüfe Kollision mit PoisonBubbles
-				this.poisonBubbles.forEach((poisonBubble) => {
-
-					if(poisonBubble.isColliding(item)) {
-
-						if(item instanceof Enemies) {
-							item.gotIt = true; } else 
-						if(item instanceof EndBoss) {
-							console.log('bin da');
-							if(poisonBubble.hit == false){
-								item.lifePower -= poisonBubble.damagePower;
-								poisonBubble.hit = true;
-								item.animateHurt();
-								if(item.lifePower <= 0) {
-
-								}
-							}
-						}
-					}
-				});
+				this.checkSharkieCollisionWith(item);
+				this.checkBubbleCollisionWith(item);
+				this.checkPoisonBubbleCollisionWith(item);
 			});
 		}, 50);
 
+	}
+
+	/**
+		* check bubble collision with item
+		* 
+		* @param {class} item 
+		*/
+	checkBubbleCollisionWith(item) {
+		this.bubbles.forEach((bubble) => {
+			if (bubble.isColliding(item)) {
+				if (item instanceof Enemies)
+					item.gotIt = true;
+			}
+		});
+	}
+
+	/**
+* check bubble collision with item
+* 
+* @param {class} item 
+*/
+	checkPoisonBubbleCollisionWith(item) {
+		this.poisonBubbles.forEach((poisonBubble) => {
+
+			if (poisonBubble.isColliding(item)) {
+
+				if (item instanceof Enemies) {
+					item.gotIt = true;
+				} else
+					if (item instanceof EndBoss) {
+						console.log('bin da');
+						if (poisonBubble.hit == false) {
+							item.lifePower -= poisonBubble.damagePower;
+							poisonBubble.hit = true;
+							item.animateHurt();
+							if (item.lifePower <= 0) {
+
+							}
+						}
+					}
+			}
+		});
+	}
+
+	/**
+		* check sharkie collision with item
+		* 
+		* @param {class} item 
+		*/
+	checkSharkieCollisionWith(item) {
+		if (this.sharkie.isColliding(item)) {
+			if (!this.sharkieDied && !(item instanceof CollectItems))
+				this.collisionWithEnemy(item)
+			if (!this.sharkieDied && item instanceof CollectItems && !item.gotIt)
+				this.collisionWithCollectItem(item)
+		}
+	}
+
+	/**
+		* handle collision with collectItems
+		* 
+		* @param {class} item 
+		*/
+	collisionWithCollectItem(item) {
+		if (item instanceof Coins) {
+			this.sharkie.coinsAmount++
+			item.gotIt = true;
+		}
+		if (item instanceof Poison)
+			this.checkPoisonAmount(item)
+	}
+
+	/**
+		* check Amount of poison
+		* 
+		* @param {class} item 
+		*/
+	checkPoisonAmount(item) {
+		if (this.sharkie.poisonsAmount < 5) {
+			item.gotIt = true;
+			this.sharkie.poisonsAmount++
+		}
+	}
+
+	/**
+		* show electric hurt
+		*/
+	collisionWithElectricfish() {
+		let stop = setInterval(() => {
+			this.sharkie.getAnimationsToRun(this.sharkie.ANIMATIONS.ANIMATION_ELECTRIC_HURT)
+		}, 1000 / 60);
+		setTimeout(() => {
+			clearInterval(stop)
+		}, 300);
+	}
+
+	/**
+		* show non electric hurt
+		* 
+		* @param {class} item 
+		*/
+	collisionWithNoneElectricfish(item) {
+		if (!this.sharkie.slap) {
+			let stop = setInterval(() => {
+				this.sharkie.getAnimationsToRun(this.sharkie.ANIMATIONS.ANIMATION_NORMAL_HURT)
+			}, 1000 / 60);
+			setTimeout(() => {
+				clearInterval(stop)
+			}, 300);
+			item.gotIt = true;
+		}
+	}
+
+	/**
+		* handle collision with enemy
+		* 
+		* @param {class} item 
+		*/
+	collisionWithEnemy(item) {
+		if (item instanceof GreenJellyFish || item instanceof PinkJellyFish)
+			this.collisionWithElectricfish();
+		else
+			this.collisionWithNoneElectricfish(item);
+		if (item.hit == false)
+			this.hitSharkie(item)
+		this.hurtAudio();
+		if (this.sharkie.lifeAmount <= 0) {
+			this.loseGame()
+		}
+	}
+
+	/**
+		* sharkie is death
+		*/
+	loseGame() {
+		this.loseAudio()
+		this.sharkieDied = true
+		this.sharkie.sharkieDie();
+	}
+
+	/**
+		* play dieing sound
+		*/
+	loseAudio() {
+		this.sharkie.loseSound.play();
+		this.sharkie.loseSound.volume = 0.3
+	}
+
+	/**
+		* play hurt audio
+		*/
+	hurtAudio() {
+		this.hurtSound.play();
+		this.hurtSound.volume = 0.3;
+	}
+
+	/**
+		* hit sharkie
+		* 
+		* @param {class} item 
+		*/
+	hitSharkie(item) {
+		this.sharkie.lifeAmount -= item.power;
+		item.hit = true;
 	}
 
 	/**

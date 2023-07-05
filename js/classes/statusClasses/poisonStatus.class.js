@@ -9,6 +9,9 @@ class PoisonStatus extends Status {
 		this.getStatus();
 	}
 
+	/**
+		* get the right amount and show correct picture
+		*/	
 	getStatus() {
 		setInterval(() => {
 			this.x = 480 - this.sharkie.world.camera_x

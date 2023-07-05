@@ -10,10 +10,13 @@ class Enemies extends MovableObject {
 
 	}
 
+	/**
+		* play enemie swim animation
+		*/
 	animateSwim() {
 		setInterval(() => {
 			this.getAnimationsToRun(this.ANIMATIONS.ENEMY_SWIM)
-			}, 420);
-}
+		}, 420);
+	}
 
 }

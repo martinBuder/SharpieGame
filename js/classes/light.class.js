@@ -10,9 +10,12 @@ class Light extends MovableObject {
 		this.changeBrightness();
 	}
 
+/**
+	* change brightness 
+	*/
 	changeBrightness() {
-				setInterval(() => {
-					this.brightness = 1 + Math.random() * -1
-				}, 1000/10); 
-			}
-		}
+		setInterval(() => {
+			this.brightness = 1 + Math.random() * -1
+		}, 1000 / 10);
+	}
+}

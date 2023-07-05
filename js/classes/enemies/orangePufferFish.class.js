@@ -12,8 +12,5 @@ class OrangePufferFish extends PufferFish {
 		this.fillANIMATIONS()
 		this.getLoadImages()
 		this.animateSwim();
-
 	}
-
-
 }

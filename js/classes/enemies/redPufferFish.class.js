@@ -14,7 +14,4 @@ class RedPufferFish extends PufferFish {
 		this.getLoadImages()
 		this.animateSwim();
 	}
-
-
-	
 }

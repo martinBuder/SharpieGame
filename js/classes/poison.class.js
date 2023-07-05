@@ -2,12 +2,11 @@ class Poison extends CollectItems {
 
 	width = 70;
 	height = 70;
+	imgInCoin = 0;
 
 	ANIMATIONS = {
 		POISONS_MOVE: [8, 'img/4. Marcadores/Posión/Animada/'],
 	}
-
-	imgInCoin = 0;
 
 	constructor() {
 		super().loadImg('../img/4. Marcadores/Posión/Dark - Right.png');
@@ -18,7 +17,9 @@ class Poison extends CollectItems {
 		this.animate();
 	}
 
-
+	/**
+		* play poison animation
+		*/
 	animate() {
 		setInterval(() => {
 			this.getAnimationsToRun(this.ANIMATIONS.POISONS_MOVE)

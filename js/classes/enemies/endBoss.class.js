@@ -18,10 +18,10 @@ class EndBoss extends MovableObject {
 	}
 	firstContact = false;
 
-/**
-	* 
-	* @param {class} sharkie 
-	*/
+	/**
+		* 
+		* @param {class} sharkie 
+		*/
 	constructor(sharkie) {
 		super().loadImg(`../img/2.Enemy/3 Final Enemy/1.Introduce/1.png`);
 		this.sharkie = sharkie;
@@ -29,28 +29,34 @@ class EndBoss extends MovableObject {
 		this.getLoadImages()
 	}
 
+	/**
+		* play hurt animation
+		*/
 	animateHurt() {
 		let stop = setInterval(() => {
 			this.getAnimationsToRun(this.ANIMATIONS.ENDBOSS_HURT)
-		}, 1000/60);
+		}, 1000 / 60);
 		setTimeout(() => {
 			clearInterval(stop)
 		}, 400);
 	}
-	
+
+	/**
+		* animated endboss coming when sharkie is the first time there
+		*/
 	animateEndboss() {
 		if (!this.firstContact) {
 			let stopComeAnimation = setInterval(() => {
 				this.getAnimationsToRun(this.ANIMATIONS.ENDBOSS_COMES)
-		}, 1000/10);
-		setTimeout(() => clearInterval(stopComeAnimation), 1000);
-		setTimeout(() => {
+			}, 1000 / 10);
+			setTimeout(() => clearInterval(stopComeAnimation), 1000);
+			setTimeout(() => {
 				setInterval(() => {
 					this.getAnimationsToRun(this.ANIMATIONS.ENDBOSS_STAY)
-					}, 420);
-				}, 1000);
-				this.firstContact = true
-	
-}
-}
+				}, 420);
+			}, 1000);
+			this.firstContact = true
+
+		}
+	}
 }

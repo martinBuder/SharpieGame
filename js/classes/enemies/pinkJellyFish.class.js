@@ -13,8 +13,4 @@ class PinkJellyFish extends JellyFish {
 		this.getLoadImages()
 		this.animateSwim()
 	}
-
-	getSwimAnimationPath() {
-		this.ANIMATIONS.ENEMY_SWIM.push(this.swimAnimationPath)
-	}
 }
