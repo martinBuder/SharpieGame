@@ -4,7 +4,7 @@ class CoinsStatus extends Status {
 	imgNr = 0
 
 	constructor(sharkie) {
-		super().loadImg(`../img/4. Marcadores/Purple/coins/${this.imgNr}.png`);
+		super().loadImg(`img/4. Marcadores/Purple/coins/${this.imgNr}.png`);
 		this.sharkie = sharkie;
 		this.getStatus();
 	}
@@ -20,7 +20,7 @@ class CoinsStatus extends Status {
 				this.imgNr = 5
 
 			}
-			this.loadImg(`../img/4. Marcadores/Purple/coins/${this.imgNr}.png`);
+			this.loadImg(`img/4. Marcadores/Purple/coins/${this.imgNr}.png`);
 		}, 1000 / 60);
 	}
 

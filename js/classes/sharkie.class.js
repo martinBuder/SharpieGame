@@ -38,12 +38,12 @@ class Sharkie extends MovableObject {
 		ANIMATION_POISON_BUBBLE_ATTACK: [8, 'img/1.Sharkie/4.Attack/Bubble trap/For Whale/'],
 	}
 
-	swimmingSound = new Audio('../audio/swimming.mp3');
-	endgegnerPointSound = new Audio('../audio/danger.mp3');
-	loseSound = new Audio('../audio/loseGame.mp3');
+	swimmingSound = new Audio('audio/swimming.mp3');
+	endgegnerPointSound = new Audio('audio/danger.mp3');
+	loseSound = new Audio('audio/loseGame.mp3');
 
 	constructor() {
-		super().loadImg('../img/1.Sharkie/1.IDLE/1.png');
+		super().loadImg('img/1.Sharkie/1.IDLE/1.png');
 		// the number must be one bigger then picture are there
 		this.fillANIMATIONS()
 		this.getLoadImages()

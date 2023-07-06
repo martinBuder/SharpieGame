@@ -9,7 +9,7 @@ class Poison extends CollectItems {
 	}
 
 	constructor() {
-		super().loadImg('../img/4. Marcadores/Posión/Dark - Right.png');
+		super().loadImg('img/4. Marcadores/Posión/Dark - Right.png');
 		this.y = 300 + Math.random() * 50;
 		this.x = 300 + Math.random() * this.endgegnerPoint;
 		this.fillANIMATIONS()

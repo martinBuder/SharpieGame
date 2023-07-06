@@ -4,7 +4,7 @@ class Floor extends MovableObject {
 	height = 1500;
 
 	constructor() {
-		super().loadImg('../img/3. Background/Layers/2. Floor/D.png');
+		super().loadImg('img/3. Background/Layers/2. Floor/D.png');
 		this.y = -600 + Math.random() * -100;
 		this.x = Math.random() * 5000;
 	}

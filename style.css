@@ -221,9 +221,9 @@ div.go {
 	display: block;
 	position: absolute;
 	top: 10vh;
-	left: 5%; 
+	left: 20%; 
 	z-index: 300;
-	width: 90%;
+	width: 60%;
 	aspect-ratio: 10/1;
 }
 

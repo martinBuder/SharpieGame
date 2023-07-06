@@ -10,7 +10,6 @@ let sharkie;
 function init() {
 	canvas = document.getElementById('canvas');
 	definatedTouchBtns();
-	addedSoundTouch();
 }
 
 /**

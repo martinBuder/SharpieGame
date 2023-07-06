@@ -63,10 +63,10 @@ class World {
 	]
 
 	gameSound = [
-		new Audio('../audio/gameMusic.mp3'),
-		new Audio('../audio/underWater.mp3')
+		new Audio('audio/gameMusic.mp3'),
+		new Audio('audio/underWater.mp3')
 	]
-	hurtSound = new Audio('../audio/damage.mp3');
+	hurtSound = new Audio('audio/damage.mp3');
 
 gameFinish = [
 	new EndBackground(this.sharkie),
@@ -219,19 +219,8 @@ gameFinish = [
 		* 
 		* @param {class} item 
 		*/
-	collisionWithNoneElectricfish(item) {
-		// if(this.sharkie.slap && item instanceof PufferFish) {
-		// 	item.hit = true
-		// 			setInterval(() => {
-		// 		item.getAnimationsToRun(item.ANIMATIONS.ENEMY_DIE)
-		// 		item.y -= 0.3;
-		// 		// if(this.sharkie)
-		// 	}, 1000/60);
-		// 	setTimeout(() => {
-		// 		item.hit = true
-		// 	}, 2000);
-			
-		// } else {
+	collisionWithNoneElectricfish() {
+
 			let stop = setInterval(() => {
 				this.sharkie.getAnimationsToRun(this.sharkie.ANIMATIONS.ANIMATION_NORMAL_HURT)
 			}, 1000 / 60);

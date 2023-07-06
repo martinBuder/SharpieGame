@@ -124,7 +124,7 @@ class MovableObject {
 		for (let key in this.ANIMATIONS) {
 			let animate = this.ANIMATIONS[key];
 			for (let i = 1; i < animate[0]; i++) {
-				animate.push(`../${animate[1]}${i}.png`);
+				animate.push(`${animate[1]}${i}.png`);
 			}
 		};
 	}

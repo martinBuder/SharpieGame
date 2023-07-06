@@ -8,7 +8,7 @@ class Coins extends CollectItems {
 	}
 
 	constructor() {
-		super().loadImg('../img/4. Marcadores/1. Coins/1.png');
+		super().loadImg('img/4. Marcadores/1. Coins/1.png');
 		this.y = 50 + Math.random() * 250;
 		this.x = 300 + Math.random() * this.endgegnerPoint;
 		this.fillANIMATIONS()

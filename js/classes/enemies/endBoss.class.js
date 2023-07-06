@@ -24,7 +24,7 @@ class EndBoss extends MovableObject {
 		* @param {class} sharkie 
 		*/
 	constructor(sharkie) {
-		super().loadImg(`../img/2.Enemy/3 Final Enemy/1.Introduce/1.png`);
+		super().loadImg(`img/2.Enemy/3 Final Enemy/1.Introduce/1.png`);
 		this.sharkie = sharkie;
 		this.fillANIMATIONS();
 		this.getLoadImages();
@@ -92,7 +92,7 @@ class EndBoss extends MovableObject {
 			this.getAnimationsToRun(this.ANIMATIONS.ENDBOSS_DEAD);
 			setTimeout(() => {
 				clearInterval(whaleDead);
-				this.loadImg(`../img/2.Enemy/3 Final Enemy/Dead/9.png`)
+				this.loadImg(`../../img/2.Enemy/3 Final Enemy/Dead/9.png`)
 				let finish = setInterval(() => {
 					this.y -= 0.3
 					if(this.y < -50)

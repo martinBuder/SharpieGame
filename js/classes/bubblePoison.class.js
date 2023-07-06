@@ -3,7 +3,7 @@ class BubblePoison extends AllBubbles {
 	damagePower = 4;
 
 	constructor(sharkie, bubbleNr) {
-		super().loadImg('../img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble.png');
+		super().loadImg('img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble.png');
 		this.sharkie = sharkie;
 		this.bubbleNr = bubbleNr
 		this.getBubble();

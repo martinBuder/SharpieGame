@@ -6,7 +6,7 @@ class Light extends MovableObject {
 	height = 1920;
 
 	constructor() {
-		super().loadImg('../img/3. Background/Layers/1. Light/COMPLETO.png');
+		super().loadImg('img/3. Background/Layers/1. Light/COMPLETO.png');
 		this.changeBrightness();
 	}
 

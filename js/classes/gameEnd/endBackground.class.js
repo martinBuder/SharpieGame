@@ -6,7 +6,7 @@ class EndBackground extends MovableObject{
 		height = 500;
 
 	constructor(sharkie) {
-		super().loadImg('../img/3. Background/Dark/1.png');
+		super().loadImg('img/3. Background/Dark/1.png');
 		this.sharkie = sharkie
 		this.drawImg()
 	}
@@ -14,7 +14,7 @@ class EndBackground extends MovableObject{
 	drawImg() {
 		setInterval(() => {
 			this.x = this.sharkie.x -700
-			this.loadImg('../img/3. Background/Dark/1.png');
+			this.loadImg('img/3. Background/Dark/1.png');
 		}, 1000/60);
 }
 }

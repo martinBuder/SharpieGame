@@ -4,7 +4,7 @@ class LifeStatus extends Status {
 	imgNr = 5;
 
 	constructor(sharkie) {
-		super().loadImg(`../img/4. Marcadores/Purple/life/${this.imgNr}.png`);
+		super().loadImg(`img/4. Marcadores/Purple/life/${this.imgNr}.png`);
 		this.sharkie = sharkie;
 		this.getStatus();
 	}
@@ -19,7 +19,7 @@ class LifeStatus extends Status {
 			if (this.imgNr < 0) {
 				this.imgNr = 0
 			}
-			this.loadImg(`../img/4. Marcadores/Purple/life/${this.imgNr}.png`);
+			this.loadImg(`img/4. Marcadores/Purple/life/${this.imgNr}.png`);
 
 		}, 1000 / 60);
 	}
