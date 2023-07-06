@@ -4,6 +4,7 @@ class World {
 	ctx;
 	camera_x = 0;
 
+
 	background = level1.backgrounds;
 	sharkie = new Sharkie();
 	enemies = level1.enemies;
@@ -54,7 +55,7 @@ class World {
 		new BubblePoison(this.sharkie, 13),
 		new BubblePoison(this.sharkie, 14),
 		new BubblePoison(this.sharkie, 15),
-	];
+	]
 
 	status = [
 		new LifeStatus(this.sharkie),
@@ -72,10 +73,12 @@ gameFinish = [
 	new EndBackground(this.sharkie),
 ]
 
+
 	constructor(canvas, keyboard) {
 		this.ctx = canvas.getContext('2d');
 		this.canvas = canvas;
 		this.keyboard = keyboard;
+		// this.reset();
 		this.draw();
 		this.setWorld();
 		this.initAudio();
@@ -358,7 +361,9 @@ gameFinish = [
 			this.addToMap(this.light);
 			// change the world brightness back 
 			this.ctx.globalAlpha = 1;
+			this.ctx.translate(-this.camera_x, 0);
 			this.addObjectsToMap(this.status);
+			this.ctx.translate(this.camera_x, 0);
 		} else {
 			this.addObjectsToMap(this.gameFinish);
 		}

@@ -2,11 +2,11 @@
 class EndBoss extends MovableObject {
 
 	x = 5500;
-	y = 100;
+	y = 0;
 	height = 250;
 	width = 380;
 
-	lifePower = 12;
+	lifePower = 20;
 	power = 2;
 
 
@@ -48,6 +48,7 @@ class EndBoss extends MovableObject {
 		*/
 	animateEndboss() {
 		if (!this.firstContact && this.lifePower > 0) {
+			this.y = 100;
 			let stopComeAnimation = setInterval(() => {
 				this.getAnimationsToRun(this.ANIMATIONS.ENDBOSS_COMES);
 			}, 1000 / 10);
@@ -56,6 +57,7 @@ class EndBoss extends MovableObject {
 				setInterval(() => {
 					if(this.lifePower > 0)
 					this.getAnimationsToRun(this.ANIMATIONS.ENDBOSS_STAY);
+					this.y = 70 + Math.random() * 70;
 				}, 420);
 			}, 1000);
 			this.firstContact = true;

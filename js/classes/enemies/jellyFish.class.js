@@ -1,8 +1,14 @@
 class JellyFish extends Enemies {
 
+
+	y = 460
+
+direction = 1
+
 	constructor() {
 		super();
 		this.animateMove();
+		this.x = 400 + Math.random() * 4000;
 	};
 
 	/**
@@ -12,16 +18,18 @@ class JellyFish extends Enemies {
 		this.speed = 1 + Math.random() * 1.5;
 		setInterval(() => {
 			if (!this.gotIt) {
-				if (this.y < -100) {
-					this.x = 600 + Math.random() * this.endgegnerPoint;
-					this.y = 480;
-					this.hit = false;
+
+				if (this.y < 20 || this.y > 460) {
+						this.direction = -this.direction; // Richtung umkehren
+						this.hit = false;
 				}
-				this.y = this.y - this.speed
+				this.y = this.y - this.speed * this.direction;
+		
 			} else {
 				this.x = -50;
-			}
-		}, 1000 / 60);
+		}
+}, 1000 / 60);
+	
 	}
 
 	/**

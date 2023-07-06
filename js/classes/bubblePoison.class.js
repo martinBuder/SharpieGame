@@ -24,7 +24,7 @@ class BubblePoison extends AllBubbles {
 					this.x = this.sharkie.x + 200
 					otherWay = 0;
 				}
-				xStart = this.x
+				let xStart = this.x
 				this.animateBubble(otherWay, xStart);
 			}
 		}), 1000 / 60

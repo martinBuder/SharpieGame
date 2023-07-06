@@ -14,7 +14,6 @@ class LifeStatus extends Status {
 		*/	
 	getStatus() {
 		setInterval(() => {
-			this.x = 20 - this.sharkie.world.camera_x
 			this.imgNr = this.sharkie.lifeAmount;
 			if (this.imgNr < 0) {
 				this.imgNr = 0

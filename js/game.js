@@ -21,7 +21,16 @@ function setLevel() {
 	startWindow.classList.add('displayNone');
 	gameOver.classList.remove('show');
 	world = new World(canvas, keyboard);
-	sharkie = world.sharkie;
+  for (let i = 0; i < world.coins.length; i++) {
+    world.coins[i].gotIt = false;
+  }
+		for (let i = 0; i < world.poisons.length; i++) {
+			world.poisons[i].gotIt = false;
+		}
+		for (let i = 0; i < world.enemies.length; i++) {
+			world.enemies[i].gotIt = false;
+			world.enemies[i].hit = false;
+		}
 	isGameFinish(world);
 }
 
@@ -35,7 +44,14 @@ function isGameFinish(world) {
 		if(world.gameEnd) {
 			clearInterval(gameStatus);
 			let endImg = document.getElementById('gameOver');
+			let muteButton = document.getElementById('mute');
 			endImg.classList.add('show');
+			if(muteButton.src.includes('002-volume-level.png')) {
+				world.muteSound();
+				world.sharkie.muteSound();
+			} else {
+				muteButton.src = 'img/6.Botones/png/002-volume-level.png'
+			}
 		}
 	}, 200);
 }
@@ -44,11 +60,13 @@ function isGameFinish(world) {
 	* change the mute Btn from old to new to old and with sound play is the same
 	*/
 function muteBrowser() {
+	if(world !== undefined) {
 	let muteButton = document.getElementById('mute');
 	muteButton.src = (muteButton.src.endsWith('001-mute.png')) ? 'img/6.Botones/png/002-volume-level.png' : 'img/6.Botones/png/001-mute.png';
 
  world.muteSound();
 	world.sharkie.muteSound();
+	}
 }
 
 function definatedTouchBtns() {
@@ -69,6 +87,7 @@ function definatedTouchBtns() {
 	});
 	
 	document.getElementById('btnUp1').addEventListener('touchstart', (e) => { e.preventDefault();
+		sharkie.otherDirection = true
 		keyboard.UP = true;
 		});
 	
@@ -77,6 +96,7 @@ function definatedTouchBtns() {
 	});
 	
 	document.getElementById('btnUp2').addEventListener('touchstart', (e) => { e.preventDefault();
+		sharkie.otherDirection = false
 		keyboard.UP = true;
 		});
 	
@@ -85,7 +105,8 @@ function definatedTouchBtns() {
 		keyboard.UP = false;
 	});
 	
-	document.getElementById('btnDown1').addEventListener('touchend', (e) => { e.preventDefault();
+	document.getElementById('btnDown1').addEventListener('touchstart', (e) => { e.preventDefault();
+		sharkie.otherDirection = true
 		keyboard.DOWN = true;
 	});
 	
@@ -94,14 +115,14 @@ function definatedTouchBtns() {
 		});
 	
 		document.getElementById('btnDown2').addEventListener('touchstart', (e) => { e.preventDefault();
+			sharkie.otherDirection = false
 			keyboard.DOWN = true;
 			});
 	
 		document.getElementById('btnDown2').addEventListener('touchend', (e) => { e.preventDefault();
 			keyboard.DOWN = false;
 		});
-	
-	
+		
 	document.getElementById('btnBubble').addEventListener('touchstart', (e) => { e.preventDefault();
 		keyboard.BUBBLE = true;
 		});

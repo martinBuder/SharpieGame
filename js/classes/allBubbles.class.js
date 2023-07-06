@@ -48,13 +48,13 @@ class AllBubbles extends MovableObject {
 	goCorrectWay(otherWay, xStart) {
 		if (otherWay == 1) {
 			this.x -= 1;
-			if(this.x < xStart - 500) {
+			if(this.x < xStart - 450) {
 				this.x = 0;		
 				this.y = -50;	
 			}	
 		} else {
 			this.x += 1;
-			if(this.x > xStart + 500) {
+			if(this.x > xStart + 450) {
 				this.x = 0			
 				this.y = -50;	
 			}

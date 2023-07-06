@@ -24,7 +24,8 @@ class Bubble extends AllBubbles {
 					this.x = this.sharkie.x + 200;
 					otherWay = 0;
 				}
-				this.animateBubble(otherWay);
+				let xStart = this.x
+				this.animateBubble(otherWay, xStart);
 			}
 		}), 1000 / 60
 	}

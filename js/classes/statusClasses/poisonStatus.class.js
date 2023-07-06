@@ -14,7 +14,6 @@ class PoisonStatus extends Status {
 		*/	
 	getStatus() {
 		setInterval(() => {
-			this.x = 480 - this.sharkie.world.camera_x
 			this.imgNr = this.sharkie.poisonsAmount;
 			this.loadImg(`img/4. Marcadores/Purple/poison/${this.imgNr}.png`);
 		}, 1000/60);

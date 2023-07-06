@@ -18,6 +18,7 @@ body {
 	background: url('img/3. Background/Dark/1.png');
 	backdrop-filter: blur(4px);
 	font-family: "Luckiest Guy", Arial, Helvetica, sans-serif;
+	overflow: hidden;
 }
 
 h1 {
@@ -181,11 +182,23 @@ div.go {
 	background: rgba(255, 255, 255, 0.6);
 }
 
-.down {
-	transform: rotate(180deg);
+#btnUp1 img {
+	transform: rotate(-45deg);
 }
 
-.right {
+#btnUp2 img {
+	transform: rotate(45deg);
+}
+
+#btnDown img {
+	transform: rotate(225deg);
+}
+
+#btnDown2 img {
+	transform: rotate(115deg);
+}
+
+.right {  
 	transform: rotate(90deg);
 }
 
@@ -231,6 +244,43 @@ body #winning.show {
 	top: 35vh;
 }
 
+
+.mobilInstructions img {
+	width: 30px;
+	height: 20px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+i {
+	font-size: 20px;
+	display: block;
+}
+
+.mobilInstructions {
+	display: none;
+	margin-top: -5vh;
+}
+
+.mobilInstructions div {
+	display: flex;
+}
+
+@media only screen and (max-width: 1300px){
+	.handyBtnArea {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100svh;
+		height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
+		gap: 10px;
+	}
+}
+
 /* Smartphone */
 
 @media only screen and (max-width: 720px) {
@@ -240,6 +290,14 @@ body #winning.show {
 
 	.instructionWrapper, h2, .notMobil {
 		display: none;
+	}
+
+	.mobilInstructions {
+		display: block;
+	}
+
+	i {
+		font-size: 16px;
 	}
 
 	.soundBtn {
@@ -266,8 +324,16 @@ body #winning.show {
 		height: 100vh;
 	}
 
+	.mobilInstructions {
+		display: block;
+	}
+
 	.instructionWrapper, h2, h1.notMobil {
 		display: none;
+	}
+
+	i {
+		font-size: 16px;
 	}
 
 	.handyBtnArea {
@@ -285,11 +351,21 @@ body #winning.show {
 }
 
 @media only screen and (max-width: 720px) and (orientation: portrait) {
+	canvas {
+		width: 100%;
+	}
+
+	h1{
+		display: none;
+	}
+
 	.portraitMessage{
 		z-index: 200;
 		position: absolute;
 		top: 0;
 		left: 0;
+		right: 0;
+		bottom: 0;
 		display: flex;
 		justify-content: center;
 		align-items: center;
