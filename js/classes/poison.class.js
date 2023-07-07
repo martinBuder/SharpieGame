@@ -13,8 +13,8 @@ class Poison extends CollectItems {
 		this.gotIt = false
 		this.y = 300 + Math.random() * 50;
 		this.x = 300 + Math.random() * this.endgegnerPoint;
-		this.fillANIMATIONS()
-		this.getLoadImages()
+		this.fillAnimations();
+		this.getLoadImages();
 		this.animate();
 	}
 

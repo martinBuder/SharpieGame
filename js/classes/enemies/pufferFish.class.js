@@ -16,7 +16,7 @@ class PufferFish extends Enemies {
 		setInterval(() => {
 			if (!this.gotIt) {
 				if (!this.endBossHere) {
-					if (this.x < -100) 
+					if (this.x < -100)
 						this.pufferfishGetNewStart()
 				}
 				this.x = this.x - this.speed

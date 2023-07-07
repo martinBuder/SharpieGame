@@ -23,6 +23,7 @@ class Sharkie extends MovableObject {
 	poisonBubbleNr = 0;
 	sleepTimer = 0;
 	sleepTime = 20;
+	otherDirection = false;
 
 	// ! Animations
 	ANIMATIONS = {
@@ -45,7 +46,7 @@ class Sharkie extends MovableObject {
 	constructor() {
 		super().loadImg('img/1.Sharkie/1.IDLE/1.png');
 		// the number must be one bigger then picture are there
-		this.fillANIMATIONS()
+		this.fillAnimations()
 		this.getLoadImages()
 		this.animate();
 		this.startSleepTimer();
@@ -160,7 +161,7 @@ class Sharkie extends MovableObject {
 	/**
 	* manage slap attack
 	*/
-	slapAttack() {    
+	slapAttack() {
 		if (this.world.keyboard.SLAP) {
 			this.slap = true;
 			this.resetSleepTimer()
@@ -328,10 +329,10 @@ class Sharkie extends MovableObject {
 		let stopY = setInterval(() => {
 			this.resetSleepTimer()
 			this.y -= 1
-			if(this.y < -20) {
+			if (this.y < -20) {
 				clearInterval(stopY);
 			}
-		}, 1000/60);
+		}, 1000 / 60);
 		setTimeout(() => {
 			this.world.gameEnd = true
 		}, 3000);

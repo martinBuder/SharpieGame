@@ -23,15 +23,23 @@ function setLevel() {
 	world = new World(canvas, keyboard);
   for (let i = 0; i < world.coins.length; i++) {
     world.coins[i].gotIt = false;
+				world.coins[i].y = 50 + Math.random() * 250;
+				world.coins[i].x = 300 + Math.random() * this.endgegnerPoint;
+
   }
 		for (let i = 0; i < world.poisons.length; i++) {
 			world.poisons[i].gotIt = false;
+			world.poisons[i].y = 50 + Math.random() * 250;
+			world.poisons[i].x = 300 + Math.random() * this.endgegnerPoint;
 		}
 		for (let i = 0; i < world.enemies.length; i++) {
 			world.enemies[i].gotIt = false;
 			world.enemies[i].hit = false;
+			world.enemies[i].y = 50 + Math.random() * 250;
+			world.enemies[i].x = 300 + Math.random() * this.endgegnerPoint;
 		}
-	isGameFinish(world);
+		sharkie = world.sharkie;
+		isGameFinish(world);
 }
 
 /**

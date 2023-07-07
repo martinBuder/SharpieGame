@@ -1,146 +1,165 @@
 <!DOCTYPE html>
 <html lang="en" translate="no">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="style.css">
-	<link rel="shortcut icon" href="img/1.Sharkie/1.IDLE/1.png" type="image/x-icon">
-	<title>SharkieGame</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="shortcut icon"
+      href="img/1.Sharkie/1.IDLE/1.png"
+      type="image/x-icon" />
+    <title>SharkieGame</title>
 
-	<!-- ! js classes -->
-	<script src="js/classes/keyboard.class.js"></script>
-	<script src="js/classes/world.class.js"></script>
-	<script src="js/classes/level.class.js"></script>
-	<script src="js/classes/movableObject.class.js"></script>
-	<script src="js/classes/background.class.js"></script>
-<!-- *sharkie -->
-	<script src="js/classes/sharkie.class.js"></script>
-<!-- ~bubbles -->
-	<script src="js/classes/allBubbles.class.js"></script>
-	<script src="js/classes/bubble.class.js"></script>
-	<script src="js/classes/bubblePoison.class.js"></script>
-<!-- *collect Items -->
-<script src="js/classes/collectItem.class.js"></script>
-<script src="js/classes/coins.class.js"></script>
-<script src="js/classes/poison.class.js"></script>
-<!-- *enemies -->
-	<script src="js/classes/enemies/enemies.class.js"></script>
-	<script src="js/classes/enemies/endBoss.class.js"></script>
-	
-<!-- ~pufferfish	 -->
-	<script src="js/classes/enemies/pufferFish.class.js"></script>
-	<script src="js/classes/enemies/greenPufferFish.class.js"></script>
-	<script src="js/classes/enemies/orangePufferFish.class.js"></script>
-	<script src="js/classes/enemies/redPufferFish.class.js"></script>
-<!-- ~jellyFish -->
-	<script src="js/classes/enemies/jellyFish.class.js"></script>
-	<script src="js/classes/enemies/greenJellyFish.class.js"></script>
-	<script src="js/classes/enemies/yellowJellyFish.class.js"></script>
-	<script src="js/classes/enemies/lilaJellyFish.class.js"></script>
-	<script src="js/classes/enemies/pinkJellyFish.class.js"></script>
-<!-- *front ground -->
-	<script src="js/classes/floor.class.js"></script>
-	<script src="js/classes/light.class.js"></script>
-<!-- *status -->
-<script src="js/classes/statusClasses/status.class.js"></script>
-<script src="js/classes/statusClasses/lifeStatus.class.js"></script>
-<script src="js/classes/statusClasses/coinsStatus.class.js"></script>
-<script src="js/classes/statusClasses/poisonStatus.class.js"></script>
-<!-- *gameEnd -->
-<script src="js/classes/gameEnd/endBackground.class.js"></script>
+    <!-- ! js classes -->
+    <script src="js/classes/keyboard.class.js"></script>
+    <script src="js/classes/world.class.js"></script>
+    <script src="js/classes/level.class.js"></script>
+    <script src="js/classes/movableObject.class.js"></script>
+    <script src="js/classes/background.class.js"></script>
+    <!-- *sharkie -->
+    <script src="js/classes/sharkie.class.js"></script>
+    <!-- ~bubbles -->
+    <script src="js/classes/allBubbles.class.js"></script>
+    <script src="js/classes/bubble.class.js"></script>
+    <script src="js/classes/bubblePoison.class.js"></script>
+    <!-- *collect Items -->
+    <script src="js/classes/collectItem.class.js"></script>
+    <script src="js/classes/coins.class.js"></script>
+    <script src="js/classes/poison.class.js"></script>
+    <!-- *enemies -->
+    <script src="js/classes/enemies/enemies.class.js"></script>
+    <script src="js/classes/enemies/endBoss.class.js"></script>
 
-<script src="js/levels/level1.js"></script>
-<script src="js/game.js"></script>
+    <!-- ~pufferfish	 -->
+    <script src="js/classes/enemies/pufferFish.class.js"></script>
+    <script src="js/classes/enemies/greenPufferFish.class.js"></script>
+    <script src="js/classes/enemies/orangePufferFish.class.js"></script>
+    <script src="js/classes/enemies/redPufferFish.class.js"></script>
+    <!-- ~jellyFish -->
+    <script src="js/classes/enemies/jellyFish.class.js"></script>
+    <script src="js/classes/enemies/greenJellyFish.class.js"></script>
+    <script src="js/classes/enemies/yellowJellyFish.class.js"></script>
+    <script src="js/classes/enemies/lilaJellyFish.class.js"></script>
+    <script src="js/classes/enemies/pinkJellyFish.class.js"></script>
+    <!-- *front ground -->
+    <script src="js/classes/floor.class.js"></script>
+    <script src="js/classes/light.class.js"></script>
+    <!-- *status -->
+    <script src="js/classes/statusClasses/status.class.js"></script>
+    <script src="js/classes/statusClasses/lifeStatus.class.js"></script>
+    <script src="js/classes/statusClasses/coinsStatus.class.js"></script>
+    <script src="js/classes/statusClasses/poisonStatus.class.js"></script>
+    <!-- *gameEnd -->
+    <script src="js/classes/gameEnd/endBackground.class.js"></script>
 
-</head>
-<body onload="init()">
-	<canvas width="720" height="480" id="canvas">
-	</canvas>	
-	<button class="soundBtn" onclick="muteBrowser()">
-		<img id="mute" src="img/6.Botones/png/002-volume-level.png" alt="">
-	</button>
-	<div class="handyBtnArea">
-		<div class="go">
-			<div class="up" id="btnUp1">
-				<img src="img/6.Botones/png/arrow.png" alt="">
-			</div>
-			<div class="direction" id="btnLeft">
-				<img class="left" src="img/6.Botones/png/arrow.png" alt="">
-			</div>
-			<div class="down" id="btnDown1">
-				<img src="img/6.Botones/png/arrow.png" alt="">
-			</div>
-		</div>
-		<div class="bubble" id="btnBubble">
-			<img src="img/1.Sharkie/4.Attack/Bubble trap/Bubble.png" alt="">
-		</div>
-		<div class="slap" id="btnSlap">
-			SLAP-ATTACK
-		</div>
-		<div class="bubble" id="btnPoisonbubble">
-			<img src="img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble.png" alt="" style="transform: scale(1.15);">
-		</div>
-		<div class="go">
-			<div class="up" id="btnUp2">
-				<img src="img/6.Botones/png/arrow.png" alt="">
-			</div>
-			<div class="direction" id="btnRight">
-				<img class="right" src="img/6.Botones/png/arrow.png" alt="">
-			</div>
-			<div class="down" id="btnDown2">
-				<img src="img/6.Botones/png/arrow.png" alt="">
-			</div>
-		</div>
-	</div>
+    <script src="js/levels/level1.js"></script>
+    <script src="js/game.js"></script>
+  </head>
+  <body onload="init()">
+    <canvas width="720" height="480" id="canvas"> </canvas>
+    <button class="soundBtn" onclick="muteBrowser()">
+      <img id="mute" src="img/6.Botones/png/002-volume-level.png" alt="" />
+    </button>
+    <div class="handyBtnArea">
+      <div class="go">
+        <div class="up" id="btnUp1">
+          <img src="img/6.Botones/png/arrow.png" alt="" />
+        </div>
+        <div class="direction" id="btnLeft">
+          <img class="left" src="img/6.Botones/png/arrow.png" alt="" />
+        </div>
+        <div class="down" id="btnDown1">
+          <img src="img/6.Botones/png/arrow.png" alt="" />
+        </div>
+      </div>
+      <div class="bubble" id="btnBubble">
+        <img src="img/1.Sharkie/4.Attack/Bubble trap/Bubble.png" alt="" />
+      </div>
+      <div class="slap" id="btnSlap">SLAP-ATTACK</div>
+      <div class="bubble" id="btnPoisonbubble">
+        <img
+          src="img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble.png"
+          alt=""
+          style="transform: scale(1.15)" />
+      </div>
+      <div class="go">
+        <div class="up" id="btnUp2">
+          <img src="img/6.Botones/png/arrow.png" alt="" />
+        </div>
+        <div class="direction" id="btnRight">
+          <img class="right" src="img/6.Botones/png/arrow.png" alt="" />
+        </div>
+        <div class="down" id="btnDown2">
+          <img src="img/6.Botones/png/arrow.png" alt="" />
+        </div>
+      </div>
+    </div>
 
+    <div id="startBtn">
+      <h1>SharkieGame</h1>
+      <button class="startBtn" onclick="setLevel()">Start</button>
+      <h2>Instructions</h2>
+      <div class="mobilInstructions">
+        <div>
+          <img src="img/1.Sharkie/4.Attack/Bubble trap/Bubble.png" alt="" />
+          <p>Bubble attack</p>
+        </div>
+        <div>
+          <img
+            style="transform: scale(1.15)"
+            src="img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble.png"
+            alt="" />
+          <p>
+            Poison Bubble attack<br /><i>for that you must collect poison</i>
+          </p>
+        </div>
+      </div>
+      <div class="instructionWrapper">
+        <div class="leftSite">
+          <div class="imgWrapper">
+            <img src="img/6.Botones/Key/arrow keys.png" alt="" />
+          </div>
+          <p>Move Sharkie</p>
+        </div>
+        <div class="rightSite">
+          <div class="container">
+            <div class="imgWrapper">
+              <img src="img/6.Botones/Key/D key.png" alt="" />
+            </div>
+            <p>
+              Poison Bubble attack<br /><i>for that you must collect poison</i>
+            </p>
+          </div>
+          <div class="container">
+            <div class="imgWrapper">
+              <img src="img/6.Botones/Key/F key.png" alt="" />
+            </div>
+            <p>Bubble attack</p>
+          </div>
+          <div class="container">
+            <div class="imgWrapper">
+              <img src="img/6.Botones/Key/Space Bar key.png" alt="" />
+            </div>
+            <p>Slap Attack</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<div id="startBtn">
-	<h1>SharkieGame</h1>
-	<button class="startBtn" onclick="setLevel()">Start</button>
-	<h2>Instructions</h2>
-	<div class="mobilInstructions">
-		<div><img src="img/1.Sharkie/4.Attack/Bubble trap/Bubble.png" alt=""><p>Bubble attack</p></div>
-		<div><img style="transform: scale(1.15);" src="img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble.png" alt=""><p>Poison Bubble attack<br><i>for that you must collect poison</i></p></div>
-	</div>
-	<div class="instructionWrapper">
-		<div class="leftSite">
-			<div class="imgWrapper">
-				<img src="img/6.Botones/Key/arrow keys.png" alt="">
-			</div>
-			<p>Move Sharkie</p>
-		</div>
-		<div class="rightSite">
-			<div class="container">
-				<div class="imgWrapper">
-					<img src="img/6.Botones/Key/D key.png" alt="">
-				</div>
-				<p>Poison Bubble attack<br><i>for that you must collect poison</i></p>
-			</div>
-			<div class="container">
-				<div class="imgWrapper">
-					<img src="img/6.Botones/Key/F key.png" alt="">
-				</div>
-				<p>Bubble attack</p>
-			</div>
-			<div class="container">
-				<div class="imgWrapper">
-					<img src="img/6.Botones/Key/Space Bar key.png" alt="">
-				</div>
-				<p>Slap Attack</p>
-			</div>
-		</div>
-	</div>
-</div>	
-
-	<div class="portraitMessage">
-		<p>YOU CAN JUST PLAY IN LANDSCAPE MODUS!</p>
-	</div>
-	<img id="winning" src="img/6.Botones/Tittles/You win/Recurso 21.png" alt="">
-	<div id="gameOver">
-		<img src="img/6.Botones/Tittles/Game Over/Recurso 12.png" alt="">
-		<img src="img/6.Botones/Try again/Recurso 17.png" alt="" onclick="setLevel()">
-	</div>
-
-</body>
+    <div class="portraitMessage">
+      <p>YOU CAN JUST PLAY IN LANDSCAPE MODUS!</p>
+    </div>
+    <img
+      id="winning"
+      src="img/6.Botones/Tittles/You win/Recurso 21.png"
+      alt="" />
+    <div id="gameOver">
+      <img src="img/6.Botones/Tittles/Game Over/Recurso 12.png" alt="" />
+      <img
+        src="img/6.Botones/Try again/Recurso 17.png"
+        alt=""
+        onclick="setLevel()" />
+    </div>
+  </body>
 </html>

@@ -9,8 +9,8 @@ class OrangePufferFish extends PufferFish {
 		super();
 		this.color = '2';
 		this.loadImgPath();
-		this.fillANIMATIONS()
-		this.getLoadImages()
+		this.fillAnimations();
+		this.getLoadImages();
 		this.animateSwim();
 	}
 }

@@ -9,8 +9,8 @@ class PinkJellyFish extends JellyFish {
 		super();
 		this.color = 'Pink';
 		this.loadImgPath();
-		this.fillANIMATIONS()
-		this.getLoadImages()
-		this.animateSwim()
+		this.fillAnimations();
+		this.getLoadImages();
+		this.animateSwim();
 	}
 }

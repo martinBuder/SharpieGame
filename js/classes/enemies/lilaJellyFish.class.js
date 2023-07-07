@@ -9,8 +9,8 @@ class LilaJellyFish extends JellyFish {
 		super();
 		this.color = 'Lila';
 		this.loadImgPath();
-		this.fillANIMATIONS()
-		this.getLoadImages()
+		this.fillAnimations();
+		this.getLoadImages();
 		this.animateSwim();
 	}
 }

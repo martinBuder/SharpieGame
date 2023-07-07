@@ -19,7 +19,6 @@ class LifeStatus extends Status {
 				this.imgNr = 0
 			}
 			this.loadImg(`img/4. Marcadores/Purple/life/${this.imgNr}.png`);
-
 		}, 1000 / 60);
 	}
 

@@ -9,10 +9,9 @@ class GreenPufferFish extends PufferFish {
 		super();
 		this.color = '1';
 		this.loadImgPath();
-		this.fillANIMATIONS()
-		this.getLoadImages()
-		this.animateSwim()
+		this.fillAnimations();
+		this.getLoadImages();
+		this.animateSwim();
 	}
 
-	
 }

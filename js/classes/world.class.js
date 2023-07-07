@@ -69,9 +69,9 @@ class World {
 	]
 	hurtSound = new Audio('audio/damage.mp3');
 
-gameFinish = [
-	new EndBackground(this.sharkie),
-]
+	gameFinish = [
+		new EndBackground(this.sharkie),
+	]
 
 
 	constructor(canvas, keyboard) {
@@ -158,16 +158,16 @@ gameFinish = [
 		*/
 	checkSharkieCollisionWith(item) {
 		if (this.sharkie.isColliding(item)) {
-			if(this.sharkie.slap && item instanceof PufferFish) {
+			if (this.sharkie.slap && item instanceof PufferFish) {
 				item.hit = true
-						setInterval(() => {
+				setInterval(() => {
 					item.getAnimationsToRun(item.ANIMATIONS.ENEMY_DIE)
 					item.y -= 0.3;
-				  if(!this.sharkie.otherDirection)
-							item.x += 1.1
-						else
-							item.x -= 0.1
-				}, 1000/60);
+					if (!this.sharkie.otherDirection)
+						item.x += 1.1
+					else
+						item.x -= 0.1
+				}, 1000 / 60);
 				setTimeout(() => {
 					item.gotIt = true
 				}, 2000);
@@ -224,14 +224,14 @@ gameFinish = [
 		*/
 	collisionWithNoneElectricfish() {
 
-			let stop = setInterval(() => {
-				this.sharkie.getAnimationsToRun(this.sharkie.ANIMATIONS.ANIMATION_NORMAL_HURT)
-			}, 1000 / 60);
-			setTimeout(() => {
-				clearInterval(stop)
-			}, 300);
-		}
-	
+		let stop = setInterval(() => {
+			this.sharkie.getAnimationsToRun(this.sharkie.ANIMATIONS.ANIMATION_NORMAL_HURT)
+		}, 1000 / 60);
+		setTimeout(() => {
+			clearInterval(stop)
+		}, 300);
+	}
+
 
 	/**
 		* handle collision with enemy
@@ -244,9 +244,9 @@ gameFinish = [
 		else
 			this.collisionWithNoneElectricfish(item);
 		if (item.hit == false) {
-				this.hitSharkie(item)
-				this.hurtAudio();
-			}
+			this.hitSharkie(item)
+			this.hurtAudio();
+		}
 		if (this.sharkie.lifeAmount <= 0) {
 			this.loseGame()
 		}
@@ -285,7 +285,7 @@ gameFinish = [
 	hitSharkie(item) {
 		this.sharkie.lifeAmount -= item.power;
 		item.hit = true;
-		if(item instanceof EndBoss) {
+		if (item instanceof EndBoss) {
 			setTimeout(() => {
 				item.hit = false;
 			}, 1000);
@@ -346,7 +346,7 @@ gameFinish = [
 	draw() {
 		this.ctx.clearRect(0, 0, canvas.width, canvas.height);
 		this.ctx.translate(this.camera_x, 0);
-		if(!this.gameEnd) {
+		if (!this.gameEnd) {
 			this.addObjectsToMap(this.background);
 			this.addObjectsToMap(this.coins);
 			this.addObjectsToMap(this.poisons);
@@ -367,13 +367,13 @@ gameFinish = [
 		} else {
 			this.addObjectsToMap(this.gameFinish);
 		}
-			this.ctx.translate(-this.camera_x, 0);
-			// reset draw so this is just one img of each item on canvas
-			let self = this;
-			requestAnimationFrame(() => {
-				self.draw();
-			});
-	
+		this.ctx.translate(-this.camera_x, 0);
+		// reset draw so this is just one img of each item on canvas
+		let self = this;
+		requestAnimationFrame(() => {
+			self.draw();
+		});
+
 	};
 
 	/**

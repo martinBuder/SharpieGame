@@ -9,8 +9,8 @@ class GreenJellyFish extends JellyFish {
 		super();
 		this.color = 'Green';
 		this.loadImgPath();
-		this.fillANIMATIONS()
-		this.getLoadImages()
-		this.animateSwim()
+		this.fillAnimations();
+		this.getLoadImages();
+		this.animateSwim();
 	}
 }

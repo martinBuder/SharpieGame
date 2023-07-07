@@ -26,7 +26,7 @@ class EndBoss extends MovableObject {
 	constructor(sharkie) {
 		super().loadImg(`img/2.Enemy/3 Final Enemy/1.Introduce/1.png`);
 		this.sharkie = sharkie;
-		this.fillANIMATIONS();
+		this.fillAnimations();
 		this.getLoadImages();
 		this.attackEndboos();
 	}
@@ -55,8 +55,8 @@ class EndBoss extends MovableObject {
 			setTimeout(() => {
 				clearInterval(stopComeAnimation);
 				setInterval(() => {
-					if(this.lifePower > 0)
-					this.getAnimationsToRun(this.ANIMATIONS.ENDBOSS_STAY);
+					if (this.lifePower > 0)
+						this.getAnimationsToRun(this.ANIMATIONS.ENDBOSS_STAY);
 					this.y = 70 + Math.random() * 70;
 				}, 420);
 			}, 1000);
@@ -69,20 +69,20 @@ class EndBoss extends MovableObject {
 		*/
 	attackEndboos() {
 		// if (this.firstContact && this.lifePower > 0) {
-			setInterval(() => {
-				if (this.firstContact && this.lifePower > 0) {
-					setTimeout(() => {
-						let whaleAttack = setInterval(() => {
-							this.getAnimationsToRun(this.ANIMATIONS.ENDBOSS_ATTACK);
-							this.x -= 60
-							setTimeout(() => {
-								clearInterval(whaleAttack);
-								this.x += 60
-							}, 1000);
-						}, 420);
-					}, 2000 + Math.random() * 2000);
-				}
-			}, 5000);
+		setInterval(() => {
+			if (this.firstContact && this.lifePower > 0) {
+				setTimeout(() => {
+					let whaleAttack = setInterval(() => {
+						this.getAnimationsToRun(this.ANIMATIONS.ENDBOSS_ATTACK);
+						this.x -= 60
+						setTimeout(() => {
+							clearInterval(whaleAttack);
+							this.x += 60
+						}, 1000);
+					}, 420);
+				}, 2000 + Math.random() * 2000);
+			}
+		}, 5000);
 		// }
 	}
 
@@ -97,14 +97,14 @@ class EndBoss extends MovableObject {
 				this.loadImg(`../../img/2.Enemy/3 Final Enemy/Dead/9.png`)
 				let finish = setInterval(() => {
 					this.y -= 0.3
-					if(this.y < -50)
+					if (this.y < -50)
 						clearInterval(finish)
-				}, 1000/60);
+				}, 1000 / 60);
 			}, 1000);
 		}, 420);
 		setTimeout(() => {
 			let winning = document.getElementById('winning');
-				winning.classList.add('show')
+			winning.classList.add('show')
 			setTimeout(() => {
 				winning.classList.remove('show');
 				this.sharkie.world.gameEnd = true;

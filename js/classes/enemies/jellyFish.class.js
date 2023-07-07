@@ -3,7 +3,7 @@ class JellyFish extends Enemies {
 
 	y = 460
 
-direction = 1
+	direction = 1
 
 	constructor() {
 		super();
@@ -18,18 +18,16 @@ direction = 1
 		this.speed = 1 + Math.random() * 1.5;
 		setInterval(() => {
 			if (!this.gotIt) {
-
 				if (this.y < 20 || this.y > 460) {
-						this.direction = -this.direction; // Richtung umkehren
-						this.hit = false;
+					this.direction = -this.direction;
+					this.hit = false;
 				}
 				this.y = this.y - this.speed * this.direction;
-		
 			} else {
 				this.x = -50;
-		}
-}, 1000 / 60);
-	
+			}
+		}, 1000 / 60);
+
 	}
 
 	/**

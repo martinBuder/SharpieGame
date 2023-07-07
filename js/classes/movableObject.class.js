@@ -67,21 +67,21 @@ class MovableObject {
 		* 
 		* @param {context} ctx 
 		*/
-	drawItemsBorder(ctx){
+	drawItemsBorder(ctx) {
 		ctx.beginPath();
-				if (this instanceof EndBoss) {
-					ctx.rect(this.x + 20, this.y + 90, this.width - 40, this.height - 130);
-				} else {
-					ctx.rect(this.x, this.y, this.width, this.height);
-				}
+		if (this instanceof EndBoss) {
+			ctx.rect(this.x + 20, this.y + 90, this.width - 40, this.height - 130);
+		} else {
+			ctx.rect(this.x, this.y, this.width, this.height);
+		}
 	}
-	
+
 	/**
 		* draw the border of sharkie
 		* 
 		* @param {context} ctx 
 		*/
-	drawSharkieBorder(ctx){
+	drawSharkieBorder(ctx) {
 		ctx.beginPath();
 		ctx.rect(this.x + this.offsetX, this.y + this.offsetY, this.width - this.offsetX * 2, this.height - this.offsetHeight);
 	}
@@ -97,7 +97,7 @@ class MovableObject {
 			return (this.x + this.offsetX + this.width - this.offsetX * 2) >= (obj.x + 20) &&
 				(this.x + this.offsetX) <= (obj.x + obj.width - 40) &&
 				(this.y + this.offsetY + this.height - this.offsetHeight) >= (obj.y + 90) &&
-				(this.y + this.offsetY) <= (obj.y + obj.height -50);
+				(this.y + this.offsetY) <= (obj.y + obj.height - 50);
 		} else {
 			return (this.x + this.offsetX + this.width - this.offsetX * 2) >= obj.x &&
 				(this.x + this.offsetX) <= (obj.x + obj.width) &&
@@ -120,7 +120,7 @@ class MovableObject {
 	/**
 		* fill the Animations with the pictures
 		*/
-	fillANIMATIONS() {
+		fillAnimations() {
 		for (let key in this.ANIMATIONS) {
 			let animate = this.ANIMATIONS[key];
 			for (let i = 1; i < animate[0]; i++) {
