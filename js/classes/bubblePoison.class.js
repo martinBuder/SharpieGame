@@ -14,7 +14,7 @@ class BubblePoison extends AllBubbles {
 	*/
 	getBubble() {
 		setInterval(() => {
-			if (this.sharkie.poisonBubble && this.sharkie.bubbleNr == this.bubbleNr) {
+			if (this.sharkie.poisonBubble && this.sharkie.poisonBubbleNr == this.bubbleNr) {
 				this.y = this.sharkie.y + 75
 				let otherWay = 0
 				if (this.sharkie.otherDirection == true) {
@@ -24,8 +24,11 @@ class BubblePoison extends AllBubbles {
 					this.x = this.sharkie.x + 200
 					otherWay = 0;
 				}
-				let xStart = this.x
-				this.animateBubble(otherWay, xStart);
+				if(this.begin) {
+					let xStart = this.x;
+					this.animateBubble(otherWay, xStart);
+					this.begin = false;
+				}
 			}
 		}), 1000 / 60
 	}

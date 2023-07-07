@@ -1,25 +1,24 @@
 class AllBubbles extends MovableObject {
-
 	width = 0;
 	height = 0;
 	offsetY = 0;
 	offsetX = 0;
 	offsetHeight = 0;
+	begin = true;
 
 	/**
 		* play the bubble go forward animation
 		* 
 		* @param {number} otherWay 0 or 1
-		* @param {number} xStart 
 		*/
 	animateBubble(otherWay, xStart) {
-		setInterval(() => {
+		let stopBubble = setInterval(() => {
 			this.gotIt = false;
 			this.bubbleBigger()
 			if (this.width > 50) {
 				this.fixedSize()
 			}
-			this.goCorrectWay(otherWay, xStart)
+			this.goCorrectWay(otherWay, xStart, stopBubble)
 		}, 1000 / 30)
 	}
 
@@ -27,8 +26,8 @@ class AllBubbles extends MovableObject {
 		* size will be bigger
 		*/
 	bubbleBigger() {
-		this.width += 1;
-		this.height += 1;
+		this.width += 3;
+		this.height += 3;
 	}
 
 	/**
@@ -45,18 +44,22 @@ class AllBubbles extends MovableObject {
 		* @param {number} otherWay 0 or 1
 		* @param {number} xStart 
 		*/
-	goCorrectWay(otherWay, xStart) {
+	goCorrectWay(otherWay, xStart, stopBubble) {
 		if (otherWay == 1) {
-			this.x -= 1;
+					this.x -= 20;
 			if (this.x < xStart - 450) {
-				this.x = 0;
-				this.y = -50;
+				clearInterval(stopBubble);
+				this.y = 20;
+				this.x = -100;
+				this.begin = true
 			}
 		} else {
-			this.x += 1;
+			this.x += 20;
 			if (this.x > xStart + 450) {
-				this.x = 0
-				this.y = -50;
+				clearInterval(stopBubble);
+				this.y = 20;
+				this.x = -100;
+				this.begin = true
 			}
 		}
 	}

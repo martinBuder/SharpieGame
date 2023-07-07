@@ -1,6 +1,7 @@
 class Bubble extends AllBubbles {
-
 	damagePower = 1;
+
+
 
 	constructor(sharkie, bubbleNr) {
 		super().loadImg('img/1.Sharkie/4.Attack/Bubble trap/Bubble.png');
@@ -23,9 +24,12 @@ class Bubble extends AllBubbles {
 				} else {
 					this.x = this.sharkie.x + 200;
 					otherWay = 0;
+				} 
+				if(this.begin) {
+					let xStart = this.x
+					this.animateBubble(otherWay, xStart);
+					this.begin = false;
 				}
-				let xStart = this.x
-				this.animateBubble(otherWay, xStart);
 			}
 		}), 1000 / 60
 	}

@@ -125,10 +125,11 @@ class Sharkie extends MovableObject {
 			this.bubble = true;
 			this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_BUBBLE_ATTACK);
 			this.bubbleNr++;
-			if (this.bubbleNr == 16) {
-				this.bubbleNr = 0;
+			if (this.bubbleNr == 15) {
+				this.bubbleNr = 1;
 			}
 		}
+
 		if (!this.world.keyboard.BUBBLE) {
 			this.bubble = false;
 			this.isBubbleGenerated = false;
@@ -146,10 +147,10 @@ class Sharkie extends MovableObject {
 				this.poisonBubble = true;
 				this.getAnimationsToRun(this.ANIMATIONS.ANIMATION_POISON_BUBBLE_ATTACK);
 				this.poisonBubbleNr++;
-				if (this.poisonBubbleNr == 16) {
-					this.poisonBubbleNr = 0;
+				if (this.poisonBubbleNr == 15) {
+					this.poisonBubbleNr = 1;
 				}
-				this.poisonsAmount--;
+				this.poisonsAmount--;f
 			}
 		}
 		if (!this.world.keyboard.POISONBUBBLE) {
