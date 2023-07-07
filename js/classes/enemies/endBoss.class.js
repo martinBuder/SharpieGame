@@ -94,13 +94,13 @@ class EndBoss extends MovableObject {
 			this.getAnimationsToRun(this.ANIMATIONS.ENDBOSS_DEAD);
 			setTimeout(() => {
 				clearInterval(whaleDead);
-				this.loadImg(`../../img/2.Enemy/3 Final Enemy/Dead/9.png`)
+				this.loadImg(`img/2.Enemy/3 Final Enemy/Dead/9.png`)
 				let finish = setInterval(() => {
 					this.y -= 0.3
-					if (this.y < -50)
+					if (this.y < -100)
 						clearInterval(finish)
 				}, 1000 / 60);
-			}, 1000);
+			}, 3000);
 		}, 420);
 		setTimeout(() => {
 			let winning = document.getElementById('winning');
