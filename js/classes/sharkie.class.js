@@ -150,7 +150,7 @@ class Sharkie extends MovableObject {
 				if (this.poisonBubbleNr == 15) {
 					this.poisonBubbleNr = 1;
 				}
-				this.poisonsAmount--;f
+				this.poisonsAmount--;
 			}
 		}
 		if (!this.world.keyboard.POISONBUBBLE) {
