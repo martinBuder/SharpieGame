@@ -35,6 +35,7 @@ function setLevel() {
 		}
 		sharkie = world.sharkie;
 		isGameFinish(world);
+		setFullscreenOnMaxHeight();
 }
 
 /**
@@ -205,6 +206,30 @@ window.addEventListener('keyup', (e) => {
 		keyboard.POISONBUBBLE = false;
 	}
 });
+
+/**
+	* make the fullscreen modus for mobilphone
+	*/
+	function setFullscreenOnMaxHeight() {
+		const maxHeight = 480; 
+		const element = document.getElementById("forFullscreen");
+	
+		if (element) {
+				if (element.clientHeight <= maxHeight) {
+						// Element ist kleiner oder gleich 480px in der Höhe
+						if (element.requestFullscreen) {
+								element.requestFullscreen();
+								console.log(element.clientHeight);
+						} else if (element.mozRequestFullScreen) { // Firefox
+								element.mozRequestFullScreen();
+						} else if (element.webkitRequestFullscreen) { // Chrome, Safari und Opera
+								element.webkitRequestFullscreen();
+						} else if (element.msRequestFullscreen) { // Internet Explorer/Edge
+								element.msRequestFullscreen();
+						}
+				}
+		}
+	}
 
 
 
